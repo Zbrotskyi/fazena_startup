@@ -8,9 +8,7 @@ export type PipelineTrack = {
     id: number;
     name: string;
     description: string;
-    icon: string; // emoji icon
     stages: PipelineStage[];
-    accentColor: string;
-    gradientFrom: string;
-    gradientTo: string;
+    color: string; // gradient accent color
+    icon: string; // emoji or icon identifier
 };

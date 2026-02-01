@@ -11,7 +11,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "FAZENA - AI-Powered Drug Discovery",
-  description: "Advancing therapeutics through cutting-edge AI and computational biology",
+  description: "Revolutionary AI platform for therapeutic design and drug discovery",
 };
 
 export default function Home() {

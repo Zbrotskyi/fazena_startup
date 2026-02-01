@@ -4,11 +4,9 @@ const pipelineData: PipelineTrack[] = [
     {
         id: 1,
         name: "Drug Candidates",
-        description: "Advancing novel therapeutics through rigorous development stages",
+        description: "Novel therapeutics pipeline from target identification through clinical development",
         icon: "💊",
-        accentColor: "#4A6CF7",
-        gradientFrom: "#4A6CF7",
-        gradientTo: "#6366F1",
+        color: "from-blue-500 to-cyan-400",
         stages: [
             { name: "Target ID", completed: true },
             { name: "Hit Discovery", completed: true },
@@ -20,11 +18,9 @@ const pipelineData: PipelineTrack[] = [
     {
         id: 2,
         name: "Platform Development",
-        description: "Building cutting-edge computational tools for drug discovery",
+        description: "Building next-generation AI tools for drug discovery and molecular design",
         icon: "🧬",
-        accentColor: "#10B981",
-        gradientFrom: "#10B981",
-        gradientTo: "#34D399",
+        color: "from-violet-500 to-purple-400",
         stages: [
             { name: "Concept", completed: true },
             { name: "Prototype", completed: true },
@@ -36,11 +32,9 @@ const pipelineData: PipelineTrack[] = [
     {
         id: 3,
         name: "Building Partnerships",
-        description: "Strategic collaborations with industry leaders and research institutions",
+        description: "Strategic collaborations with pharmaceutical companies and research institutions",
         icon: "🤝",
-        accentColor: "#F59E0B",
-        gradientFrom: "#F59E0B",
-        gradientTo: "#FBBF24",
+        color: "from-emerald-500 to-teal-400",
         stages: [
             { name: "Outreach", completed: true },
             { name: "Evaluation", completed: true },
