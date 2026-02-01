@@ -14,7 +14,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                 {/* Top section with icon and title */}
                 <div className="flex items-center gap-4 pb-5 border-b border-white/[0.085]">
                     {/* Icon */}
-                    <div className="pipeline-card__icon relative flex h-14 w-14 items-center justify-center rounded-[1.18em] text-2xl overflow-hidden">
+                    <div className="pipeline-card__icon relative flex h-14 w-14 items-center justify-center rounded-[1.18em] text-2xl overflow-hidden shrink-0">
                         {icon}
                     </div>
 
@@ -29,58 +29,69 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                     </div>
                 </div>
 
-                {/* Progress section with projects */}
+                {/* Projects table with stages */}
                 <div className="pt-5">
-                    {/* Stage column headers */}
-                    <div className="grid gap-1 pl-32 md:pl-40" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
-                        {stages.map((stage, index) => (
-                            <div
-                                key={index}
-                                className="text-center font-mono font-bold text-xs tracking-[0.08em] uppercase px-1 py-2 text-white/60"
-                            >
-                                {stage.name}
+                    {/* Table container */}
+                    <div className="w-full">
+                        {/* Header row - stage names */}
+                        <div className="flex border-b border-white/[0.085] pb-3 mb-4">
+                            {/* Project name column header */}
+                            <div className="w-48 shrink-0 pr-4">
+                                <span className="font-mono font-bold text-xs tracking-[0.12em] uppercase text-white/40">
+                                    Project
+                                </span>
                             </div>
-                        ))}
-                    </div>
+                            {/* Stage column headers */}
+                            <div className="flex-1 grid" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
+                                {stages.map((stage, index) => (
+                                    <div key={index} className="text-center">
+                                        <span className="font-mono font-bold text-xs tracking-[0.12em] uppercase text-white/60">
+                                            {stage}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
 
-                    {/* Projects with their progress bars */}
-                    <div className="space-y-3 mt-2">
-                        {projects.map((project, projectIndex) => (
-                            <div key={projectIndex} className="flex items-center gap-4">
-                                {/* Project name on the left */}
-                                <div className="w-28 md:w-36 shrink-0">
-                                    <span className="font-mono font-semibold text-sm text-[rgba(129,179,64,0.9)] truncate block">
-                                        {project.name}
-                                    </span>
-                                </div>
+                        {/* Project rows */}
+                        {projects.map((project, projectIndex) => {
+                            const progressPercent = (project.currentStage / (stages.length - 1)) * 100;
 
-                                {/* Progress bar with stages */}
-                                <div className="flex-1 relative">
-                                    {/* Background track */}
-                                    <div className="h-2 w-full rounded-full overflow-hidden bg-black/40 border border-white/[0.06]">
-                                        {/* Filled progress */}
-                                        <div
-                                            className="h-full rounded-full bg-gradient-to-r from-[#81b340] to-[#284d79] transition-all duration-700 ease-out"
-                                            style={{ width: `${(project.currentStage / (stages.length - 1)) * 100}%` }}
-                                        />
+                            return (
+                                <div key={projectIndex} className="flex items-center py-3 border-b border-white/[0.04] last:border-b-0">
+                                    {/* Project name */}
+                                    <div className="w-48 shrink-0 pr-4">
+                                        <span className="font-mono font-semibold text-sm text-[rgba(255,177,74,0.92)]">
+                                            {project.name}
+                                        </span>
                                     </div>
 
-                                    {/* Stage markers grid */}
-                                    <div className="absolute inset-0 grid" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
-                                        {stages.map((_, stageIndex) => {
-                                            const isCurrentStage = stageIndex === project.currentStage;
-                                            return (
-                                                <div key={stageIndex} className="flex justify-center items-center">
-                                                    {isCurrentStage && (
-                                                        <div className="w-4 h-4 rounded-full bg-[#81b340] shadow-[0_0_12px_rgba(129,179,64,0.8)] animate-pulse border-2 border-white/40" />
+                                    {/* Progress bar area */}
+                                    <div className="flex-1 relative">
+                                        {/* Grid for stage alignment */}
+                                        <div className="grid relative" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
+                                            {/* Progress bar background */}
+                                            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-2 rounded-full bg-black/30 border border-white/[0.085]">
+                                                {/* Filled progress */}
+                                                <div
+                                                    className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.4)] transition-all duration-700 ease-out"
+                                                    style={{ width: `${progressPercent}%` }}
+                                                />
+                                            </div>
+
+                                            {/* Stage positions with indicator */}
+                                            {stages.map((_, stageIndex) => (
+                                                <div key={stageIndex} className="flex justify-center h-6 relative z-10">
+                                                    {stageIndex === project.currentStage && (
+                                                        <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/40" />
                                                     )}
                                                 </div>
-                                            );
-                                        })}
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </div>
@@ -88,11 +99,11 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
             <style jsx>{`
         .pipeline-card__bg {
           background: 
-            radial-gradient(28em 18em at 18% 18%, rgba(129, 179, 64, 0.15), transparent 62%),
-            radial-gradient(24em 16em at 82% 78%, rgba(40, 77, 121, 0.12), transparent 62%),
-            radial-gradient(1.2em 1.2em at 0.9em 0.9em, rgba(129, 179, 64, 0.04) 0 2px, transparent 2px),
-            radial-gradient(1.2em 1.2em at 2em 2em, rgba(40, 77, 121, 0.03) 0 2px, transparent 2px),
-            repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 0 1px, transparent 1px 7px),
+            radial-gradient(28em 18em at 18% 18%, rgba(247, 147, 26, 0.24), transparent 62%),
+            radial-gradient(24em 16em at 82% 78%, rgba(255, 207, 139, 0.11), transparent 62%),
+            radial-gradient(1.2em 1.2em at 0.9em 0.9em, rgba(247, 147, 26, 0.06) 0 2px, transparent 2px),
+            radial-gradient(1.2em 1.2em at 2em 2em, rgba(255, 207, 139, 0.04) 0 2px, transparent 2px),
+            repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 7px),
             linear-gradient(135deg, #060607, #0b0b10);
           background-size: auto, auto, 3.8em 3.8em, 3.8em 3.8em, auto, auto;
           border: 1px solid rgba(255, 255, 255, 0.07);
@@ -106,13 +117,13 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
         }
         
         .pipeline-card__icon {
-          background: linear-gradient(135deg, #81b340, #284d79);
-          box-shadow: 0 0.85em 2.1em rgba(129, 179, 64, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+          background: #f7931a;
+          box-shadow: 0 0.85em 2.1em rgba(247, 147, 26, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34);
           border: 1px solid rgba(255, 255, 255, 0.22);
         }
         
         .pipeline-card:hover .pipeline-card__icon {
-          box-shadow: 0 1.05em 2.4em rgba(129, 179, 64, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.36);
+          box-shadow: 0 1.05em 2.4em rgba(247, 147, 26, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.36);
         }
         
         .pipeline-card__icon::after {
