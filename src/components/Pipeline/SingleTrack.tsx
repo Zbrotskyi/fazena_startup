@@ -2,13 +2,7 @@
 import { PipelineTrack } from "@/types/pipeline";
 
 const SingleTrack = ({ track }: { track: PipelineTrack }) => {
-    const { name, description, stages, icon } = track;
-
-    // Find current stage index for progress calculation
-    const currentStageIndex = stages.findIndex(s => s.current);
-    const progressPercent = currentStageIndex >= 0
-        ? ((currentStageIndex) / (stages.length - 1)) * 100
-        : 0;
+    const { name, description, stages, projects, icon } = track;
 
     return (
         <div className="pipeline-card group relative w-full overflow-hidden rounded-[1.55em] transition-all duration-300 hover:-translate-y-[0.12em]">
@@ -35,68 +29,55 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                     </div>
                 </div>
 
-                {/* Progress section - Stage columns */}
+                {/* Progress section with projects */}
                 <div className="pt-5">
                     {/* Stage column headers */}
-                    <div className="grid gap-1" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
+                    <div className="grid gap-1 pl-32 md:pl-40" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
                         {stages.map((stage, index) => (
                             <div
                                 key={index}
-                                className={`
-                  text-center font-mono font-bold text-xs tracking-[0.12em] uppercase px-2 py-2
-                  ${stage.completed
-                                        ? 'text-[rgba(255,177,74,0.92)]'
-                                        : stage.current
-                                            ? 'text-[rgba(255,215,170,0.86)]'
-                                            : 'text-white/40'
-                                    }
-                `}
+                                className="text-center font-mono font-bold text-xs tracking-[0.08em] uppercase px-1 py-2 text-white/60"
                             >
                                 {stage.name}
                             </div>
                         ))}
                     </div>
 
-                    {/* Progress bar track */}
-                    <div className="relative mt-3 h-3 w-full rounded-full overflow-hidden bg-black/30 border border-white/[0.085] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-                        {/* Filled progress */}
-                        <div
-                            className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.4)] transition-all duration-700 ease-out"
-                            style={{ width: `${progressPercent}%` }}
-                        />
+                    {/* Projects with their progress bars */}
+                    <div className="space-y-3 mt-2">
+                        {projects.map((project, projectIndex) => (
+                            <div key={projectIndex} className="flex items-center gap-4">
+                                {/* Project name on the left */}
+                                <div className="w-28 md:w-36 shrink-0">
+                                    <span className="font-mono font-semibold text-sm text-[rgba(129,179,64,0.9)] truncate block">
+                                        {project.name}
+                                    </span>
+                                </div>
 
-                        {/* Current stage glow indicator */}
-                        {currentStageIndex >= 0 && (
-                            <div
-                                className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/30"
-                                style={{ left: `calc(${progressPercent}% - 8px)` }}
-                            />
-                        )}
-                    </div>
+                                {/* Progress bar with stages */}
+                                <div className="flex-1 relative">
+                                    {/* Background track */}
+                                    <div className="h-2 w-full rounded-full overflow-hidden bg-black/40 border border-white/[0.06]">
+                                        {/* Filled progress */}
+                                        <div
+                                            className="h-full rounded-full bg-gradient-to-r from-[#81b340] to-[#284d79] transition-all duration-700 ease-out"
+                                            style={{ width: `${(project.currentStage / (stages.length - 1)) * 100}%` }}
+                                        />
+                                    </div>
 
-                    {/* Stage indicators below bar */}
-                    <div className="grid gap-1 mt-2" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
-                        {stages.map((stage, index) => (
-                            <div key={index} className="flex justify-center">
-                                <div
-                                    className={`
-                    flex items-center justify-center w-6 h-6 rounded-full border transition-all duration-300
-                    ${stage.completed
-                                            ? 'bg-gradient-to-br from-[#f7931a] to-[#ffb14a] border-white/20 shadow-[0_0.85em_2.1em_rgba(247,147,26,0.2)]'
-                                            : stage.current
-                                                ? 'bg-gradient-to-br from-[#f7931a] to-[#ffb14a] border-white/30 shadow-[0_0_12px_rgba(247,147,26,0.6)] animate-pulse'
-                                                : 'bg-black/30 border-white/10'
-                                        }
-                  `}
-                                >
-                                    {stage.completed && (
-                                        <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    )}
-                                    {stage.current && (
-                                        <div className="w-2 h-2 rounded-full bg-white" />
-                                    )}
+                                    {/* Stage markers grid */}
+                                    <div className="absolute inset-0 grid" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
+                                        {stages.map((_, stageIndex) => {
+                                            const isCurrentStage = stageIndex === project.currentStage;
+                                            return (
+                                                <div key={stageIndex} className="flex justify-center items-center">
+                                                    {isCurrentStage && (
+                                                        <div className="w-4 h-4 rounded-full bg-[#81b340] shadow-[0_0_12px_rgba(129,179,64,0.8)] animate-pulse border-2 border-white/40" />
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -107,11 +88,11 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
             <style jsx>{`
         .pipeline-card__bg {
           background: 
-            radial-gradient(28em 18em at 18% 18%, rgba(247, 147, 26, 0.24), transparent 62%),
-            radial-gradient(24em 16em at 82% 78%, rgba(255, 207, 139, 0.11), transparent 62%),
-            radial-gradient(1.2em 1.2em at 0.9em 0.9em, rgba(247, 147, 26, 0.06) 0 2px, transparent 2px),
-            radial-gradient(1.2em 1.2em at 2em 2em, rgba(255, 207, 139, 0.04) 0 2px, transparent 2px),
-            repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 7px),
+            radial-gradient(28em 18em at 18% 18%, rgba(129, 179, 64, 0.15), transparent 62%),
+            radial-gradient(24em 16em at 82% 78%, rgba(40, 77, 121, 0.12), transparent 62%),
+            radial-gradient(1.2em 1.2em at 0.9em 0.9em, rgba(129, 179, 64, 0.04) 0 2px, transparent 2px),
+            radial-gradient(1.2em 1.2em at 2em 2em, rgba(40, 77, 121, 0.03) 0 2px, transparent 2px),
+            repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 0 1px, transparent 1px 7px),
             linear-gradient(135deg, #060607, #0b0b10);
           background-size: auto, auto, 3.8em 3.8em, 3.8em 3.8em, auto, auto;
           border: 1px solid rgba(255, 255, 255, 0.07);
@@ -125,13 +106,13 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
         }
         
         .pipeline-card__icon {
-          background: #f7931a;
-          box-shadow: 0 0.85em 2.1em rgba(247, 147, 26, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+          background: linear-gradient(135deg, #81b340, #284d79);
+          box-shadow: 0 0.85em 2.1em rgba(129, 179, 64, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34);
           border: 1px solid rgba(255, 255, 255, 0.22);
         }
         
         .pipeline-card:hover .pipeline-card__icon {
-          box-shadow: 0 1.05em 2.4em rgba(247, 147, 26, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.36);
+          box-shadow: 0 1.05em 2.4em rgba(129, 179, 64, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.36);
         }
         
         .pipeline-card__icon::after {

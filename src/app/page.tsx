@@ -10,8 +10,8 @@ import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FAZENA - AI-Powered Drug Discovery",
-  description: "Revolutionary AI platform for therapeutic design and drug discovery",
+  title: "Computed. Synthesized. Validated.",
+  description: "We're building silicon-to-cell integration that collapses traditional discovery timelines",
 };
 
 export default function Home() {
