@@ -1,0 +1,393 @@
+/* From Uiverse.io by Thomas-Cabrit */ 
+.ui-btc-card {
+  --bg0: #060607;
+  --bg1: #0b0b10;
+  --text: rgba(255, 255, 255, 0.88);
+  --muted: rgba(255, 255, 255, 0.46);
+  --btcOrange: #f7931a;
+
+  appearance: none;
+  position: relative;
+  display: block;
+  width: 36em;
+  max-width: 100%;
+  border: 0;
+  padding: 0;
+  border-radius: 1.55em;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease;
+  font:
+    600 1rem/1.2 ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+.ui-btc-card__bg,
+.ui-btc-card__inner,
+.ui-btc-card__top,
+.ui-btc-card__icon,
+.ui-btc-card__titles,
+.ui-btc-card__pair,
+.ui-btc-card__sub,
+.ui-btc-card__badge,
+.ui-btc-card__mid,
+.ui-btc-card__price,
+.ui-btc-card__sym,
+.ui-btc-card__num,
+.ui-btc-card__chg,
+.ui-btc-card__meta,
+.ui-btc-card__pill,
+.ui-btc-card__ticker,
+.ui-btc-card__marquee {
+  box-sizing: border-box;
+}
+
+.ui-btc-card__bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+      28em 18em at 18% 18%,
+      rgba(247, 147, 26, 0.24),
+      transparent 62%
+    ),
+    radial-gradient(
+      24em 16em at 82% 78%,
+      rgba(255, 207, 139, 0.11),
+      transparent 62%
+    ),
+    radial-gradient(
+      1.2em 1.2em at 0.9em 0.9em,
+      rgba(247, 147, 26, 0.06) 0 2px,
+      transparent 2px
+    ),
+    radial-gradient(
+      1.2em 1.2em at 2em 2em,
+      rgba(255, 207, 139, 0.04) 0 2px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.018) 0 1px,
+      transparent 1px 7px
+    ),
+    linear-gradient(135deg, var(--bg0), var(--bg1));
+  background-size:
+    auto,
+    auto,
+    3.8em 3.8em,
+    3.8em 3.8em,
+    auto,
+    auto;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1.45em 3.6em rgba(0, 0, 0, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.ui-btc-card__inner {
+  position: relative;
+  display: block;
+  padding: 1.55em;
+  color: var(--text);
+}
+
+.ui-btc-card__top {
+  display: flex;
+  align-items: center;
+  gap: 1.05em;
+  padding-bottom: 1.15em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.085);
+}
+
+.ui-btc-card__icon {
+  width: 3.35em;
+  height: 3.35em;
+  border-radius: 1.18em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--btcOrange);
+  box-shadow:
+    0 0.85em 2.1em rgba(247, 147, 26, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  position: relative;
+  overflow: hidden;
+  transition:
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.ui-btc-card__icon::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(
+    circle at 30% 25%,
+    rgba(255, 255, 255, 0.28),
+    transparent 45%
+  );
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ui-btc-card__svg {
+  width: 2.55em;
+  height: 2.55em;
+  display: block;
+  transform: rotate(-12deg);
+  filter: drop-shadow(0 0.35em 0.85em rgba(0, 0, 0, 0.28));
+}
+
+.ui-btc-card__titles {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.ui-btc-card__pair {
+  display: block;
+  font:
+    800 1rem/1.1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 215, 170, 0.86);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ui-btc-card__sub {
+  display: block;
+  margin-top: 0.45em;
+  font:
+    650 0.84rem/1.1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--muted);
+}
+
+.ui-btc-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font:
+    850 0.76rem/1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.65em 0.95em;
+  border-radius: 999em;
+  color: rgba(255, 225, 190, 0.84);
+  background: rgba(247, 147, 26, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+}
+
+.ui-btc-card__mid {
+  display: block;
+  padding-top: 1.25em;
+  padding-bottom: 1.15em;
+}
+
+.ui-btc-card__price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+  font:
+    850 1.55rem/1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+}
+
+.ui-btc-card__sym {
+  font-size: 1.08rem;
+  color: rgba(255, 207, 139, 0.76);
+}
+
+.ui-btc-card__num {
+  font-size: 2.25rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 177, 74, 0.92);
+  text-shadow: 0 0 1.2em rgba(247, 147, 26, 0.12);
+}
+
+.ui-btc-card__chg {
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  padding: 0.65em 0.95em;
+  border-radius: 999em;
+  color: rgba(255, 215, 170, 0.64);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ui-btc-card__meta {
+  display: flex;
+  gap: 0.7em;
+  flex-wrap: wrap;
+  margin-top: 1.15em;
+}
+
+.ui-btc-card__pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font:
+    700 0.78rem/1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.44);
+  padding: 0.7em 1em;
+  border-radius: 1.1em;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.ui-btc-card__ticker {
+  display: block;
+  overflow: hidden;
+  border-radius: 1.1em;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.ui-btc-card__marquee {
+  display: flex;
+  gap: 1.25em;
+  width: max-content;
+  padding: 0.95em 1.1em;
+  font:
+    800 0.78rem/1 ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 177, 74, 0.46);
+  animation: ui_btc_crawl 22s linear infinite;
+}
+
+.ui-btc-card__marquee span {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ui-btc-card:hover {
+  transform: translateY(-0.12em);
+}
+
+.ui-btc-card:hover .ui-btc-card__bg {
+  box-shadow:
+    0 1.65em 3.9em rgba(0, 0, 0, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.09);
+}
+
+.ui-btc-card:hover .ui-btc-card__icon {
+  box-shadow:
+    0 1.05em 2.4em rgba(247, 147, 26, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.36);
+}
+
+.ui-btc-card:active {
+  transform: translateY(0);
+  filter: brightness(1.02);
+}
+
+.ui-btc-card:active .ui-btc-card__bg {
+  box-shadow:
+    0 1.25em 3.1em rgba(0, 0, 0, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.ui-btc-card:focus-visible .ui-btc-card__bg {
+  outline: 0.18em solid rgba(247, 147, 26, 0.42);
+  outline-offset: 0.18em;
+}
+
+@keyframes ui_btc_crawl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 46em) {
+  .ui-btc-card {
+    width: 100%;
+  }
+  .ui-btc-card__inner {
+    padding: 1.25em;
+  }
+  .ui-btc-card__num {
+    font-size: 2.05rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-btc-card__marquee {
+    animation: none;
+  }
+  .ui-btc-card {
+    transition: none;
+    transform: none;
+  }
+  .ui-btc-card__bg,
+  .ui-btc-card__icon {
+    transition: none;
+  }
+}
