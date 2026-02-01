@@ -55,7 +55,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
 
                         {/* Project rows */}
                         {projects.map((project, projectIndex) => {
-                            const progressPercent = (project.currentStage / (stages.length - 1)) * 100;
+                            const progressPercent = ((project.currentStage + 0.5) / stages.length) * 100;
 
                             return (
                                 <div key={projectIndex} className="flex items-center py-3 border-b border-white/[0.04] last:border-b-0">
@@ -81,7 +81,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
 
                                             {/* Stage positions with indicator */}
                                             {stages.map((_, stageIndex) => (
-                                                <div key={stageIndex} className="flex justify-center h-6 relative z-10">
+                                                <div key={stageIndex} className="flex items-center justify-center h-6 relative z-10">
                                                     {stageIndex === project.currentStage && (
                                                         <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/40" />
                                                     )}
