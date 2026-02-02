@@ -9,7 +9,7 @@ const checkIcon = (
 
 const AboutSectionOne = () => {
   const List = ({ text }) => (
-    <p className="text-body-color mb-5 flex items-center text-lg font-medium">
+    <p className="mb-5 flex items-center text-lg font-medium text-white/70">
       <span className="bg-primary/10 text-primary mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md">
         {checkIcon}
       </span>
@@ -18,16 +18,18 @@ const AboutSectionOne = () => {
   );
 
   return (
-    <section id="about" className="pt-16 md:pt-20 lg:pt-28">
+    <section id="about" className="pt-16 md:pt-20 lg:pt-28 bg-[#060607]">
       <div className="container">
-        <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
+        <div className="border-b border-white/[.1] pb-16 md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
                 title="Crafted for Startup, SaaS and Business Sites."
                 paragraph="The main ‘thrust’ is to focus on educating attendees on how to best protect highly vulnerable business applications with interactive panel discussions and roundtables."
                 mb="44px"
+                dark
               />
+
 
               <div
                 className="mb-12 max-w-[570px] lg:mb-0"

@@ -21,7 +21,7 @@ export default function RootLayout({
       */}
       <head />
 
-      <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
+      <body className={`bg-[#060607] dark:bg-[#060607] ${inter.className}`}>
         <Providers>
           <div className="isolate">
             <Header />
