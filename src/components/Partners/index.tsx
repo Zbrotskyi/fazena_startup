@@ -50,9 +50,9 @@ const Partners = () => {
 
             {/* Mobile Dynamic Ribbon - Seamless loop */}
             <div className="flex w-full md:hidden overflow-hidden">
-                <div className="flex animate-marquee items-center">
+                <div className="flex animate-marquee items-center flex-nowrap">
                     {/* First strip */}
-                    <div className="flex items-center gap-12 px-6">
+                    <div className="flex flex-shrink-0 items-center gap-12 px-6 min-w-max">
                         {partnersData.map((partner) => (
                             <div
                                 key={`first-${partner.id}`}
@@ -67,7 +67,7 @@ const Partners = () => {
                         ))}
                     </div>
                     {/* Duplicate strip for seamless loop */}
-                    <div className="flex items-center gap-12 px-6">
+                    <div className="flex flex-shrink-0 items-center gap-12 px-6 min-w-max">
                         {partnersData.map((partner) => (
                             <div
                                 key={`second-${partner.id}`}
