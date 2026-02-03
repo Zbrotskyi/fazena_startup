@@ -38,7 +38,7 @@ const Partners = () => {
                                 alt={partner.name}
                                 width={140}
                                 height={60}
-                                className="max-h-[50px] w-auto grayscale contrast-[1.2] invert brightness-[1.5]"
+                                className="max-h-[50px] w-auto"
                             />
                         </div>
                     ))}
