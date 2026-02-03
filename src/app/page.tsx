@@ -5,6 +5,7 @@ import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
+import Partners from "@/components/Partners";
 import Pipeline from "@/components/Pipeline";
 import Video from "@/components/Video";
 import { Metadata } from "next";
@@ -19,6 +20,7 @@ export default function Home() {
     <>
       <ScrollUp />
       <Hero />
+      <Partners />
       <Features />
       <Video />
       <Pipeline />
