@@ -8,7 +8,7 @@ const Hero = () => {
         id="home"
         className="relative z-10 overflow-hidden bg-[#060607] pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
-        <div className="absolute inset-0 z-[-1]">
+        <div className="absolute inset-0 z-[-1] overflow-hidden">
           <LaserFlow
             color="#f7931a"
             wispDensity={1.6}
@@ -24,6 +24,7 @@ const Hero = () => {
             horizontalBeamOffset={0.25}
             verticalBeamOffset={-0.2}
           />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#060607] to-transparent z-10" />
         </div>
         <div className="container">
           <div className="-mx-4 flex flex-wrap">

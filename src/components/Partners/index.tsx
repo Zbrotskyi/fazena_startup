@@ -11,7 +11,7 @@ const partnersData = [
         id: 2,
         name: "KSE",
         logo: "/images/Partners/KSE.png",
-        scale: "h-[50px] md:h-[65px]",
+        scale: "h-[65px] md:h-[85px]", // Scaled up
     },
     {
         id: 3,
@@ -23,13 +23,13 @@ const partnersData = [
         id: 4,
         name: "IP_off",
         logo: "/images/Partners/IP_off.png",
-        scale: "h-[40px] md:h-[50px]", // Reduced relative scale as it was too large
+        scale: "h-[50px] md:h-[65px]", // Scaled up
     },
 ];
 
 const Partners = () => {
     return (
-        <section className="bg-[#060607] py-8 md:py-12">
+        <section className="relative z-20 -mt-20 bg-transparent py-8 md:py-12">
             <div className="container">
                 <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
                     {partnersData.map((partner) => (
