@@ -48,35 +48,39 @@ const Partners = () => {
                 </div>
             </div>
 
-            {/* Mobile Dynamic Ribbon */}
+            {/* Mobile Dynamic Ribbon - Seamless loop */}
             <div className="flex w-full md:hidden overflow-hidden">
-                <div className="flex gap-12 items-center animate-marquee">
-                    {partnersData.map((partner) => (
-                        <div
-                            key={partner.id}
-                            className="relative flex flex-shrink-0 items-center justify-center px-4"
-                        >
-                            <img
-                                src={partner.logo}
-                                alt={partner.name}
-                                className={`w-auto object-contain ${partner.scale}`}
-                            />
-                        </div>
-                    ))}
-                </div>
-                <div className="flex gap-12 items-center animate-marquee" aria-hidden="true">
-                    {partnersData.map((partner) => (
-                        <div
-                            key={`${partner.id}-duplicate`}
-                            className="relative flex flex-shrink-0 items-center justify-center px-4"
-                        >
-                            <img
-                                src={partner.logo}
-                                alt={partner.name}
-                                className={`w-auto object-contain ${partner.scale}`}
-                            />
-                        </div>
-                    ))}
+                <div className="flex animate-marquee items-center">
+                    {/* First strip */}
+                    <div className="flex items-center gap-12 px-6">
+                        {partnersData.map((partner) => (
+                            <div
+                                key={`first-${partner.id}`}
+                                className="relative flex flex-shrink-0 items-center justify-center"
+                            >
+                                <img
+                                    src={partner.logo}
+                                    alt={partner.name}
+                                    className={`w-auto object-contain ${partner.scale}`}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    {/* Duplicate strip for seamless loop */}
+                    <div className="flex items-center gap-12 px-6">
+                        {partnersData.map((partner) => (
+                            <div
+                                key={`second-${partner.id}`}
+                                className="relative flex flex-shrink-0 items-center justify-center"
+                            >
+                                <img
+                                    src={partner.logo}
+                                    alt={partner.name}
+                                    className={`w-auto object-contain ${partner.scale}`}
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
