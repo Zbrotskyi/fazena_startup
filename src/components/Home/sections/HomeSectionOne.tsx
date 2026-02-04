@@ -24,7 +24,7 @@ const HomeSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Main Features"
+                title="Our Features"
                 paragraph="FAZENA leverages quantum chemistry and AI to design next-generation therapeutics through the first end-to-end in silico-to-cell platform. We transform computational predictions into experimentally validated therapeutic candidates. While our full pipeline is under construction, we're already accelerating pharma R&D through specialized services and our AI-powered SaaS platform."
                 mb="44px"
                 dark

@@ -1,7 +1,6 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
-import AboutSectionTwo from "@/components/About/AboutSectionTwo";
+import SolutionsSectionOne from "@/components/Solutions/sections/SolutionsSectionOne";
+import SolutionsSectionTwo from "@/components/Solutions/sections/SolutionsSectionTwo";
 import Breadcrumb from "@/components/Common/Breadcrumb";
-
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,8 +15,8 @@ const SolutionsPage = () => {
                 pageName="Solutions"
                 description="We provide cutting-edge AI solutions to accelerate drug discovery and optimize therapeutic candidates."
             />
-            <AboutSectionOne />
-            <AboutSectionTwo />
+            <SolutionsSectionOne />
+            <SolutionsSectionTwo />
         </>
     );
 };

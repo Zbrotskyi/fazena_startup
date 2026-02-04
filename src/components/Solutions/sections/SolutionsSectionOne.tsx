@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SectionTitle from "../Common/SectionTitle";
+import SectionTitle from "@/components/Common/SectionTitle";
 
 const checkIcon = (
   <svg width="16" height="13" viewBox="0 0 16 13" className="fill-current">
@@ -7,8 +7,8 @@ const checkIcon = (
   </svg>
 );
 
-const AboutSectionOne = () => {
-  const List = ({ text }) => (
+const SolutionsSectionOne = () => {
+  const List = ({ text }: { text: string }) => (
     <p className="mb-5 flex items-center text-lg font-medium text-white/70">
       <span className="bg-primary/10 text-primary mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md">
         {checkIcon}
@@ -18,32 +18,43 @@ const AboutSectionOne = () => {
   );
 
   return (
-    <section id="about" className="pt-16 md:pt-20 lg:pt-28 bg-[#060607]">
+    <section id="solutions" className="pt-16 md:pt-20 lg:pt-28 bg-[#060607]">
       <div className="container">
         <div className="border-b border-white/[.1] pb-16 md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Test"
-                paragraph="FAZENA TEST ABOUT"
+                title="Our Solutions"
+                paragraph="FAZENA offers a comprehensive suite of AI-powered solutions designed to accelerate and optimize the drug discovery process. Our platform combines quantum chemistry with machine learning to deliver unprecedented insights and results."
                 mb="44px"
                 dark
               />
-
-
+              <div className="mb-12 max-w-[570px] lg:mb-0" data-wow-delay=".15s">
+                <div className="mx-[-12px] flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
+                    <List text="AI-Powered Drug Discovery" />
+                    <List text="Molecular Property Prediction" />
+                    <List text="Quantum Chemistry Simulations" />
+                  </div>
+                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
+                    <List text="Therapeutic Target Identification" />
+                    <List text="Lead Optimization" />
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
               <div className="relative mx-auto aspect-25/24 max-w-[500px] lg:mr-0">
                 <Image
                   src="/images/about/about-image.svg"
-                  alt="about-image"
+                  alt="solutions-image"
                   fill
                   className="mx-auto max-w-full drop-shadow-three dark:hidden dark:drop-shadow-none lg:mr-0"
                 />
                 <Image
                   src="/images/about/about-image-dark.svg"
-                  alt="about-image"
+                  alt="solutions-image"
                   fill
                   className="mx-auto hidden max-w-full drop-shadow-three dark:block dark:drop-shadow-none lg:mr-0"
                 />
@@ -56,4 +67,4 @@ const AboutSectionOne = () => {
   );
 };
 
-export default AboutSectionOne;
+export default SolutionsSectionOne;
