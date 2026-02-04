@@ -31,12 +31,12 @@ const Hero = () => {
             <div className="w-full px-4">
               <div className="max-w-[800px] text-left">
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  Computed.
-                  Synthesized.
-                  Validated.
+                  <div>Computed.</div>
+                  <div>Synthesized.</div>
+                  <div>Validated.</div>
                 </h1>
                 <p className="mb-12 text-base leading-relaxed! text-white/70 sm:text-lg md:text-xl">
-                  FAZENA leverages quantum chemistry and AI to design next-generation therapeutics through the first end-to-end in silico-to-cell platform. We transform computational predictions into experimentally validated therapeutic candidates. While our full pipeline is under construction, we're already accelerating pharma R&D through specialized services and our AI-powered SaaS platform.
+                  We're building silicon-to-cell integration that collapses traditional discovery timelines
                 </p>
               </div>
             </div>
