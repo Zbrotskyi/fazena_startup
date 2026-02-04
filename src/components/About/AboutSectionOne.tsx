@@ -1,4 +1,4 @@
-import Image from "next/image";
+import LetterGlitch from "./LetterGlitch";
 import SectionTitle from "../Common/SectionTitle";
 
 const checkIcon = (
@@ -34,18 +34,14 @@ const AboutSectionOne = () => {
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
-              <div className="relative mx-auto aspect-25/24 max-w-[500px] lg:mr-0">
-                <Image
-                  src="/images/about/about-image.svg"
-                  alt="about-image"
-                  fill
-                  className="mx-auto max-w-full drop-shadow-three dark:hidden dark:drop-shadow-none lg:mr-0"
-                />
-                <Image
-                  src="/images/about/about-image-dark.svg"
-                  alt="about-image"
-                  fill
-                  className="mx-auto hidden max-w-full drop-shadow-three dark:block dark:drop-shadow-none lg:mr-0"
+              <div className="relative mx-auto aspect-square max-w-[500px] lg:mr-0 rounded-lg overflow-hidden">
+                <LetterGlitch
+                  glitchColors={["#f2721c", "#fff47a", "#f9a443"]}
+                  glitchSpeed={40}
+                  centerVignette
+                  outerVignette
+                  smooth
+                  backgroundImage="/images/about/about-glitch.jpg"
                 />
               </div>
             </div>
