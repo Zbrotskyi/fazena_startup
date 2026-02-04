@@ -1,10 +1,10 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
-import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import Blog from "@/components/Blog";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
+import HomeSectionOne from "@/components/Home/sections/HomeSectionOne";
+import HomeSectionTwo from "@/components/Home/sections/HomeSectionTwo";
 import Partners from "@/components/Partners";
 import Pipeline from "@/components/Pipeline";
 import Video from "@/components/Video";
@@ -24,8 +24,8 @@ export default function Home() {
       <Features />
       <Video />
       <Pipeline />
-      <AboutSectionOne />
-      <AboutSectionTwo />
+      <HomeSectionOne />
+      <HomeSectionTwo />
       <Blog />
       <Contact />
     </>

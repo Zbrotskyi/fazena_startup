@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SectionTitle from "../Common/SectionTitle";
+import SectionTitle from "@/components/Common/SectionTitle";
 
 const checkIcon = (
   <svg width="16" height="13" viewBox="0 0 16 13" className="fill-current">
@@ -7,7 +7,7 @@ const checkIcon = (
   </svg>
 );
 
-const AboutSectionOne = () => {
+const HomeSectionOne = () => {
   const List = ({ text }) => (
     <p className="mb-5 flex items-center text-lg font-medium text-white/70">
       <span className="bg-primary/10 text-primary mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md">
@@ -18,19 +18,17 @@ const AboutSectionOne = () => {
   );
 
   return (
-    <section id="about" className="pt-16 md:pt-20 lg:pt-28 bg-[#060607]">
+    <section id="features" className="pt-16 md:pt-20 lg:pt-28 bg-[#060607]">
       <div className="container">
         <div className="border-b border-white/[.1] pb-16 md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Test"
-                paragraph="FAZENA TEST"
+                title="Main Features"
+                paragraph="FAZENA leverages quantum chemistry and AI to design next-generation therapeutics through the first end-to-end in silico-to-cell platform. We transform computational predictions into experimentally validated therapeutic candidates. While our full pipeline is under construction, we're already accelerating pharma R&D through specialized services and our AI-powered SaaS platform."
                 mb="44px"
                 dark
               />
-
-
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
@@ -56,4 +54,4 @@ const AboutSectionOne = () => {
   );
 };
 
-export default AboutSectionOne;
+export default HomeSectionOne;

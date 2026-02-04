@@ -1,5 +1,5 @@
 import Image from "next/image";
-import SectionTitle from "../Common/SectionTitle";
+import SectionTitle from "@/components/Common/SectionTitle";
 
 const checkIcon = (
   <svg width="16" height="13" viewBox="0 0 16 13" className="fill-current">
@@ -24,13 +24,24 @@ const AboutSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Test"
-                paragraph="FAZENA TEST"
+                title="About FAZENA"
+                paragraph="FAZENA is revolutionizing drug discovery by combining quantum chemistry with artificial intelligence. Our mission is to accelerate the development of next-generation therapeutics through innovative computational approaches."
                 mb="44px"
                 dark
               />
-
-
+              <div className="mb-12 max-w-[570px] lg:mb-0" data-wow-delay=".15s">
+                <div className="mx-[-12px] flex flex-wrap">
+                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
+                    <List text="Cutting-edge Research" />
+                    <List text="AI-Powered Solutions" />
+                    <List text="Quantum Chemistry" />
+                  </div>
+                  <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
+                    <List text="Drug Discovery" />
+                    <List text="Therapeutic Development" />
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
