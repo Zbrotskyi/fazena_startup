@@ -8,7 +8,7 @@ const projectsData: PipelineTrack[] = [
         icon: "💊",
         stages: ["Target ID", "Hit Discovery", "Lead Opt", "Preclinical", "Phase I"],
         projects: [
-            { name: "Alzheimer's disease ABCA7-targeting", currentStage: 3 },
+            { name: "Alzheimer's disease ABCA7-targeting", currentStage: 2 },
         ],
     },
     {
@@ -18,8 +18,8 @@ const projectsData: PipelineTrack[] = [
         icon: "🧬",
         stages: ["Concept", "Prototype", "Validation", "Optimization", "Launch"],
         projects: [
-            { name: "RNA hunter", currentStage: 2 },
-            { name: "CycloSpace", currentStage: 1 },
+            { name: "RNA hunter", currentStage: 1 },
+            { name: "CycloSpace", currentStage: 0 },
         ],
     },
     {
@@ -29,7 +29,7 @@ const projectsData: PipelineTrack[] = [
         icon: "🤝",
         stages: ["Outreach", "Evaluation", "Negotiation", "Contract", "Active"],
         projects: [
-            { name: "YURiA-PHARM", currentStage: 4 },
+            { name: "YURiA-PHARM", currentStage: 3 },
         ],
     },
 ];
