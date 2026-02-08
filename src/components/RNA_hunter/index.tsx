@@ -62,7 +62,6 @@ export default function RNAHunter() {
                 mb="32px"
                 dark
                 width="100%"
-                className="max-w-4xl"
               />
               <div className="text-center">
                 <button className="hunter-btn inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-white bg-primary rounded-md hover:bg-opacity-90 transition-all duration-300 transform hover:-translate-y-0.5">
