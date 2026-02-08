@@ -3,74 +3,81 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import SectionTitle from "../Common/SectionTitle";
-import GradualBlur from "../GradualBlur";
+import GradualBlur from "../GradualBlur/GradualBlur";
 import styles from "./styles.module.css";
 
 const RNAHunter = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const screenshotRef = useRef<HTMLDivElement>(null);
-    const [isRevealing, setIsRevealing] = useState(false);
     const [revealProgress, setRevealProgress] = useState(0);
-    const [isScrollLocked, setIsScrollLocked] = useState(false);
-    const [hasRevealed, setHasRevealed] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [animationComplete, setAnimationComplete] = useState(false);
 
+    // Handle scroll-triggered reveal animation
     const handleWheel = useCallback((e: WheelEvent) => {
-        if (!isScrollLocked || hasRevealed) return;
+        if (!isAnimating || animationComplete) return;
 
         e.preventDefault();
         e.stopPropagation();
 
-        // Calculate new progress based on scroll delta
-        const delta = e.deltaY > 0 ? 0.05 : -0.02;
+        // Use wheel delta to control reveal progress
+        const delta = e.deltaY;
+        const sensitivity = 0.003; // Adjust for faster/slower reveal
+
         setRevealProgress(prev => {
-            const newProgress = Math.max(0, Math.min(1, prev + delta));
+            const newProgress = Math.max(0, Math.min(1, prev + delta * sensitivity));
 
+            // Complete animation when fully revealed
             if (newProgress >= 1) {
-                setHasRevealed(true);
-                setIsScrollLocked(false);
-                document.body.style.overflow = '';
-            }
-
-            if (newProgress <= 0 && delta < 0) {
-                setIsScrollLocked(false);
-                setIsRevealing(false);
-                document.body.style.overflow = '';
+                setAnimationComplete(true);
+                setIsAnimating(false);
             }
 
             return newProgress;
         });
-    }, [isScrollLocked, hasRevealed]);
+    }, [isAnimating, animationComplete]);
 
+    // Intersection Observer to detect when to start animation
     useEffect(() => {
-        const section = sectionRef.current;
-        if (!section || hasRevealed) return;
+        if (animationComplete) return;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // Trigger when 75% of section is visible
-                if (entry.intersectionRatio >= 0.75 && !isRevealing && !hasRevealed) {
-                    setIsRevealing(true);
-                    setIsScrollLocked(true);
-                    document.body.style.overflow = 'hidden';
+                // Start animation when section is 80% visible
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.8) {
+                    setIsAnimating(true);
                 }
             },
-            { threshold: [0, 0.25, 0.5, 0.75, 1] }
+            { threshold: [0.8] }
         );
 
-        observer.observe(section);
-        return () => observer.disconnect();
-    }, [isRevealing, hasRevealed]);
-
-    useEffect(() => {
-        if (isScrollLocked) {
-            window.addEventListener('wheel', handleWheel, { passive: false });
-            return () => window.removeEventListener('wheel', handleWheel);
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
         }
-    }, [isScrollLocked, handleWheel]);
 
-    // Calculate transforms based on progress
-    const translateY = 100 - (revealProgress * 100);
-    const blurAmount = (1 - revealProgress) * 20;
+        return () => observer.disconnect();
+    }, [animationComplete]);
+
+    // Add/remove wheel event listener based on animation state
+    useEffect(() => {
+        if (isAnimating && !animationComplete) {
+            // Lock body scroll
+            document.body.style.overflow = 'hidden';
+            window.addEventListener('wheel', handleWheel, { passive: false });
+        } else {
+            // Restore body scroll
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+            window.removeEventListener('wheel', handleWheel);
+        };
+    }, [isAnimating, animationComplete, handleWheel]);
+
+    // Calculate transform values based on reveal progress
+    const translateY = 100 - revealProgress * 100; // Start at 100%, end at 0%
+    const blurAmount = (1 - revealProgress) * 20; // Start at 20px blur, end at 0
     const opacity = revealProgress;
 
     return (
@@ -105,15 +112,15 @@ const RNAHunter = () => {
                     </button>
                 </div>
 
-                <div className="relative" style={{ minHeight: '400px' }}>
+                <div className="relative">
                     <div
                         ref={screenshotRef}
-                        className="mx-auto max-w-[900px]"
+                        className={`mx-auto max-w-[900px] ${styles.screenshotContainer}`}
                         style={{
-                            transform: `translateY(${translateY}%)`,
-                            filter: `blur(${blurAmount}px)`,
-                            opacity: hasRevealed ? 1 : opacity,
-                            transition: hasRevealed ? 'none' : 'transform 0.1s ease-out, filter 0.1s ease-out, opacity 0.1s ease-out'
+                            transform: animationComplete ? 'translateY(0)' : `translateY(${translateY}%)`,
+                            filter: animationComplete ? 'blur(0)' : `blur(${blurAmount}px)`,
+                            opacity: animationComplete ? 1 : opacity,
+                            transition: animationComplete ? 'all 0.3s ease-out' : 'none',
                         }}
                     >
                         <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
@@ -124,13 +131,15 @@ const RNAHunter = () => {
                                 height={720}
                                 className="w-full h-auto object-contain"
                             />
-                            {!hasRevealed && (
+
+                            {/* Gradual blur overlay during animation */}
+                            {!animationComplete && revealProgress < 1 && (
                                 <GradualBlur
                                     target="parent"
-                                    position="top"
-                                    height="10rem"
-                                    strength={3}
-                                    divCount={8}
+                                    position="bottom"
+                                    height="7rem"
+                                    strength={2 * (1 - revealProgress)}
+                                    divCount={5}
                                     curve="bezier"
                                     exponential
                                     opacity={1 - revealProgress}
@@ -138,19 +147,15 @@ const RNAHunter = () => {
                             )}
                         </div>
                     </div>
-
-                    {/* Scroll indicator */}
-                    {isScrollLocked && !hasRevealed && (
-                        <div className={styles.scrollIndicator}>
-                            <div className={styles.scrollIcon}>
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M12 5v14M5 12l7 7 7-7" />
-                                </svg>
-                            </div>
-                            <span>Scroll to reveal</span>
-                        </div>
-                    )}
                 </div>
+
+                {/* Scroll indicator during animation */}
+                {isAnimating && !animationComplete && (
+                    <div className={styles.scrollIndicator}>
+                        <span>Scroll to reveal</span>
+                        <div className={styles.scrollArrow}>↓</div>
+                    </div>
+                )}
             </div>
         </section>
     );
