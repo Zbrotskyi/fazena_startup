@@ -5,16 +5,18 @@ import SectionTitle from "../Common/SectionTitle";
 
 const RNAHunter = () => {
     return (
-        <section className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607] overflow-hidden">
-            <div className="fixed left-0 right-0 top-1/2 -translate-y-1/2 -z-10 w-screen flex justify-center opacity-30">
-                <Image
-                    src="/images/video/shape.svg"
-                    alt="Background shape"
-                    width={1920}
-                    height={400}
-                    className="w-screen h-auto min-w-[100vw] object-cover"
-                    priority
-                />
+        <section className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607]">
+            <div className="absolute inset-0 -z-10 w-full h-full">
+                <div className="relative w-full h-full flex justify-center items-center">
+                    <Image
+                        src="/images/video/shape.svg"
+                        alt="Background shape"
+                        width={1920}
+                        height={400}
+                        className="w-full h-auto max-w-[100vw] opacity-30"
+                        priority
+                    />
+                </div>
             </div>
             <div className="container relative">
                 <SectionTitle
