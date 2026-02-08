@@ -52,24 +52,24 @@ export default function RNAHunter() {
       <div className="sticky top-0 h-screen overflow-hidden">
 
         {/* Title section - fixed at top */}
-        <div className="relative z-20 pt-4 md:pt-6 lg:pt-8 pb-4">
+        <div className="relative z-30 pt-8 md:pt-10 lg:pt-12 pb-4">
           <div className="container flex flex-col items-center">
             <SectionTitle
               title="RNA Hunter"
               paragraph="Obtaining the spatial structure of non-coding RNAs and finding therapeutic small molecules for this target. Modelling in intracellular conditions, molecular dynamics, refinement of the lead molecule using QM/MM methods, calculation of free binding energy and other parameters. The platform is not limited by target length."
               center
-              mb="24px"
+              mb="16px"
               dark
               width="900px"
             />
-            <button className="hunter-btn mt-2">
+            <button className="hunter-btn">
               Learn more
             </button>
           </div>
         </div>
 
         {/* Visual area - below text */}
-        <div className="relative flex-1" style={{ height: 'calc(100vh - 360px)' }}>
+        <div className="relative flex-1" style={{ height: 'calc(100vh - 320px)', marginTop: '40px' }}>
 
           {/* Background shape - FULL WIDTH, no container */}
           <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2">
