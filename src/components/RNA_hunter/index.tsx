@@ -68,8 +68,8 @@ export default function RNAHunter() {
         {/* Spacer for button area - push visual area lower */}
         <div className="h-16 md:h-20 lg:h-24" />
 
-        {/* Visual area - positioned lower, but maintains full height */}
-        <div className="relative" style={{ height: 'calc(100vh - 180px)' }}>
+        {/* Visual area - full height maintained */}
+        <div className="relative" style={{ height: '70vh' }}>
 
           {/* Background shape - FULL WIDTH, no container */}
           <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2">
