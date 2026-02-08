@@ -6,7 +6,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
     const { name, description, stages, projects, icon } = track;
 
     return (
-        <div className="ui-btc-card">
+        <div className="ui-btc-card w-full">
             {/* Background with gradients */}
             <div className="ui-btc-card__bg" />
 
@@ -30,47 +30,65 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                     </div>
                 </div>
 
-                {/* Projects table with stages */}
+                {/* Projects with progress bars */}
                 <div className="ui-btc-card__mid">
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead>
-                                <tr className="border-b border-white/[0.08]">
-                                    <th className="pb-3 text-left text-xs font-mono font-semibold text-white/50 tracking-wider">
-                                        Project
-                                    </th>
-                                    {stages.map((stage, index) => (
-                                        <th
-                                            key={index}
-                                            className="px-2 pb-3 text-center text-xs font-mono font-semibold text-white/50 tracking-wider"
-                                        >
-                                            {stage}
-                                        </th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {projects.map((project, idx) => (
-                                    <tr key={idx} className="border-b border-white/[0.05] last:border-0">
-                                        <td className="py-4 pr-4 text-sm font-medium text-white/90 whitespace-nowrap">
-                                            {project.name}
-                                        </td>
-                                        {stages.map((_, stageIdx) => (
-                                            <td key={stageIdx} className="px-2 py-4">
-                                                <div className="flex justify-center">
-                                                    <div
-                                                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${stageIdx < project.currentStage
-                                                            ? 'bg-[#ffd7aa] shadow-[0_0_10px_rgba(255,215,170,0.4)]'
-                                                            : 'bg-white/10'
-                                                            }`}
-                                                    />
-                                                </div>
-                                            </td>
+                    <div className="space-y-6">
+                        {projects.map((project, idx) => (
+                            <div key={idx} className="space-y-2">
+                                {/* Project name */}
+                                <div className="text-sm font-medium text-white/90">
+                                    {project.name}
+                                </div>
+
+                                {/* Progress bar container */}
+                                <div className="relative">
+                                    {/* Stage labels */}
+                                    <div className="flex justify-between mb-2">
+                                        {stages.map((stage, stageIdx) => (
+                                            <span
+                                                key={stageIdx}
+                                                className={`text-xs font-mono tracking-wider ${stageIdx < project.currentStage
+                                                        ? 'text-[#ffd7aa]/80'
+                                                        : stageIdx === project.currentStage
+                                                            ? 'text-[#f7931a]'
+                                                            : 'text-white/30'
+                                                    }`}
+                                            >
+                                                {stage}
+                                            </span>
                                         ))}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                    </div>
+
+                                    {/* Progress bar track */}
+                                    <div className="relative h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                                        {/* Completed progress */}
+                                        <div
+                                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#f7931a] to-[#ffd7aa] rounded-full transition-all duration-500"
+                                            style={{ width: `${(project.currentStage / stages.length) * 100}%` }}
+                                        />
+
+                                        {/* Current stage indicator (blinking) */}
+                                        <div
+                                            className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-[#f7931a] rounded-full shadow-[0_0_12px_rgba(247,147,26,0.6)] animate-pulse"
+                                            style={{ left: `calc(${(project.currentStage / stages.length) * 100}% - 8px)` }}
+                                        />
+                                    </div>
+
+                                    {/* Stage markers */}
+                                    <div className="absolute top-[26px] left-0 right-0 flex justify-between pointer-events-none">
+                                        {stages.map((_, stageIdx) => (
+                                            <div
+                                                key={stageIdx}
+                                                className={`w-1 h-1 rounded-full ${stageIdx < project.currentStage
+                                                        ? 'bg-[#ffd7aa]/60'
+                                                        : 'bg-white/20'
+                                                    }`}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -79,4 +97,3 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
 };
 
 export default SingleTrack;
-
