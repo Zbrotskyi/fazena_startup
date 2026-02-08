@@ -1,5 +1,4 @@
 import SectionTitle from "../Common/SectionTitle";
-import SingleTrack from "./SingleTrack";
 import pipelineData from "./pipelineData";
 
 const Pipeline = () => {
