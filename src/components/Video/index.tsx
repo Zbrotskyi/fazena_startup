@@ -18,6 +18,7 @@ export default function Video() {
             center
             mb="80px"
             dark
+            width="900px"
           />
         </div>
         <div className="relative overflow-hidden">

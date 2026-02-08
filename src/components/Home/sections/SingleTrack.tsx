@@ -1,5 +1,6 @@
 "use client";
 import { PipelineTrack } from "@/types/pipeline";
+import Link from "next/link";
 
 const SingleTrack = ({ track }: { track: PipelineTrack }) => {
     const { name, description, stages, projects, icon } = track;
@@ -55,15 +56,22 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
 
                         {/* Project rows */}
                         {projects.map((project, projectIndex) => {
+                            // Progress starts at the beginning of the first stage and ends at the center of the current stage
                             const progressPercent = ((project.currentStage + 0.5) / stages.length) * 100;
 
                             return (
                                 <div key={projectIndex} className="flex items-center py-3 border-b border-white/[0.04] last:border-b-0">
-                                    {/* Project name */}
-                                    <div className="w-48 shrink-0 pr-4">
+                                    {/* Project name and Learn more */}
+                                    <div className="w-48 shrink-0 pr-4 flex flex-col">
                                         <span className="font-mono font-semibold text-sm text-[rgba(255,177,74,0.92)]">
                                             {project.name}
                                         </span>
+                                        <Link
+                                            href={`/projects/${project.name.toLowerCase().replace(/[\s']/g, '-')}`}
+                                            className="mt-1 font-mono text-xs text-white/40 hover:text-[#f7931a] transition-colors duration-200"
+                                        >
+                                            Learn more →
+                                        </Link>
                                     </div>
 
                                     {/* Progress bar area */}

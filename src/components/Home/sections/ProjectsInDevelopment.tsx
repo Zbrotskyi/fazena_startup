@@ -11,6 +11,7 @@ const ProjectsInDevelopment = () => {
                     paragraph="We are actively advancing three strategic initiatives: developing novel therapeutics for neurodegenerative diseases, cancer, and diabetes; building integrated in silico and in vivo platforms to power our unified drug discovery pipeline; and partnering with pharmaceutical companies on targeted research projects."
                     center
                     dark
+                    width="900px"
                 />
 
                 <div className="flex flex-col gap-8">

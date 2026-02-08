@@ -8,7 +8,7 @@ const projectsData: PipelineTrack[] = [
         icon: "💊",
         stages: ["Target ID", "Hit Discovery", "Lead Opt", "Preclinical", "Phase I"],
         projects: [
-            { name: "Alzheimer's disease ABCA7-target", currentStage: 3 },
+            { name: "Alzheimer's disease ABCA7-targeting", currentStage: 3 },
         ],
     },
     {
