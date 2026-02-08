@@ -5,8 +5,8 @@ import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import HomeSectionOne from "@/components/Home/sections/HomeSectionOne";
 import HomeSectionTwo from "@/components/Home/sections/HomeSectionTwo";
+import ProjectsInDevelopment from "@/components/Home/sections/ProjectsInDevelopment";
 import Partners from "@/components/Partners";
-import Pipeline from "@/components/Pipeline";
 import Video from "@/components/Video";
 import { Metadata } from "next";
 
@@ -24,7 +24,7 @@ export default function Home() {
       <HomeSectionOne />
       <Features />
       <Video />
-      <Pipeline />
+      <ProjectsInDevelopment />
       <HomeSectionTwo />
       <Blog />
       <Contact />
