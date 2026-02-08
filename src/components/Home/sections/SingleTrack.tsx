@@ -5,193 +5,159 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
     const { name, description, stages, projects, icon } = track;
 
     return (
-        <div className="ui-btc-card">
-            <div className="ui-btc-card__inner">
-                <div className="ui-btc-card__top">
-                    <div className="ui-btc-card__icon">
+        <div className="pipeline-card group relative w-full overflow-hidden rounded-[1.55em] transition-all duration-300 hover:-translate-y-[0.12em]">
+            {/* Background with gradients */}
+            <div className="pipeline-card__bg absolute inset-0 rounded-[inherit] pointer-events-none" />
+
+            {/* Inner content */}
+            <div className="relative p-6 md:p-8 text-white/90">
+                {/* Top section with icon and title */}
+                <div className="flex items-center gap-4 pb-5 border-b border-white/[0.085]">
+                    {/* Icon */}
+                    <div className="pipeline-card__icon relative flex h-14 w-14 items-center justify-center rounded-[1.18em] text-2xl overflow-hidden shrink-0">
                         {icon}
                     </div>
-                    <div className="ui-btc-card__titles">
-                        <span className="ui-btc-card__pair">{name}</span>
-                        <span className="ui-btc-card__sub">{description}</span>
+
+                    {/* Titles */}
+                    <div className="flex-1 min-w-0">
+                        <span className="block font-mono font-extrabold text-sm tracking-[0.22em] uppercase text-[rgba(255,215,170,0.86)] whitespace-nowrap overflow-hidden text-ellipsis">
+                            {name}
+                        </span>
+                        <span className="block mt-1 font-mono font-semibold text-xs tracking-[0.14em] lowercase text-white/50">
+                            {description}
+                        </span>
                     </div>
                 </div>
 
-                <div className="ui-btc-card__mid">
-                    <table className="w-full">
-                        <thead>
-                            <tr>
-                                <th>Project</th>
-                                {stages.map((stage, index) => (
-                                    <th key={index} className="text-center">
-                                        {stage}
+                {/* Projects table with stages */}
+                <div className="mt-6">
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="border-b border-white/[0.08]">
+                                    <th className="pb-3 text-left text-xs font-mono font-semibold text-white/50 tracking-wider">
+                                        Project
                                     </th>
-                                ))}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {projects.map((project, idx) => (
-                                <tr key={idx}>
-                                    <td className="font-medium">{project.name}</td>
-                                    {stages.map((_, stageIdx) => (
-                                        <td key={stageIdx} className="text-center">
-                                            <div className={`ui-btc-card__dot ${
-                                                stageIdx < project.currentStage ? 'active' : ''
-                                            }`}></div>
-                                        </td>
+                                    {stages.map((stage, index) => (
+                                        <th
+                                            key={index}
+                                            className="px-2 pb-3 text-center text-xs font-mono font-semibold text-white/50 tracking-wider"
+                                        >
+                                            {stage}
+                                        </th>
                                     ))}
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {projects.map((project, idx) => (
+                                    <tr key={idx} className="border-b border-white/[0.05] last:border-0">
+                                        <td className="py-4 pr-4 text-sm font-medium text-white/90 whitespace-nowrap">
+                                            {project.name}
+                                        </td>
+                                        {stages.map((_, stageIdx) => (
+                                            <td key={stageIdx} className="px-2 py-4">
+                                                <div className="flex justify-center">
+                                                    <div
+                                                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${stageIdx < project.currentStage
+                                                                ? 'bg-[#ffd7aa] shadow-[0_0_10px_rgba(255,215,170,0.4)]'
+                                                                : 'bg-white/10'
+                                                            }`}
+                                                    />
+                                                </div>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <style jsx>{`
-                .ui-btc-card {
+                .pipeline-card {
                     --bg0: #060607;
                     --bg1: #0b0b10;
                     --text: rgba(255, 255, 255, 0.88);
                     --muted: rgba(255, 255, 255, 0.46);
-                    --accent: #f7931a;
+                    --btcOrange: #f7931a;
                     
                     appearance: none;
                     position: relative;
                     display: block;
                     width: 100%;
-                    max-width: 100%;
                     border: 0;
-                    padding: 1.5rem;
-                    border-radius: 1.25rem;
-                    background: var(--bg1);
-                    cursor: pointer;
-                    text-align: left;
+                    padding: 0;
+                    background: transparent;
                     outline: none;
-                    transition: all 0.3s ease;
-                    border: 1px solid rgba(255, 255, 255, 0.06);
-                    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+                    transition: transform 0.18s ease, filter 0.18s ease;
                 }
 
-                .ui-btc-card:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                .pipeline-card__bg {
+                    position: absolute;
+                    inset: 0;
+                    border-radius: inherit;
+                    pointer-events: none;
+                    background: radial-gradient(
+                        28em 18em at 18% 18%,
+                        rgba(247, 147, 26, 0.24),
+                        transparent 62%
+                    ),
+                    radial-gradient(
+                        24em 16em at 82% 78%,
+                        rgba(255, 207, 139, 0.11),
+                        transparent 62%
+                    ),
+                    radial-gradient(
+                        1.2em 1.2em at 0.9em 0.9em,
+                        rgba(247, 147, 26, 0.06) 0 2px,
+                        transparent 2px
+                    ),
+                    radial-gradient(
+                        1.2em 1.2em at 2em 2em,
+                        rgba(255, 207, 139, 0.04) 0 2px,
+                        transparent 2px
+                    ),
+                    repeating-linear-gradient(
+                        to bottom,
+                        rgba(255, 255, 255, 0.018) 0 1px,
+                        transparent 1px 7px
+                    ),
+                    linear-gradient(135deg, var(--bg0), var(--bg1));
+                    background-size: auto, auto, 3.8em 3.8em, 3.8em 3.8em, auto, auto;
+                    border: 1px solid rgba(255, 255, 255, 0.07);
+                    box-shadow: 0 1.45em 3.6em rgba(0, 0, 0, 0.58), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+                    transition: box-shadow 0.22s ease, border-color 0.22s ease;
                 }
 
-                .ui-btc-card__inner {
-                    position: relative;
-                    z-index: 1;
+                .pipeline-card:hover .pipeline-card__bg {
+                    box-shadow: 0 1.65em 3.9em rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+                    border-color: rgba(255, 255, 255, 0.09);
                 }
 
-                .ui-btc-card__top {
-                    display: flex;
-                    align-items: center;
-                    gap: 1rem;
-                    margin-bottom: 1.5rem;
-                    padding-bottom: 1rem;
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                .pipeline-card__icon {
+                    background: var(--btcOrange);
+                    box-shadow: 0 0.85em 2.1em rgba(247, 147, 26, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+                    border: 1px solid rgba(255, 255, 255, 0.22);
+                    transition: box-shadow 0.22s ease, transform 0.22s ease;
                 }
 
-                .ui-btc-card__icon {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 3rem;
-                    height: 3rem;
-                    border-radius: 1rem;
-                    background: linear-gradient(135deg, rgba(255, 215, 170, 0.1) 0%, rgba(255, 215, 170, 0.05) 100%);
-                    border: 1px solid rgba(255, 215, 170, 0.1);
-                    color: #ffd7aa;
-                    font-size: 1.5rem;
-                    transition: all 0.3s ease;
+                .pipeline-card__icon::after {
+                    content: "";
+                    position: absolute;
+                    inset: -30%;
+                    background: radial-gradient(
+                        circle at 30% 25%,
+                        rgba(255, 255, 255, 0.28),
+                        transparent 45%
+                    );
+                    opacity: 0.55;
+                    pointer-events: none;
                 }
 
-                .ui-btc-card:hover .ui-btc-card__icon {
+                .pipeline-card:hover .pipeline-card__icon {
+                    box-shadow: 0 1.05em 2.4em rgba(247, 147, 26, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.36);
                     transform: scale(1.05);
-                    box-shadow: 0 0 20px rgba(255, 215, 170, 0.2);
-                }
-
-                .ui-btc-card__titles {
-                    flex: 1;
-                    min-width: 0;
-                }
-
-                .ui-btc-card__pair {
-                    display: block;
-                    font-family: monospace;
-                    font-weight: 800;
-                    font-size: 0.875rem;
-                    letter-spacing: 0.1em;
-                    text-transform: uppercase;
-                    color: rgba(255, 215, 170, 0.9);
-                    margin-bottom: 0.25rem;
-                }
-
-                .ui-btc-card__sub {
-                    display: block;
-                    font-family: monospace;
-                    font-size: 0.75rem;
-                    color: var(--muted);
-                    letter-spacing: 0.05em;
-                }
-
-                .ui-btc-card__mid {
-                    width: 100%;
-                    overflow-x: auto;
-                }
-
-                .ui-btc-card__mid table {
-                    width: 100%;
-                    border-collapse: collapse;
-                }
-
-                .ui-btc-card__mid th {
-                    padding: 0.5rem 0.5rem 1rem;
-                    font-size: 0.75rem;
-                    font-weight: 500;
-                    color: var(--muted);
-                    text-align: left;
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    white-space: nowrap;
-                }
-
-                .ui-btc-card__mid th:first-child {
-                    padding-left: 0;
-                }
-
-                .ui-btc-card__mid th:last-child {
-                    padding-right: 0;
-                }
-
-                .ui-btc-card__mid td {
-                    padding: 0.75rem 0.5rem;
-                    font-size: 0.875rem;
-                    color: var(--text);
-                    border-top: 1px solid rgba(255, 255, 255, 0.05);
-                    white-space: nowrap;
-                }
-
-                .ui-btc-card__mid td:first-child {
-                    padding-left: 0;
-                }
-
-                .ui-btc-card__mid td:last-child {
-                    padding-right: 0;
-                }
-
-                .ui-btc-card__dot {
-                    display: inline-block;
-                    width: 8px;
-                    height: 8px;
-                    border-radius: 50%;
-                    background-color: rgba(255, 255, 255, 0.1);
-                    transition: all 0.3s ease;
-                }
-
-                .ui-btc-card__dot.active {
-                    background-color: #ffd7aa;
-                    box-shadow: 0 0 10px rgba(255, 215, 170, 0.5);
-                    transform: scale(1.2);
                 }
             `}</style>
         </div>
