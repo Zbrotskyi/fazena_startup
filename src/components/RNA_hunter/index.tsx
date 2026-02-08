@@ -49,10 +49,10 @@ export default function RNAHunter() {
       style={{ height: '200vh' }}
     >
       {/* Sticky wrapper */}
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
 
         {/* Title section - fixed at top with reduced padding */}
-        <div className="relative z-20 pt-8 md:pt-12 lg:pt-16 pb-4">
+        <div className="relative z-20 pt-8 md:pt-12 lg:pt-16 pb-4 shrink-0">
           <div className="container">
             <SectionTitle
               title="RNA Hunter"
@@ -65,11 +65,11 @@ export default function RNAHunter() {
           </div>
         </div>
 
-        {/* Spacer for button area - push visual area lower */}
-        <div className="h-16 md:h-20 lg:h-24" />
+        {/* Spacer between text and visual area */}
+        <div className="h-8 md:h-12 shrink-0" />
 
-        {/* Visual area - full height maintained */}
-        <div className="relative" style={{ height: '70vh' }}>
+        {/* Visual area - takes remaining space */}
+        <div className="relative flex-1 min-h-0">
 
           {/* Background shape - FULL WIDTH, no container */}
           <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2">
