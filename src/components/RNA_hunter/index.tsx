@@ -51,8 +51,8 @@ export default function RNAHunter() {
       {/* Sticky wrapper */}
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
 
-        {/* Title section - with solid background to prevent overlap */}
-        <div className="relative z-30 pt-8 md:pt-12 lg:pt-16 pb-6 md:pb-8 shrink-0 bg-[#060607]">
+        {/* Title section - fixed at top with reduced padding */}
+        <div className="relative z-20 pt-8 md:pt-12 lg:pt-16 pb-4 shrink-0">
           <div className="container">
             <SectionTitle
               title="RNA Hunter"
@@ -65,8 +65,8 @@ export default function RNAHunter() {
           </div>
         </div>
 
-        {/* Larger spacer between text and visual area */}
-        <div className="h-16 md:h-24 shrink-0 bg-[#060607] relative z-20" />
+        {/* Spacer between text and visual area */}
+        <div className="h-24 md:h-32 lg:h-40 shrink-0" />
 
         {/* Visual area - takes remaining space */}
         <div className="relative flex-1 min-h-0">
