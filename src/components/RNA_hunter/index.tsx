@@ -1,13 +1,83 @@
 "use client";
 
+import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import SectionTitle from "../Common/SectionTitle";
-import GradualBlur from "../Common/GradualBlur";
+import GradualBlur from "../GradualBlur";
 import styles from "./styles.module.css";
 
 const RNAHunter = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const screenshotRef = useRef<HTMLDivElement>(null);
+    const [isRevealing, setIsRevealing] = useState(false);
+    const [revealProgress, setRevealProgress] = useState(0);
+    const [isScrollLocked, setIsScrollLocked] = useState(false);
+    const [hasRevealed, setHasRevealed] = useState(false);
+
+    const handleWheel = useCallback((e: WheelEvent) => {
+        if (!isScrollLocked || hasRevealed) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Calculate new progress based on scroll delta
+        const delta = e.deltaY > 0 ? 0.05 : -0.02;
+        setRevealProgress(prev => {
+            const newProgress = Math.max(0, Math.min(1, prev + delta));
+
+            if (newProgress >= 1) {
+                setHasRevealed(true);
+                setIsScrollLocked(false);
+                document.body.style.overflow = '';
+            }
+
+            if (newProgress <= 0 && delta < 0) {
+                setIsScrollLocked(false);
+                setIsRevealing(false);
+                document.body.style.overflow = '';
+            }
+
+            return newProgress;
+        });
+    }, [isScrollLocked, hasRevealed]);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section || hasRevealed) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // Trigger when 75% of section is visible
+                if (entry.intersectionRatio >= 0.75 && !isRevealing && !hasRevealed) {
+                    setIsRevealing(true);
+                    setIsScrollLocked(true);
+                    document.body.style.overflow = 'hidden';
+                }
+            },
+            { threshold: [0, 0.25, 0.5, 0.75, 1] }
+        );
+
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, [isRevealing, hasRevealed]);
+
+    useEffect(() => {
+        if (isScrollLocked) {
+            window.addEventListener('wheel', handleWheel, { passive: false });
+            return () => window.removeEventListener('wheel', handleWheel);
+        }
+    }, [isScrollLocked, handleWheel]);
+
+    // Calculate transforms based on progress
+    const translateY = 100 - (revealProgress * 100);
+    const blurAmount = (1 - revealProgress) * 20;
+    const opacity = revealProgress;
+
     return (
-        <section className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607]">
+        <section
+            ref={sectionRef}
+            className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607]"
+        >
             <div className="absolute inset-0 -z-10 w-full h-full">
                 <div className="relative w-full h-full flex justify-center items-end">
                     <Image
@@ -35,8 +105,17 @@ const RNAHunter = () => {
                     </button>
                 </div>
 
-                <div className="relative">
-                    <div className="mx-auto max-w-[900px]">
+                <div className="relative" style={{ minHeight: '400px' }}>
+                    <div
+                        ref={screenshotRef}
+                        className="mx-auto max-w-[900px]"
+                        style={{
+                            transform: `translateY(${translateY}%)`,
+                            filter: `blur(${blurAmount}px)`,
+                            opacity: hasRevealed ? 1 : opacity,
+                            transition: hasRevealed ? 'none' : 'transform 0.1s ease-out, filter 0.1s ease-out, opacity 0.1s ease-out'
+                        }}
+                    >
                         <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
                             <Image
                                 src="/images/video/image.png"
@@ -45,19 +124,32 @@ const RNAHunter = () => {
                                 height={720}
                                 className="w-full h-auto object-contain"
                             />
-                            <GradualBlur
-                                position="top"
-                                height="8rem"
-                                strength={3}
-                                divCount={8}
-                                curve="bezier"
-                                animated="scroll"
-                                duration="0.8s"
-                                easing="ease-out"
-                                opacity={1}
-                            />
+                            {!hasRevealed && (
+                                <GradualBlur
+                                    target="parent"
+                                    position="top"
+                                    height="10rem"
+                                    strength={3}
+                                    divCount={8}
+                                    curve="bezier"
+                                    exponential
+                                    opacity={1 - revealProgress}
+                                />
+                            )}
                         </div>
                     </div>
+
+                    {/* Scroll indicator */}
+                    {isScrollLocked && !hasRevealed && (
+                        <div className={styles.scrollIndicator}>
+                            <div className={styles.scrollIcon}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M12 5v14M5 12l7 7 7-7" />
+                                </svg>
+                            </div>
+                            <span>Scroll to reveal</span>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>
@@ -65,4 +157,3 @@ const RNAHunter = () => {
 };
 
 export default RNAHunter;
-
