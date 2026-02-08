@@ -50,58 +50,67 @@ export default function RNAHunter() {
     >
       {/* Sticky wrapper */}
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="relative z-20 pt-16 md:pt-20 lg:pt-24 pb-4 h-full flex flex-col">
-          {/* Content container with max height and scroll */}
-          <div className="container flex-1 flex flex-col items-center justify-between">
-            {/* Text content at the top */}
-            <div className="w-full max-w-4xl mx-auto px-4 z-20 relative">
-              <SectionTitle
-                title="RNA Hunter"
-                paragraph="Obtaining the spatial structure of non-coding RNAs and finding therapeutic small molecules for this target. Modelling in intracellular conditions, molecular dynamics, refinement of the lead molecule using QM/MM methods, calculation of free binding energy and other parameters. The platform is not limited by target length."
-                center
-                mb="32px"
-                dark
-                width="100%"
-              />
-              <div className="text-center">
-                <button className="hunter-btn inline-flex items-center justify-center px-8 py-3.5 text-base font-medium text-white bg-primary rounded-md hover:bg-opacity-90 transition-all duration-300 transform hover:-translate-y-0.5">
-                  Learn More
-                </button>
-              </div>
-            </div>
-            
-            {/* Screenshot container positioned absolutely at bottom */}
-            <div className="w-full max-w-5xl mx-auto px-4 relative z-10 mt-auto">
-            <div className="relative mx-auto aspect-[25/24] max-w-[500px] lg:mr-0 -mt-8 lg:mt-0">
+
+        {/* Title section - fixed at top */}
+        <div className="relative z-20 pt-10 md:pt-12 lg:pt-14 pb-4">
+          <div className="container flex flex-col items-center">
+            <SectionTitle
+              title="RNA Hunter"
+              paragraph="Obtaining the spatial structure of non-coding RNAs and finding therapeutic small molecules for this target. Modelling in intracellular conditions, molecular dynamics, refinement of the lead molecule using QM/MM methods, calculation of free binding energy and other parameters. The platform is not limited by target length."
+              center
+              mb="24px"
+              dark
+              width="900px"
+            />
+            <button className="hunter-btn mt-2">
+              Learn more
+            </button>
+          </div>
+        </div>
+
+        {/* Visual area - below text */}
+        <div className="relative flex-1" style={{ height: 'calc(100vh - 280px)' }}>
+
+          {/* Background shape - FULL WIDTH, no container */}
+          <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2">
+            <Image
+              src="/images/video/shape.svg"
+              alt="Background shape"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </div>
+
+          {/* Screenshot area - centered in the visual zone */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div
+              className="w-full max-w-[850px] mx-auto px-4"
+              style={{
+                transform: `translateY(${screenshotY}%)`,
+                transition: 'transform 0.05s linear'
+              }}
+            >
               <div
-                className="w-full max-w-[850px] mx-auto px-4"
+                className="overflow-hidden rounded-2xl border border-white/[0.1] shadow-[0_25px_80px_rgba(0,0,0,0.7)]"
                 style={{
-                  transform: `translateY(${screenshotY}%)`,
-                  transition: 'transform 0.05s linear'
+                  opacity: screenshotOpacity,
+                  filter: `blur(${blurAmount}px)`,
+                  transform: `scale(${screenshotScale})`,
+                  transition: 'opacity 0.05s linear, filter 0.1s linear, transform 0.05s linear'
                 }}
               >
-                <div
-                  className="overflow-hidden rounded-2xl border border-white/[0.1] shadow-[0_25px_80px_rgba(0,0,0,0.7)]"
-                  style={{
-                    opacity: screenshotOpacity,
-                    filter: `blur(${blurAmount}px)`,
-                    transform: `scale(${screenshotScale})`,
-                    transition: 'opacity 0.05s linear, filter 0.1s linear, transform 0.05s linear'
-                  }}
-                >
-                  <Image
-                    src="/images/video/image.png"
-                    alt="RNA Hunter platform screenshot"
-                    width={1920}
-                    height={1080}
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
+                <Image
+                  src="/images/video/image.png"
+                  alt="RNA Hunter platform screenshot"
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto object-contain"
+                />
               </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );
