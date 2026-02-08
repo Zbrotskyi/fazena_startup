@@ -45,11 +45,11 @@ export default function RNAHunter() {
   return (
     <section
       ref={sectionRef}
-      className="relative z-10 bg-[#060607]"
+      className="relative z-20 bg-[#060607]"
       style={{ height: '200vh' }}
     >
       {/* Sticky wrapper */}
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+      <div className="sticky top-0 z-30 h-screen overflow-hidden flex flex-col bg-[#060607]">
 
         {/* Title section - fixed at top with reduced padding */}
         <div className="relative z-20 pt-8 md:pt-12 lg:pt-16 pb-4 shrink-0">
