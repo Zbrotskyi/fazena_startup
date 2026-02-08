@@ -5,11 +5,11 @@ import SectionTitle from "../Common/SectionTitle";
 
 const RNAHunter = () => {
     return (
-        <section className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607]">
+        <section className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607] bg-no-repeat bg-center bg-cover" style={{backgroundImage: `url('/images/video/shape.svg')`}}>
             <div className="container">
                 <SectionTitle
                     title="RNA Hunter"
-                    paragraph="Our proprietary platform for rapid RNA-targeting small molecule discovery. We combine high-throughput screening with advanced computational modeling to identify novel therapeutic candidates."
+                    paragraph="Obtaining the spatial structure of non-coding RNAs and finding therapeutic small molecules for this target. Modelling in intracellular conditions, molecular dynamics, refinement of the lead molecule using QM/MM methods, calculation of free binding energy and other parameters. The platform is not limited by target length."
                     center
                     width="900px"
                     mb="80px"
@@ -21,9 +21,9 @@ const RNAHunter = () => {
                             <Image
                                 src="/images/video/image.png"
                                 alt="RNA Hunter platform screenshot"
-                                width={1920}
-                                height={1080}
-                                className="w-full h-auto object-contain"
+                                width={1280}
+                                height={720}
+                                className="mx-auto h-auto object-contain"
                             />
                         </div>
                     </div>
