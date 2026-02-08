@@ -68,8 +68,8 @@ export default function RNAHunter() {
           </div>
         </div>
 
-        {/* Visual area - below text */}
-        <div className="relative flex-1" style={{ height: 'calc(100vh - 320px)', marginTop: '40px' }}>
+        {/* Visual area - below text, with clipping */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden" style={{ height: '55vh' }}>
 
           {/* Background shape - FULL WIDTH, no container */}
           <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2">
@@ -82,32 +82,30 @@ export default function RNAHunter() {
             />
           </div>
 
-          {/* Screenshot area - centered in the visual zone */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          {/* Screenshot area - positioned from top of visual zone */}
+          <div
+            className="absolute left-0 right-0 flex justify-center px-4"
+            style={{
+              top: `${(1 - revealProgress) * 100}%`,
+              transition: 'top 0.05s linear'
+            }}
+          >
             <div
-              className="w-full max-w-[850px] mx-auto px-4"
+              className="w-full max-w-[850px] overflow-hidden rounded-2xl border border-white/[0.1] shadow-[0_25px_80px_rgba(0,0,0,0.7)]"
               style={{
-                transform: `translateY(${screenshotY}%)`,
-                transition: 'transform 0.05s linear'
+                opacity: screenshotOpacity,
+                filter: `blur(${blurAmount}px)`,
+                transform: `scale(${screenshotScale})`,
+                transition: 'opacity 0.05s linear, filter 0.1s linear, transform 0.05s linear'
               }}
             >
-              <div
-                className="overflow-hidden rounded-2xl border border-white/[0.1] shadow-[0_25px_80px_rgba(0,0,0,0.7)]"
-                style={{
-                  opacity: screenshotOpacity,
-                  filter: `blur(${blurAmount}px)`,
-                  transform: `scale(${screenshotScale})`,
-                  transition: 'opacity 0.05s linear, filter 0.1s linear, transform 0.05s linear'
-                }}
-              >
-                <Image
-                  src="/images/video/image.png"
-                  alt="RNA Hunter platform screenshot"
-                  width={1920}
-                  height={1080}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
+              <Image
+                src="/images/video/image.png"
+                alt="RNA Hunter platform screenshot"
+                width={1920}
+                height={1080}
+                className="w-full h-auto object-contain"
+              />
             </div>
           </div>
         </div>
