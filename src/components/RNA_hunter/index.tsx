@@ -52,7 +52,7 @@ export default function RNAHunter() {
       <div className="sticky top-0 h-screen overflow-hidden">
 
         {/* Title section - fixed at top */}
-        <div className="relative z-20 pt-8 md:pt-10 lg:pt-12 pb-4">
+        <div className="relative z-20 pt-4 md:pt-6 lg:pt-8 pb-4">
           <div className="container flex flex-col items-center">
             <SectionTitle
               title="RNA Hunter"
@@ -69,7 +69,7 @@ export default function RNAHunter() {
         </div>
 
         {/* Visual area - below text */}
-        <div className="relative flex-1" style={{ height: 'calc(100vh - 280px)' }}>
+        <div className="relative flex-1" style={{ height: 'calc(100vh - 360px)' }}>
 
           {/* Background shape - FULL WIDTH, no container */}
           <div className="absolute inset-0 w-screen left-1/2 -translate-x-1/2">
