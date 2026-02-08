@@ -6,12 +6,13 @@ import SectionTitle from "../Common/SectionTitle";
 const RNAHunter = () => {
     return (
         <section className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607]">
-            <div className="absolute inset-x-0 top-0 -z-10 h-full">
+            <div className="absolute inset-x-0 top-0 -z-10 w-full flex justify-center">
                 <Image
                     src="/images/video/shape.svg"
                     alt="Background shape"
-                    fill
-                    className="object-cover w-full h-full"
+                    width={1920}
+                    height={400}
+                    className="w-auto h-auto max-w-none"
                     priority
                 />
             </div>
