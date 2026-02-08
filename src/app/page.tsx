@@ -8,6 +8,7 @@ import HomeSectionTwo from "@/components/Home/sections/HomeSectionTwo";
 import ProjectsInDevelopment from "@/components/Home/sections/ProjectsInDevelopment";
 import Partners from "@/components/Partners";
 import RNAHunter from "@/components/RNA_hunter";
+import Team from "@/components/Team";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function Home() {
       <RNAHunter />
       <Features />
       <HomeSectionTwo />
+      <Team />
       <Blog />
       <Contact />
     </>
