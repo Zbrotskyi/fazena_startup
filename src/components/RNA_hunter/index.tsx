@@ -8,7 +8,7 @@ const RNAHunter = () => {
     return (
         <section className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607]">
             <div className="absolute inset-0 -z-10 w-full h-full">
-                <div className="relative w-full h-full flex justify-center items-start pt-20">
+                <div className="relative w-full h-full flex justify-center items-end">
                     <Image
                         src="/images/video/shape.svg"
                         alt="Background shape"
