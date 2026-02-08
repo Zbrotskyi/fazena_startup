@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SectionTitle from "../Common/SectionTitle";
+import GradualBlur from "../Common/GradualBlur";
 import styles from "./styles.module.css";
 
 const RNAHunter = () => {
@@ -44,6 +45,17 @@ const RNAHunter = () => {
                                 height={720}
                                 className="w-full h-auto object-contain"
                             />
+                            <GradualBlur
+                                position="top"
+                                height="8rem"
+                                strength={3}
+                                divCount={8}
+                                curve="bezier"
+                                animated="scroll"
+                                duration="0.8s"
+                                easing="ease-out"
+                                opacity={1}
+                            />
                         </div>
                     </div>
                 </div>
@@ -53,3 +65,4 @@ const RNAHunter = () => {
 };
 
 export default RNAHunter;
+
