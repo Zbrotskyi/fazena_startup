@@ -144,3 +144,7 @@
     @apply inline-flex;
   }
 }
+::selection {
+  background-color: #ea7414;
+  color: #fff;
+}

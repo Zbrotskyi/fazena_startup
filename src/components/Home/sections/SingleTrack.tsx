@@ -66,18 +66,21 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                         <span className="font-mono font-semibold text-sm text-[rgba(255,177,74,0.92)]">
                                             {project.name}
                                         </span>
-                                        <Link
-                                            href={
-                                                project.name.toLowerCase() === "rna hunter"
-                                                    ? "/rna-hunter"
-                                                    : project.name.toLowerCase() === "cyclospace"
-                                                        ? "/#cyclospace"
-                                                        : `/projects/${project.name.toLowerCase().replace(/[\s']/g, '-')}`
-                                            }
-                                            className="mt-1 font-mono text-xs text-white/40 hover:text-[#f7931a] transition-colors duration-200"
-                                        >
-                                            Learn more →
-                                        </Link>
+                                        {name !== "Building Partnerships" && (
+                                            <Link
+                                                href={
+                                                    project.name.toLowerCase() === "rna hunter"
+                                                        ? "/rna-hunter"
+                                                        : project.name.toLowerCase() === "cyclospace"
+                                                            ? "/#cyclospace"
+                                                            : `/projects/${project.name.toLowerCase().replace(/[\s']/g, '-')}`
+                                                }
+                                                className="mt-1 font-mono text-xs text-white/40 hover:text-[#f7931a] transition-colors duration-200"
+                                            >
+                                                Learn more →
+                                            </Link>
+                                        )}
+
                                     </div>
 
                                     {/* Progress bar area */}
