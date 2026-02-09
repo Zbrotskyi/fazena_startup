@@ -1,4 +1,3 @@
-import Blog from "@/components/Blog";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
@@ -10,6 +9,7 @@ import Partners from "@/components/Partners";
 import RNAHunter from "@/components/RNA_hunter";
 import Team from "@/components/Team";
 import HomePublications from "@/components/Publications/HomePublications";
+import PartnershipCTA from "@/components/PartnershipCTA";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -31,6 +31,7 @@ export default function Home() {
       <Features />
       <Team />
       <HomePublications />
+      <PartnershipCTA />
     </>
   );
 }

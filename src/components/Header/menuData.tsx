@@ -14,42 +14,11 @@ const menuData: Menu[] = [
     newTab: false,
   },
   {
-    id: 21,
-    title: "Solutions",
-    path: "/solutions",
-    newTab: false,
-  },
-  {
-    id: 22,
-    title: "Pipeline",
-    path: "/pipeline",
-    newTab: false,
-  },
-  {
     id: 3,
-    title: "Resources",
-    newTab: false,
-    submenu: [
-      {
-        id: 31,
-        title: "Blog",
-        path: "/blog",
-        newTab: false,
-      },
-      {
-        id: 32,
-        title: "Publications",
-        path: "/publications",
-        newTab: false,
-      },
-    ],
-  },
-  {
-    id: 4,
-    title: "Support",
-    path: "/contact",
+    title: "Publications",
+    path: "/publications",
     newTab: false,
   },
-
 ];
 export default menuData;
+
