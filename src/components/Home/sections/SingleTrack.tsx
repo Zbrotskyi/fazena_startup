@@ -67,7 +67,13 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                             {project.name}
                                         </span>
                                         <Link
-                                            href={project.name.toLowerCase() === "rna hunter" ? "/rna-hunter" : `/projects/${project.name.toLowerCase().replace(/[\s']/g, '-')}`}
+                                            href={
+                                                project.name.toLowerCase() === "rna hunter"
+                                                    ? "/rna-hunter"
+                                                    : project.name.toLowerCase() === "cyclospace"
+                                                        ? "/#cyclospace"
+                                                        : `/projects/${project.name.toLowerCase().replace(/[\s']/g, '-')}`
+                                            }
                                             className="mt-1 font-mono text-xs text-white/40 hover:text-[#f7931a] transition-colors duration-200"
                                         >
                                             Learn more →
