@@ -15,5 +15,5 @@ export type PipelineTrack = {
     description: string;
     stages: string[];
     projects: PipelineProject[];
-    icon: string;
+    icon: React.ReactNode;
 };

@@ -97,10 +97,10 @@ const Header = () => {
                           <Link
                             href={menuItem.path}
                             className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${menuItem.special
-                                ? "border border-[#ea7414] rounded px-4 py-2 lg:py-2 text-white hover:bg-[#ea7414]/10 transition-colors duration-300"
-                                : usePathName === menuItem.path
-                                  ? "text-primary"
-                                  : "text-white/70 hover:text-white"
+                              ? "border border-[#ea7414] rounded px-5 py-1.5 lg:py-1.5 text-white hover:bg-[#ea7414]/10 transition-colors duration-300"
+                              : usePathName === menuItem.path
+                                ? "text-primary"
+                                : "text-white/70 hover:text-white"
                               }`}
                           >
                             {menuItem.title}

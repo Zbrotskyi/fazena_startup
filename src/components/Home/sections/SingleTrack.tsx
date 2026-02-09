@@ -134,6 +134,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
         
         .pipeline-card__icon {
           background: #f7931a;
+          color: white;
           box-shadow: 0 0.85em 2.1em rgba(247, 147, 26, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.34);
           border: 1px solid rgba(255, 255, 255, 0.22);
         }
