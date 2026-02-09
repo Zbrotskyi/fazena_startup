@@ -8,44 +8,38 @@ const teamMembers = [
         image: "/images/team/member1.jpg",
         title: "Team Member 1",
         subtitle: "CEO & Founder",
-        handle: "@member1",
-        url: ""
+        linkedin: "https://linkedin.com/in/member1"
     },
     {
         image: "/images/team/member2.jpg",
         title: "Team Member 2",
         subtitle: "CTO",
-        handle: "@member2",
-        url: ""
+        linkedin: "https://linkedin.com/in/member2"
     },
     {
         image: "/images/team/member3.jpg",
         title: "Team Member 3",
         subtitle: "Lead Scientist",
-        handle: "@member3",
-        url: ""
+        linkedin: "https://linkedin.com/in/member3"
     },
     {
         image: "/images/team/member4.jpg",
         title: "Team Member 4",
         subtitle: "Research Lead",
-        handle: "@member4",
-        url: ""
+        linkedin: "https://linkedin.com/in/member4"
     },
     {
         image: "/images/team/member5.jpg",
         title: "Team Member 5",
         subtitle: "Head of Operations",
-        handle: "@member5",
-        url: ""
+        linkedin: "https://linkedin.com/in/member5"
     },
     {
         image: "",
         title: "Join Our Team",
-        subtitle: "We're always looking for talented individuals",
-        handle: "",
-        url: "/contact",
-        isCTA: true
+        subtitle: "Help us redefine drug discovery",
+        isCTA: true,
+        ctaLink: "/contact"
     }
 ];
 
@@ -66,7 +60,7 @@ const Team = () => {
                 <div style={{ position: 'relative', minHeight: '500px' }}>
                     <ChromaGrid
                         items={teamMembers}
-                        radius={320}
+                        radius={280}
                         damping={0.45}
                         fadeOut={0.6}
                         ease="power3.out"
@@ -78,3 +72,4 @@ const Team = () => {
 };
 
 export default Team;
+
