@@ -10,8 +10,6 @@ interface LetterGlitchProps {
     outerVignette?: boolean;
     smooth?: boolean;
     characters?: string;
-    horizontalDistortion?: boolean;
-    blurOverlay?: boolean;
 }
 
 const LetterGlitch = ({
@@ -21,13 +19,16 @@ const LetterGlitch = ({
     centerVignette = false,
     outerVignette = true,
     smooth = true,
-    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789',
-    horizontalDistortion = false,
-    blurOverlay = false
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$&*()-_+=/[]{};:<>.,0123456789'
 }: LetterGlitchProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const animationRef = useRef<number | null>(null);
-    const letters = useRef<any[]>([]);
+    const letters = useRef<Array<{
+        char: string;
+        color: string;
+        targetColor: string;
+        colorProgress: number;
+    }>>([]);
     const grid = useRef({ columns: 0, rows: 0 });
     const context = useRef<CanvasRenderingContext2D | null>(null);
     const lastGlitchTime = useRef(Date.now());
@@ -62,7 +63,7 @@ const LetterGlitch = ({
             : null;
     };
 
-    const interpolateColor = (start: any, end: any, factor: number) => {
+    const interpolateColor = (start: { r: number; g: number; b: number }, end: { r: number; g: number; b: number }, factor: number) => {
         const result = {
             r: Math.round(start.r + (end.r - start.r) * factor),
             g: Math.round(start.g + (end.g - start.g) * factor),
@@ -116,22 +117,16 @@ const LetterGlitch = ({
     const drawLetters = () => {
         if (!context.current || letters.current.length === 0) return;
         const ctx = context.current;
-        const { width, height } = canvasRef.current!.getBoundingClientRect();
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const { width, height } = canvas.getBoundingClientRect();
         ctx.clearRect(0, 0, width, height);
         ctx.font = `${fontSize}px monospace`;
         ctx.textBaseline = 'top';
 
         letters.current.forEach((letter, index) => {
-            let x = (index % grid.current.columns) * charWidth;
+            const x = (index % grid.current.columns) * charWidth;
             const y = Math.floor(index / grid.current.columns) * charHeight;
-
-            // Add horizontal distortion
-            if (horizontalDistortion) {
-                const wave = Math.sin((y / height) * Math.PI * 3) * 8;
-                const noise = (Math.random() - 0.5) * 4;
-                x += wave + noise;
-            }
-
             ctx.fillStyle = letter.color;
             ctx.fillText(letter.char, x, y);
         });
@@ -207,7 +202,9 @@ const LetterGlitch = ({
         const handleResize = () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                if (animationRef.current) cancelAnimationFrame(animationRef.current);
+                if (animationRef.current) {
+                    cancelAnimationFrame(animationRef.current);
+                }
                 resizeCanvas();
                 animate();
             }, 100);
@@ -216,11 +213,13 @@ const LetterGlitch = ({
         window.addEventListener('resize', handleResize);
 
         return () => {
-            if (animationRef.current) cancelAnimationFrame(animationRef.current);
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
             window.removeEventListener('resize', handleResize);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [glitchSpeed, smooth, horizontalDistortion]);
+    }, [glitchSpeed, smooth]);
 
     const containerStyle: React.CSSProperties = {
         position: 'relative',
@@ -256,24 +255,11 @@ const LetterGlitch = ({
         background: 'radial-gradient(circle, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%)'
     };
 
-    const blurOverlayStyle: React.CSSProperties = {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        pointerEvents: 'none',
-        background: 'radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.3) 100%)',
-        backdropFilter: 'blur(2px)',
-        WebkitBackdropFilter: 'blur(2px)'
-    };
-
     return (
         <div style={containerStyle} className={className}>
             <canvas ref={canvasRef} style={canvasStyle} />
             {outerVignette && <div style={outerVignetteStyle}></div>}
             {centerVignette && <div style={centerVignetteStyle}></div>}
-            {blurOverlay && <div style={blurOverlayStyle}></div>}
         </div>
     );
 };

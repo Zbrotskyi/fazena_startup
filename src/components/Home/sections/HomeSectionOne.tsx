@@ -1,5 +1,5 @@
-import LetterGlitch from "@/components/LetterGlitch";
 import SectionTitle from "@/components/Common/SectionTitle";
+import LetterGlitch from "@/components/LetterGlitch";
 
 const checkIcon = (
   <svg width="16" height="13" viewBox="0 0 16 13" className="fill-current">
@@ -8,7 +8,7 @@ const checkIcon = (
 );
 
 const HomeSectionOne = () => {
-  const List = ({ text }) => (
+  const List = ({ text }: { text: string }) => (
     <p className="mb-5 flex items-center text-lg font-medium text-white/70">
       <span className="bg-primary/10 text-primary mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md">
         {checkIcon}
@@ -32,15 +32,21 @@ const HomeSectionOne = () => {
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
-              <div className="relative mx-auto aspect-square max-w-[500px] lg:mr-0">
+              <div
+                className="relative mx-auto max-w-[500px] lg:mr-0"
+                style={{
+                  height: '380px',
+                  clipPath: 'polygon(8% 0%, 100% 3%, 97% 100%, 0% 95%)',
+                  borderRadius: '12px',
+                  overflow: 'hidden'
+                }}
+              >
                 <LetterGlitch
                   glitchColors={["#f2721c", "#fff47a", "#f9a443"]}
                   glitchSpeed={40}
-                  centerVignette={false}
-                  outerVignette={true}
-                  smooth={true}
-                  horizontalDistortion={true}
-                  blurOverlay={true}
+                  centerVignette
+                  outerVignette
+                  smooth
                 />
               </div>
             </div>
@@ -52,3 +58,4 @@ const HomeSectionOne = () => {
 };
 
 export default HomeSectionOne;
+
