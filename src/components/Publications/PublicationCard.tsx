@@ -15,9 +15,9 @@ const PublicationCard = ({ publication }: { publication: Publication }) => {
             >
                 {/* Image Container */}
                 <div
-                    className="relative aspect-[4/3] w-full overflow-hidden rounded-xl mb-4"
+                    className="relative aspect-[16/9] w-full overflow-hidden rounded-md mb-4"
                     style={{
-                        border: "3px solid #F97316",
+                        border: "1px solid #F97316",
                     }}
                 >
                     <Image
@@ -30,7 +30,7 @@ const PublicationCard = ({ publication }: { publication: Publication }) => {
 
                 {/* Meta Info */}
                 <div className="flex items-center gap-3 mb-3">
-                    <span className="bg-primary inline-flex items-center justify-center rounded-full px-4 py-1.5 text-sm font-semibold text-white">
+                    <span className="bg-primary inline-flex items-center justify-center rounded-sm px-3 py-1 text-xs font-bold text-white uppercase tracking-wider">
                         {category}
                     </span>
                     <span className="text-white/60 text-sm">
