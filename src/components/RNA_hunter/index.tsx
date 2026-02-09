@@ -8,8 +8,8 @@ import styles from "./styles.module.css";
 const RNAHunter = () => {
     return (
         <section className="relative z-10 py-16 md:py-20 lg:py-28 bg-[#060607]">
-            <div className="absolute inset-0 -z-10 w-full h-full overflow-hidden">
-                <div className="relative w-full h-full flex justify-center items-center -translate-y-[10%]">
+            <div className="absolute inset-0 -z-10 w-full h-full">
+                <div className="relative w-full h-full flex justify-center items-center">
                     <Image
                         src="/images/video/shape.svg"
                         alt="Background shape"
