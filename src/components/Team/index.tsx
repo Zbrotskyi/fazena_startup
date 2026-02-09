@@ -38,6 +38,14 @@ const teamMembers = [
         subtitle: "Head of Operations",
         handle: "@member5",
         url: ""
+    },
+    {
+        image: "",
+        title: "Join Our Team",
+        subtitle: "We're always looking for talented individuals",
+        handle: "",
+        url: "/contact",
+        isCTA: true
     }
 ];
 
@@ -50,7 +58,7 @@ const Team = () => {
             <div className="container">
                 <SectionTitle
                     title="Fazena Team"
-                    paragraph="Meet the innovative minds driving our mission forward — a team of passionate scientists, engineers, and visionaries."
+                    paragraph="Meet the minds reshaping drug discovery — specialists in bioinformatics, biochemistry, biotechnology, and synthetic biology working together to bring novel therapeutics from concept to reality."
                     center
                     dark
                 />
@@ -58,7 +66,7 @@ const Team = () => {
                 <div style={{ position: 'relative', minHeight: '500px' }}>
                     <ChromaGrid
                         items={teamMembers}
-                        radius={280}
+                        radius={320}
                         damping={0.45}
                         fadeOut={0.6}
                         ease="power3.out"

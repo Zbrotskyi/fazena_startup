@@ -156,28 +156,24 @@
   -webkit-backdrop-filter: grayscale(1) brightness(0.78);
   background: rgba(0, 0, 0, 0.001);
 
-  mask-image: radial-gradient(
-    circle var(--r) at var(--x) var(--y),
-    transparent 0%,
-    transparent 15%,
-    rgba(0, 0, 0, 0.1) 30%,
-    rgba(0, 0, 0, 0.22) 45%,
-    rgba(0, 0, 0, 0.35) 60%,
-    rgba(0, 0, 0, 0.5) 75%,
-    rgba(0, 0, 0, 0.68) 88%,
-    white 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    circle var(--r) at var(--x) var(--y),
-    transparent 0%,
-    transparent 15%,
-    rgba(0, 0, 0, 0.1) 30%,
-    rgba(0, 0, 0, 0.22) 45%,
-    rgba(0, 0, 0, 0.35) 60%,
-    rgba(0, 0, 0, 0.5) 75%,
-    rgba(0, 0, 0, 0.68) 88%,
-    white 100%
-  );
+  mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
+      transparent 0%,
+      transparent 15%,
+      rgba(0, 0, 0, 0.1) 30%,
+      rgba(0, 0, 0, 0.22) 45%,
+      rgba(0, 0, 0, 0.35) 60%,
+      rgba(0, 0, 0, 0.5) 75%,
+      rgba(0, 0, 0, 0.68) 88%,
+      white 100%);
+  -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
+      transparent 0%,
+      transparent 15%,
+      rgba(0, 0, 0, 0.1) 30%,
+      rgba(0, 0, 0, 0.22) 45%,
+      rgba(0, 0, 0, 0.35) 60%,
+      rgba(0, 0, 0, 0.5) 75%,
+      rgba(0, 0, 0, 0.68) 88%,
+      white 100%);
 }
 
 .chroma-fade {
@@ -189,29 +185,104 @@
   -webkit-backdrop-filter: grayscale(1) brightness(0.78);
   background: rgba(0, 0, 0, 0.001);
 
-  mask-image: radial-gradient(
-    circle var(--r) at var(--x) var(--y),
-    white 0%,
-    white 15%,
-    rgba(255, 255, 255, 0.9) 30%,
-    rgba(255, 255, 255, 0.78) 45%,
-    rgba(255, 255, 255, 0.65) 60%,
-    rgba(255, 255, 255, 0.5) 75%,
-    rgba(255, 255, 255, 0.32) 88%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    circle var(--r) at var(--x) var(--y),
-    white 0%,
-    white 15%,
-    rgba(255, 255, 255, 0.9) 30%,
-    rgba(255, 255, 255, 0.78) 45%,
-    rgba(255, 255, 255, 0.65) 60%,
-    rgba(255, 255, 255, 0.5) 75%,
-    rgba(255, 255, 255, 0.32) 88%,
-    transparent 100%
-  );
+  mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
+      white 0%,
+      white 15%,
+      rgba(255, 255, 255, 0.9) 30%,
+      rgba(255, 255, 255, 0.78) 45%,
+      rgba(255, 255, 255, 0.65) 60%,
+      rgba(255, 255, 255, 0.5) 75%,
+      rgba(255, 255, 255, 0.32) 88%,
+      transparent 100%);
+  -webkit-mask-image: radial-gradient(circle var(--r) at var(--x) var(--y),
+      white 0%,
+      white 15%,
+      rgba(255, 255, 255, 0.9) 30%,
+      rgba(255, 255, 255, 0.78) 45%,
+      rgba(255, 255, 255, 0.65) 60%,
+      rgba(255, 255, 255, 0.5) 75%,
+      rgba(255, 255, 255, 0.32) 88%,
+      transparent 100%);
 
   opacity: 1;
   transition: opacity 0.25s ease;
+}
+
+/* CTA Card Styles */
+.chroma-card-cta {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 50%, #1a0a05 100%);
+  border-color: rgba(234, 116, 20, 0.3);
+}
+
+.chroma-card-cta:hover {
+  border-color: #ea7414;
+  box-shadow: 0 20px 40px rgba(234, 116, 20, 0.25), 0 0 0 1px rgba(234, 116, 20, 0.5);
+}
+
+.chroma-card-cta::before {
+  --spotlight-color: rgba(234, 116, 20, 0.35);
+}
+
+.chroma-cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  gap: 1rem;
+}
+
+.chroma-cta-icon {
+  width: 64px;
+  height: 64px;
+  color: #ea7414;
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.chroma-card-cta:hover .chroma-cta-icon {
+  transform: scale(1.1);
+  color: #ff8c3a;
+}
+
+.chroma-cta-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.chroma-card-cta:hover .chroma-cta-title {
+  color: #ea7414;
+}
+
+.chroma-cta-subtitle {
+  font-size: 0.95rem;
+  color: #aaa;
+  margin: 0;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.chroma-card-cta:hover .chroma-cta-subtitle {
+  color: #ccc;
+}
+
+.chroma-cta-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #ea7414, #ff8c3a);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chroma-card-cta:hover .chroma-cta-button {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(234, 116, 20, 0.4);
 }
