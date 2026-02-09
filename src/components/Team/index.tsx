@@ -1,5 +1,45 @@
+'use client';
+
 import SectionTitle from "../Common/SectionTitle";
 import ChromaGrid from "./ChromaGrid";
+
+const teamMembers = [
+    {
+        image: "/images/team/member1.jpg",
+        title: "Team Member 1",
+        subtitle: "CEO & Founder",
+        handle: "@member1",
+        url: ""
+    },
+    {
+        image: "/images/team/member2.jpg",
+        title: "Team Member 2",
+        subtitle: "CTO",
+        handle: "@member2",
+        url: ""
+    },
+    {
+        image: "/images/team/member3.jpg",
+        title: "Team Member 3",
+        subtitle: "Lead Scientist",
+        handle: "@member3",
+        url: ""
+    },
+    {
+        image: "/images/team/member4.jpg",
+        title: "Team Member 4",
+        subtitle: "Research Lead",
+        handle: "@member4",
+        url: ""
+    },
+    {
+        image: "/images/team/member5.jpg",
+        title: "Team Member 5",
+        subtitle: "Head of Operations",
+        handle: "@member5",
+        url: ""
+    }
+];
 
 const Team = () => {
     return (
@@ -10,14 +50,15 @@ const Team = () => {
             <div className="container">
                 <SectionTitle
                     title="Fazena Team"
-                    paragraph="Meet the passionate experts behind our breakthrough innovations in computational biology and drug discovery."
+                    paragraph="Meet the innovative minds driving our mission forward — a team of passionate scientists, engineers, and visionaries."
                     center
                     dark
                 />
 
-                <div style={{ height: '600px', position: 'relative' }}>
+                <div style={{ position: 'relative', minHeight: '500px' }}>
                     <ChromaGrid
-                        radius={300}
+                        items={teamMembers}
+                        radius={280}
                         damping={0.45}
                         fadeOut={0.6}
                         ease="power3.out"

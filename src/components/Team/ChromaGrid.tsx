@@ -9,18 +9,13 @@ interface TeamMember {
     title: string;
     subtitle: string;
     handle?: string;
-    borderColor: string;
-    gradient: string;
     url?: string;
-    location?: string;
 }
 
 interface ChromaGridProps {
-    items?: TeamMember[];
+    items: TeamMember[];
     className?: string;
     radius?: number;
-    columns?: number;
-    rows?: number;
     damping?: number;
     fadeOut?: number;
     ease?: string;
@@ -29,76 +24,16 @@ interface ChromaGridProps {
 export const ChromaGrid = ({
     items,
     className = '',
-    radius = 300,
-    columns = 3,
-    rows = 2,
+    radius = 280,
     damping = 0.45,
     fadeOut = 0.6,
     ease = 'power3.out'
 }: ChromaGridProps) => {
     const rootRef = useRef<HTMLDivElement>(null);
     const fadeRef = useRef<HTMLDivElement>(null);
-    const setX = useRef<any>(null);
-    const setY = useRef<any>(null);
+    const setX = useRef<gsap.QuickSetter | null>(null);
+    const setY = useRef<gsap.QuickSetter | null>(null);
     const pos = useRef({ x: 0, y: 0 });
-
-    const demo: TeamMember[] = [
-        {
-            image: 'https://i.pravatar.cc/300?img=8',
-            title: 'Alex Rivera',
-            subtitle: 'Full Stack Developer',
-            handle: '@alexrivera',
-            borderColor: '#4F46E5',
-            gradient: 'linear-gradient(145deg, #4F46E5, #000)',
-            url: 'https://github.com/'
-        },
-        {
-            image: 'https://i.pravatar.cc/300?img=11',
-            title: 'Jordan Chen',
-            subtitle: 'DevOps Engineer',
-            handle: '@jordanchen',
-            borderColor: '#10B981',
-            gradient: 'linear-gradient(210deg, #10B981, #000)',
-            url: 'https://linkedin.com/in/'
-        },
-        {
-            image: 'https://i.pravatar.cc/300?img=3',
-            title: 'Morgan Blake',
-            subtitle: 'UI/UX Designer',
-            handle: '@morganblake',
-            borderColor: '#F59E0B',
-            gradient: 'linear-gradient(165deg, #F59E0B, #000)',
-            url: 'https://dribbble.com/'
-        },
-        {
-            image: 'https://i.pravatar.cc/300?img=16',
-            title: 'Casey Park',
-            subtitle: 'Data Scientist',
-            handle: '@caseypark',
-            borderColor: '#EF4444',
-            gradient: 'linear-gradient(195deg, #EF4444, #000)',
-            url: 'https://kaggle.com/'
-        },
-        {
-            image: 'https://i.pravatar.cc/300?img=25',
-            title: 'Sam Kim',
-            subtitle: 'Mobile Developer',
-            handle: '@thesamkim',
-            borderColor: '#8B5CF6',
-            gradient: 'linear-gradient(225deg, #8B5CF6, #000)',
-            url: 'https://github.com/'
-        },
-        {
-            image: 'https://i.pravatar.cc/300?img=60',
-            title: 'Tyler Rodriguez',
-            subtitle: 'Cloud Architect',
-            handle: '@tylerrod',
-            borderColor: '#06B6D4',
-            gradient: 'linear-gradient(135deg, #06B6D4, #000)',
-            url: 'https://aws.amazon.com/'
-        }
-    ];
-    const data = items?.length ? items : demo;
 
     useEffect(() => {
         const el = rootRef.current;
@@ -125,8 +60,10 @@ export const ChromaGrid = ({
         });
     };
 
-    const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
-        const r = rootRef.current!.getBoundingClientRect();
+    const handleMove = (e: React.PointerEvent) => {
+        const el = rootRef.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
         moveTo(e.clientX - r.left, e.clientY - r.top);
         gsap.to(fadeRef.current, { opacity: 0, duration: 0.25, overwrite: true });
     };
@@ -159,24 +96,20 @@ export const ChromaGrid = ({
             ref={rootRef}
             className={`chroma-grid ${className}`}
             style={{
-                '--r': `${radius}px`,
-                '--cols': columns,
-                '--rows': rows
+                '--r': `${radius}px`
             } as React.CSSProperties}
             onPointerMove={handleMove}
             onPointerLeave={handleLeave}
         >
-            {data.map((c, i) => (
+            {items.map((c, i) => (
                 <article
                     key={i}
                     className="chroma-card"
                     onMouseMove={handleCardMove}
                     onClick={() => handleCardClick(c.url)}
                     style={{
-                        '--card-border': c.borderColor || 'transparent',
-                        '--card-gradient': c.gradient,
                         cursor: c.url ? 'pointer' : 'default'
-                    } as React.CSSProperties}
+                    }}
                 >
                     <div className="chroma-img-wrapper">
                         <img src={c.image} alt={c.title} loading="lazy" />
@@ -185,7 +118,6 @@ export const ChromaGrid = ({
                         <h3 className="name">{c.title}</h3>
                         {c.handle && <span className="handle">{c.handle}</span>}
                         <p className="role">{c.subtitle}</p>
-                        {c.location && <span className="location">{c.location}</span>}
                     </footer>
                 </article>
             ))}
