@@ -37,6 +37,7 @@ const HomeSectionOne = () => {
                   <span className={styles.buttonText}>About us</span>
                 </Link>
               </div>
+
             </div>
 
             <div className="w-full px-4 lg:w-1/2">

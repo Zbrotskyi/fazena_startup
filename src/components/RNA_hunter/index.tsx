@@ -35,6 +35,7 @@ const RNAHunter = () => {
                     </Link>
                 </div>
 
+
                 <div className="relative">
                     <div className="mx-auto max-w-[900px]">
                         <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">

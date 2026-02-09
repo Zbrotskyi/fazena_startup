@@ -19,16 +19,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+
+.buttonText {
+    position: relative;
+    z-index: 2;
 }
 
 .learnMoreButton::after {
     content: "";
     position: absolute;
-    top: -10px;
+    top: -3px;
     left: 3%;
-    width: 95%;
-    height: 40%;
+    width: 94%;
+    height: 6px;
     background-color: #060607;
     transition: 0.5s;
     transform-origin: center;
@@ -39,10 +44,10 @@
     content: "";
     transform-origin: center;
     position: absolute;
-    top: 80%;
+    bottom: -3px;
     left: 3%;
-    width: 95%;
-    height: 40%;
+    width: 94%;
+    height: 6px;
     background-color: #060607;
     transition: 0.5s;
     z-index: 1;
@@ -50,7 +55,7 @@
 
 .learnMoreButton:hover::before,
 .learnMoreButton:hover::after {
-    transform: scale(0);
+    transform: scaleY(0);
 }
 
 .learnMoreButton:hover {
