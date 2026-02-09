@@ -1,5 +1,4 @@
 import AboutContent from "@/components/About/AboutContent";
-import Breadcrumb from "@/components/Common/Breadcrumb";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,10 +9,6 @@ export const metadata: Metadata = {
 const AboutPage = () => {
   return (
     <>
-      <Breadcrumb
-        pageName="About FAZENA"
-        description="Transforming drug discovery through innovative computational approaches and AI-driven solutions."
-      />
       <AboutContent />
     </>
   );
