@@ -29,7 +29,7 @@ const partnersData = [
 
 const Partners = () => {
     return (
-        <section className="relative z-20 -mt-28 bg-transparent py-8 md:py-12 overflow-hidden">
+        <section className="relative z-20 -mt-36 bg-transparent py-8 md:py-12 overflow-hidden">
             {/* Desktop View */}
             <div className="container hidden md:block">
                 <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">

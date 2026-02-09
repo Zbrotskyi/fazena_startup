@@ -29,7 +29,7 @@ const HomeSectionOne = () => {
               <SectionTitle
                 title="Our Features"
                 paragraph="FAZENA leverages quantum chemistry and AI to design next-generation therapeutics through the first end-to-end in silico-to-cell platform. We transform computational predictions into experimentally validated therapeutic candidates. While our full pipeline is under construction, we're already accelerating pharma R&D through specialized services and our AI-powered SaaS platform."
-                mb="44px"
+                mb="20px"
                 dark
               />
               <div className={styles.sectionButtonContainer}>

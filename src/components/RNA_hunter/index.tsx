@@ -26,7 +26,7 @@ const RNAHunter = () => {
                     paragraph="Obtaining the spatial structure of non-coding RNAs and finding therapeutic small molecules for this target. Modelling in intracellular conditions, molecular dynamics, refinement of the lead molecule using QM/MM methods, calculation of free binding energy and other parameters. The platform is not limited by target length."
                     center
                     width="900px"
-                    mb="40px"
+                    mb="20px"
                 />
 
                 <div className={styles.buttonContainer}>
