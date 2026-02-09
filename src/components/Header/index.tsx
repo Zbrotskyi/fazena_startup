@@ -96,17 +96,16 @@ const Header = () => {
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
-                            className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${menuItem.title === "Contact us"
-                              ? "lg:ml-5 lg:px-5 lg:py-2 border border-[#ea7414] rounded-lg text-[#ea7414] hover:bg-[#ea7414] hover:text-white transition-all duration-300 my-auto self-center flex items-center h-fit"
-                              : usePathName === menuItem.path
-                                ? "text-primary font-semibold"
-                                : "text-white/70 hover:text-white"
+                            className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${menuItem.special
+                                ? "border border-[#ea7414] rounded px-4 py-2 lg:py-2 text-white hover:bg-[#ea7414]/10 transition-colors duration-300"
+                                : usePathName === menuItem.path
+                                  ? "text-primary"
+                                  : "text-white/70 hover:text-white"
                               }`}
                           >
                             {menuItem.title}
                           </Link>
                         ) : (
-
                           <>
                             <p
                               onClick={() => handleSubmenu(index)}

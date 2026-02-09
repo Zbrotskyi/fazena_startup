@@ -80,7 +80,6 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                                 Learn more →
                                             </Link>
                                         )}
-
                                     </div>
 
                                     {/* Progress bar area */}

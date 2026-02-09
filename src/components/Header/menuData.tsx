@@ -14,30 +14,30 @@ const menuData: Menu[] = [
     newTab: false,
   },
   {
-    id: 5,
+    id: 3,
     title: "Services",
     path: "/services",
     newTab: false,
   },
   {
-    id: 6,
-    title: "RNA hunter",
+    id: 4,
+    title: "RNA Hunter",
     path: "/rna-hunter",
     newTab: false,
   },
   {
-    id: 3,
+    id: 5,
     title: "Publications",
     path: "/publications",
     newTab: false,
   },
   {
-    id: 4,
+    id: 6,
     title: "Contact us",
     path: "/contact",
     newTab: false,
+    special: true,
   },
-
 ];
 export default menuData;
 

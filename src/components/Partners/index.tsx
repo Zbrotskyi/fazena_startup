@@ -5,35 +5,35 @@ const partnersData = [
         id: 1,
         name: "YRiA",
         logo: "/images/Partners/YRiA.png",
-        scale: "h-[65px] md:h-[85px]",
-        url: "https://yuria-pharm.com/en/",
+        scale: "h-[65px] md:h-[85px]", // Scaled up
+        url: "https://www.yria.com.ua"
     },
     {
         id: 2,
         name: "KSE",
         logo: "/images/Partners/KSE.png",
         scale: "h-[65px] md:h-[85px]",
-        url: "https://kse.ua/",
+        url: "https://kse.ua"
     },
     {
         id: 3,
         name: "MES",
         logo: "/images/Partners/MES.png",
         scale: "h-[55px] md:h-[70px]",
-        url: "https://mon.gov.ua/ua",
+        url: "https://mon.gov.ua"
     },
     {
         id: 4,
         name: "IP_off",
         logo: "/images/Partners/IP_off.png",
         scale: "h-[50px] md:h-[65px]",
-        url: "https://ukrpatent.org/en",
+        url: "https://ukrpatent.org"
     },
 ];
 
 const Partners = () => {
     return (
-        <section className="relative z-20 -mt-36 bg-transparent py-8 md:py-12 overflow-hidden">
+        <section className="relative z-20 -mt-40 bg-transparent py-8 md:py-12 overflow-hidden">
             {/* Desktop View */}
             <div className="container hidden md:block">
                 <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
@@ -43,7 +43,7 @@ const Partners = () => {
                             href={partner.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="relative flex items-center justify-center transition-all duration-300 hover:scale-110"
+                            className="relative flex items-center justify-center transition-all duration-300 hover:scale-105"
                         >
                             <img
                                 src={partner.logo}
@@ -54,7 +54,6 @@ const Partners = () => {
                     ))}
                 </div>
             </div>
-
 
             {/* Mobile Dynamic Ribbon - Seamless loop */}
             <div className="flex w-full md:hidden overflow-hidden">
@@ -67,7 +66,7 @@ const Partners = () => {
                                 href={partner.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="relative flex flex-shrink-0 items-center justify-center transition-all duration-300 active:scale-95"
+                                className="relative flex flex-shrink-0 items-center justify-center"
                             >
                                 <img
                                     src={partner.logo}
@@ -85,7 +84,7 @@ const Partners = () => {
                                 href={partner.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="relative flex flex-shrink-0 items-center justify-center transition-all duration-300 active:scale-95"
+                                className="relative flex flex-shrink-0 items-center justify-center"
                             >
                                 <img
                                     src={partner.logo}
@@ -95,7 +94,6 @@ const Partners = () => {
                             </a>
                         ))}
                     </div>
-
                 </div>
             </div>
         </section>
@@ -103,3 +101,4 @@ const Partners = () => {
 };
 
 export default Partners;
+
