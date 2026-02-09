@@ -1,6 +1,5 @@
 import Blog from "@/components/Blog";
 import ScrollUp from "@/components/Common/ScrollUp";
-import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import HomeSectionOne from "@/components/Home/sections/HomeSectionOne";
@@ -32,9 +31,9 @@ export default function Home() {
       <Features />
       <Team />
       <HomePublications />
-      <Contact />
     </>
   );
 }
+
 
 
