@@ -31,8 +31,8 @@ export const ChromaGrid = ({
 }: ChromaGridProps) => {
     const rootRef = useRef<HTMLDivElement>(null);
     const fadeRef = useRef<HTMLDivElement>(null);
-    const setX = useRef<gsap.QuickSetter | null>(null);
-    const setY = useRef<gsap.QuickSetter | null>(null);
+    const setX = useRef<any>(null);
+    const setY = useRef<any>(null);
     const pos = useRef({ x: 0, y: 0 });
 
     useEffect(() => {
