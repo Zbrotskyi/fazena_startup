@@ -1,0 +1,158 @@
+.card {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    background: #0b0b0d;
+    padding: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 0 auto;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    border-color: rgba(234, 116, 20, 0.3);
+}
+
+.topSection {
+    height: 200px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    background: #060607;
+    position: relative;
+    overflow: hidden;
+}
+
+.border {
+    border-bottom-right-radius: 10px;
+    height: 35px;
+    width: 150px;
+    background: #0b0b0d;
+    position: relative;
+    transform: skew(-40deg);
+    margin-left: -20px;
+    z-index: 10;
+    border-right: 1px solid rgba(234, 116, 20, 0.2);
+    border-bottom: 1px solid rgba(234, 116, 20, 0.2);
+}
+
+.border::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    right: -15px;
+    background: transparent;
+    border-top-left-radius: 10px;
+    box-shadow: -5px -5px 0 2px #0b0b0d;
+}
+
+.topSection::before {
+    content: "";
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background: transparent;
+    height: 15px;
+    width: 15px;
+    border-top-left-radius: 15px;
+    box-shadow: -5px -5px 0 2px #0b0b0d;
+    z-index: 10;
+}
+
+.icons {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 20;
+}
+
+.logo {
+    height: 100%;
+    padding: 8px 0 8px 25px;
+    font-family: monospace;
+    font-size: 12px;
+    color: #ea7414;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.socialMedia {
+    height: 100%;
+    padding: 8px 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.svg {
+    height: 100%;
+    fill: rgba(255, 255, 255, 0.4);
+    transition: fill 0.3s;
+    cursor: pointer;
+}
+
+.svg:hover {
+    fill: #ea7414;
+}
+
+.bottomSection {
+    margin-top: 20px;
+    padding: 15px 10px;
+}
+
+.title {
+    display: block;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+}
+
+.item {
+    flex: 1;
+    text-align: center;
+    padding: 5px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.bigText {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    color: #ea7414;
+    margin-bottom: 4px;
+}
+
+.regularText {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.item:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glitchContainer {
+    position: absolute;
+    inset: 0;
+    opacity: 0.8;
+}
