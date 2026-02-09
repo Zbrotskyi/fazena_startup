@@ -4,7 +4,6 @@ import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import HomeSectionOne from "@/components/Home/sections/HomeSectionOne";
-import HomeSectionTwo from "@/components/Home/sections/HomeSectionTwo";
 import HomeSectionThree from "@/components/Home/sections/HomeSectionThree";
 import HomeSectionFour from "@/components/Home/sections/HomeSectionFour";
 import ProjectsInDevelopment from "@/components/Home/sections/ProjectsInDevelopment";
@@ -31,11 +30,11 @@ export default function Home() {
       <RNAHunter />
       <HomeSectionFour />
       <Features />
-      <HomeSectionTwo />
       <Team />
       <HomePublications />
       <Contact />
     </>
   );
 }
+
 
