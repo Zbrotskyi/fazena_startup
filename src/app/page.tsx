@@ -5,6 +5,8 @@ import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import HomeSectionOne from "@/components/Home/sections/HomeSectionOne";
 import HomeSectionTwo from "@/components/Home/sections/HomeSectionTwo";
+import HomeSectionThree from "@/components/Home/sections/HomeSectionThree";
+import HomeSectionFour from "@/components/Home/sections/HomeSectionFour";
 import ProjectsInDevelopment from "@/components/Home/sections/ProjectsInDevelopment";
 import Partners from "@/components/Partners";
 import RNAHunter from "@/components/RNA_hunter";
@@ -25,7 +27,9 @@ export default function Home() {
       <Partners />
       <HomeSectionOne />
       <ProjectsInDevelopment />
+      <HomeSectionThree />
       <RNAHunter />
+      <HomeSectionFour />
       <Features />
       <HomeSectionTwo />
       <Team />

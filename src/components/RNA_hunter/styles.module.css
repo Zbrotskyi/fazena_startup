@@ -1,7 +1,7 @@
 .learnMoreButton {
-  width: 10em;
+  width: 9em;
   position: relative;
-  height: 3.5em;
+  height: 3em;
   border: 3px ridge #ea7414;
   outline: none;
   background-color: transparent;
@@ -11,6 +11,10 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .learnMoreButton::after {
@@ -23,6 +27,7 @@
   background-color: #060607;
   transition: 0.5s;
   transform-origin: center;
+  z-index: 1;
 }
 
 .learnMoreButton::before {
@@ -35,6 +40,7 @@
   height: 40%;
   background-color: #060607;
   transition: 0.5s;
+  z-index: 1;
 }
 
 .learnMoreButton:hover::before,
