@@ -33,12 +33,10 @@ const HomeSectionOne = () => {
 
             <div className="w-full px-4 lg:w-1/2">
               <div
-                className="relative mx-auto max-w-[500px] lg:mr-0"
+                className="relative mx-auto aspect-square max-w-[420px] lg:mr-0"
                 style={{
-                  height: '380px',
-                  clipPath: 'polygon(8% 0%, 100% 3%, 97% 100%, 0% 95%)',
-                  borderRadius: '12px',
-                  overflow: 'hidden'
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                  overflow: "hidden",
                 }}
               >
                 <LetterGlitch
