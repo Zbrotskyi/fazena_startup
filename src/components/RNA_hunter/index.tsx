@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import SectionTitle from "../Common/SectionTitle";
 import styles from "./styles.module.css";
 
@@ -29,9 +30,9 @@ const RNAHunter = () => {
                 />
 
                 <div className={styles.buttonContainer}>
-                    <button className={styles.learnMoreButton}>
+                    <Link href="/rna-hunter" className={styles.learnMoreButton}>
                         Learn more
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="relative">
