@@ -31,7 +31,7 @@ const RNAHunter = () => {
 
                 <div className={styles.buttonContainer}>
                     <Link href="/rna-hunter" className={styles.learnMoreButton}>
-                        Learn more
+                        <span className={styles.buttonText}>Learn more</span>
                     </Link>
                 </div>
 

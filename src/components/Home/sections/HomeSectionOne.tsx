@@ -34,7 +34,7 @@ const HomeSectionOne = () => {
               />
               <div className={styles.sectionButtonContainer}>
                 <Link href="/about" className={styles.learnMoreButton}>
-                  About us
+                  <span className={styles.buttonText}>About us</span>
                 </Link>
               </div>
             </div>
