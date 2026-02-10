@@ -40,10 +40,10 @@ const JoinUs = () => {
             <div className="container max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="mb-16">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
                         Join Our Team
                     </h1>
-                    <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl">
+                    <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-3xl">
                         We're building the future of drug discovery at the intersection of computation and biology.
                         If you're driven by scientific curiosity, thrive in interdisciplinary environments, and want
                         to make a real impact on human health — we'd love to hear from you. We value strong
