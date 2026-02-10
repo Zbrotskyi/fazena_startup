@@ -90,9 +90,18 @@ const Header = () => {
                     : "invisible top-[120%] opacity-0"
                     }`}
                 >
-                  <ul className="block lg:flex lg:space-x-8 items-center">
+                  <ul className="block lg:flex">
                     {menuData.map((menuItem, index) => (
-                      <li key={index} className={`group relative ${menuItem.special ? "flex items-center" : ""} ${index > 0 && menuData[index - 1].special && menuItem.special ? "lg:!ml-4" : ""}`}>
+                      <li
+                        key={index}
+                        className={`group relative ${menuItem.special ? "flex items-center" : ""
+                          } ${index === 0
+                            ? "lg:ml-0"
+                            : menuItem.title === "Join us"
+                              ? "lg:ml-4"
+                              : "lg:ml-10"
+                          }`}
+                      >
                         {menuItem.path ? (
                           <Link
                             href={menuItem.path}
