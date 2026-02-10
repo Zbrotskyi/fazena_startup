@@ -303,8 +303,11 @@ export const LaserFlow = ({
         });
         rendererRef.current = renderer;
 
-        baseDprRef.current = Math.min(dpr ?? (window.devicePixelRatio || 1), 2);
-        currentDprRef.current = baseDprRef.current;
+        // Mobile detection and optimization
+        const isMobile = window.innerWidth < 768;
+        const baseDpr = isMobile ? 1.0 : Math.min(dpr ?? (window.devicePixelRatio || 1), 2);
+        baseDprRef.current = baseDpr;
+        currentDprRef.current = baseDpr;
 
         renderer.setPixelRatio(currentDprRef.current);
         renderer.shadowMap.enabled = false;
@@ -322,11 +325,15 @@ export const LaserFlow = ({
         const geometry = new THREE.BufferGeometry();
         geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array([-1, -1, 0, 3, -1, 0, -1, 3, 0]), 3));
 
+        // Optimize shader parameters for mobile
+        const mobileWispDensity = isMobile ? Math.min(wispDensity * 0.6, 1.0) : wispDensity;
+        const mobileFogIntensity = isMobile ? fogIntensity * 0.5 : fogIntensity;
+
         const uniforms: any = {
             iTime: { value: 0 },
             iResolution: { value: new THREE.Vector3(1, 1, 1) },
             iMouse: { value: new THREE.Vector4(0, 0, 0, 0) },
-            uWispDensity: { value: wispDensity },
+            uWispDensity: { value: mobileWispDensity },
             uTiltScale: { value: mouseTiltStrength },
             uFlowTime: { value: 0 },
             uFogTime: { value: 0 },
@@ -335,7 +342,7 @@ export const LaserFlow = ({
             uFlowSpeed: { value: flowSpeed },
             uVLenFactor: { value: verticalSizing },
             uHLenFactor: { value: horizontalSizing },
-            uFogIntensity: { value: fogIntensity },
+            uFogIntensity: { value: mobileFogIntensity },
             uFogScale: { value: fogScale },
             uWSpeed: { value: wispSpeed },
             uWIntensity: { value: wispIntensity },
