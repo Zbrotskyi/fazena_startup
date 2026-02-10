@@ -12,7 +12,7 @@ const HomeSectionThree = () => {
                         <div className="w-full px-4 lg:w-1/2 order-1 lg:order-1">
                             <SectionTitle
                                 title="Our Innovation"
-                                paragraph="We push the boundaries of what's possible in drug discovery by combining high-performance computing with cutting-edge experimental methodologies. Our team is dedicated to uncovering novel solutions for the most challenging biological targets, ensuring a future where medicine is more precise and effective."
+                                paragraph="An innovative approach in the design of the ABCA7 modulator was the use of modern tools that utilize transformers and deep neural networks to obtain the structures of mutant forms of this transporter protein. We achieved high-quality structures, which allowed us to further use this for molecular docking and dynamics, calculating binding and dissociation constants. At this stage, we are optimizing leads and expanding our understanding of what other genetic features and relationships between mutations of this protein and drug development may exist. We have now begun work on publishing a series of articles in scientific journals. Our work was highly praised at the Neuro Impact Challenge, where we took first place."
                                 mb="44px"
                                 dark
                             />

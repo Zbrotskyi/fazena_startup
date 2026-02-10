@@ -23,7 +23,7 @@ const Footer = () => {
               </p>
               <div className="flex items-center gap-4">
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/FazenaOfficial"
                   aria-label="Twitter"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -34,7 +34,7 @@ const Footer = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/fazena/"
                   aria-label="LinkedIn"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const Footer = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://facebook.com/fazena"
+                  href="https://www.facebook.com/people/Fazena/61585439986703/"
                   aria-label="Facebook"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -56,7 +56,7 @@ const Footer = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://instagram.com/fazena"
+                  href="https://www.instagram.com/fazena_official/"
                   aria-label="Instagram"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -69,7 +69,7 @@ const Footer = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://bsky.app/profile/fazena"
+                  href="https://bsky.app/profile/fazena.bsky.social"
                   aria-label="BlueSky"
                   target="_blank"
                   rel="noopener noreferrer"

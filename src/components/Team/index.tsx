@@ -35,6 +35,18 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/yuliia-naum"
     },
     {
+        image: "/images/team/Naum.jpg",
+        title: "Oksana Kolisnyk",
+        subtitle: "ML developer",
+        linkedin: "https://www.linkedin.com/in/oksana-kolisnyk-0b9632247"
+    },
+    {
+        image: "/images/team/Naum.jpg",
+        title: "Bahdasarov Arsenii",
+        subtitle: "Software Engineer",
+        linkedin: "https://www.linkedin.com/in/yuliia-naum"
+    },
+    {
         image: "",
         title: "Join Our Team",
         subtitle: "Help us redefine drug discovery",
