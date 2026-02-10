@@ -25,8 +25,8 @@ const Header = () => {
     return (
         <header
             className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${sticky
-                    ? "bg-[#060607]/95 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.04)]"
-                    : "bg-transparent"
+                ? "bg-[#060607]/95 backdrop-blur-xl shadow-[0_1px_0_rgba(255,255,255,0.04)]"
+                : "bg-transparent"
                 }`}
         >
             <div className="container">
@@ -36,9 +36,9 @@ const Header = () => {
                         <Image
                             src="/images/logo/logo.svg"
                             alt="FAZENA"
-                            width={160}
-                            height={36}
-                            className="h-8 w-auto"
+                            width={210}
+                            height={48}
+                            className="h-10 w-auto"
                             priority
                         />
                     </Link>
@@ -72,8 +72,8 @@ const Header = () => {
                                         key={item.id}
                                         href={item.path ?? "/"}
                                         className={`inline-flex items-center rounded-md px-5 py-1.5 text-sm font-medium transition-all duration-200 ${item.filled
-                                                ? "bg-[#ea7414] text-white hover:bg-[#d66712] shadow-[0_2px_12px_rgba(234,116,20,0.25)]"
-                                                : "border border-[#ea7414]/60 text-white/90 hover:border-[#ea7414] hover:bg-[#ea7414]/10"
+                                            ? "bg-[#ea7414] text-white hover:bg-[#d66712] shadow-[0_2px_12px_rgba(234,116,20,0.25)]"
+                                            : "border border-[#ea7414]/60 text-white/90 hover:border-[#ea7414] hover:bg-[#ea7414]/10"
                                             }`}
                                     >
                                         {item.title}
@@ -121,8 +121,8 @@ const Header = () => {
                                     <Link
                                         href={item.path ?? "/"}
                                         className={`block py-3 px-3 rounded-lg text-sm font-medium transition-colors ${isActive
-                                                ? "text-white bg-white/[0.04]"
-                                                : "text-white/60 hover:text-white hover:bg-white/[0.03]"
+                                            ? "text-white bg-white/[0.04]"
+                                            : "text-white/60 hover:text-white hover:bg-white/[0.03]"
                                             }`}
                                     >
                                         {item.title}
@@ -141,8 +141,8 @@ const Header = () => {
                                     key={item.id}
                                     href={item.path ?? "/"}
                                     className={`flex-1 text-center rounded-md px-5 py-2.5 text-sm font-medium transition-all duration-200 ${item.filled
-                                            ? "bg-[#ea7414] text-white hover:bg-[#d66712]"
-                                            : "border border-[#ea7414]/60 text-white/90 hover:border-[#ea7414] hover:bg-[#ea7414]/10"
+                                        ? "bg-[#ea7414] text-white hover:bg-[#d66712]"
+                                        : "border border-[#ea7414]/60 text-white/90 hover:border-[#ea7414] hover:bg-[#ea7414]/10"
                                         }`}
                                 >
                                     {item.title}
