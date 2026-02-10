@@ -20,27 +20,33 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden bg-[#060607] pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
+        className={`relative z-10 bg-[#060607] pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px] ${isMobile ? "" : "overflow-hidden"
+          }`}
       >
-        <div className={`absolute z-[-1] overflow-visible ${isMobile ? 'inset-x-0 top-0 h-[200vh]' : 'inset-0 overflow-hidden'}`}>
+        <div
+          className={`absolute z-[-1] ${isMobile
+              ? "inset-0 -bottom-[80vh]"
+              : "inset-0 overflow-hidden"
+            }`}
+        >
           <LaserFlow
             color="#f7931a"
             wispDensity={1.6}
             flowSpeed={0.35}
             verticalSizing={isMobile ? 8 : 3.2}
-            horizontalSizing={isMobile ? 8 : 3}
-            fogIntensity={1}
+            horizontalSizing={isMobile ? 7 : 3}
+            fogIntensity={isMobile ? 1.4 : 1}
             fogScale={0.35}
             wispSpeed={23}
-            wispIntensity={10.5}
+            wispIntensity={isMobile ? 14 : 10.5}
             flowStrength={0.6}
-            decay={1.8}
+            decay={isMobile ? 2.2 : 1.8}
             horizontalBeamOffset={isMobile ? 0 : 0.25}
-            verticalBeamOffset={isMobile ? 0 : -0.2}
+            verticalBeamOffset={isMobile ? 0.1 : -0.2}
           />
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#060607] to-transparent z-10" />
         </div>
-        <div className="container">
+        <div className="container relative z-10">
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="max-w-[800px] text-left">
