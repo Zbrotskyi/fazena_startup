@@ -26,18 +26,19 @@ const HomeSectionOne = () => {
         <div className="border-b border-white/[.1] pb-16 md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
-              <SectionTitle
-                title="Our Features"
-                paragraph="FAZENA leverages quantum chemistry and AI to design next-generation therapeutics through the first end-to-end in silico-to-cell platform. We transform computational predictions into experimentally validated therapeutic candidates. While our full pipeline is under construction, we're already accelerating pharma R&D through specialized services and our AI-powered SaaS platform."
-                mb="20px"
-                dark
-              />
-              <div className={styles.sectionButtonContainer}>
-                <Link href="/about" className={styles.learnMoreButton}>
-                  <span className={styles.buttonText}>About us</span>
-                </Link>
+              <div className="relative z-10">
+                <SectionTitle
+                  title="Our Features"
+                  paragraph="FAZENA leverages quantum chemistry and AI to design next-generation therapeutics through the first end-to-end in silico-to-cell platform. We transform computational predictions into experimentally validated therapeutic candidates. While our full pipeline is under construction, we're already accelerating pharma R&D through specialized services and our AI-powered SaaS platform."
+                  mb="20px"
+                  dark
+                />
+                <div className={styles.sectionButtonContainer}>
+                  <Link href="/about" className={styles.learnMoreButton}>
+                    <span className={styles.buttonText}>About us</span>
+                  </Link>
+                </div>
               </div>
-
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
