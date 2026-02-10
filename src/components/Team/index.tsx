@@ -5,15 +5,15 @@ import ChromaGrid from "./ChromaGrid";
 
 const teamMembers = [
     {
-        image: "/images/team/member1.jpg",
-        title: "Team Member 1",
-        subtitle: "CEO & Founder",
+        image: "/images/team/Franchuk.webp",
+        title: "Yegor Franchuk",
+        subtitle: "CEO & Co-Founder",
         linkedin: "https://linkedin.com/in/member1"
     },
     {
-        image: "/images/team/member2.jpg",
-        title: "Team Member 2",
-        subtitle: "CTO",
+        image: "/images/team/Zbrotskyi.jpg",
+        title: "Anatolii Zbrotskyi",
+        subtitle: "CSO & Co-Founder",
         linkedin: "https://linkedin.com/in/member2"
     },
     {
