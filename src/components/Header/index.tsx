@@ -40,8 +40,8 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header top-0 left-0 z-40 flex w-full items-center ${sticky
-          ? "fixed z-[9999] bg-[#0b0b10]/80 backdrop-blur-sm shadow-sticky transition-all duration-300 border-b border-white/[0.05]"
+        className={`header top-0 left-0 z-40 flex w-full items-center transition-all duration-300 ${sticky
+          ? "fixed z-[9999] bg-[#0b0b10]/95 backdrop-blur-sm shadow-sticky border-b border-white/[0.05]"
           : "absolute bg-transparent"
           }`}
       >
@@ -90,7 +90,7 @@ const Header = () => {
                     : "invisible top-[120%] opacity-0"
                     }`}
                 >
-                  <ul className="block lg:flex lg:space-x-12">
+                  <ul className="block lg:flex lg:items-center lg:space-x-12">
                     {menuData.map((menuItem, index) => (
                       <li key={index} className={`group relative ${menuItem.special ? "flex items-center" : ""}`}>
                         {menuItem.path ? (
@@ -98,7 +98,11 @@ const Header = () => {
                             href={menuItem.path}
                             className={
                               menuItem.special
-                                ? "inline-flex items-center rounded border border-[#ea7414] px-5 py-1.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-[#ea7414]/10"
+                                ? `inline-flex items-center rounded px-5 py-2 text-sm font-medium transition-all duration-300 ${index === menuData.length - 2 ? "lg:mr-4" : ""
+                                } ${menuItem.filled
+                                  ? "bg-[#ea7414] text-white hover:bg-[#d66712] hover:shadow-lg hover:shadow-[#ea7414]/20"
+                                  : "border border-[#ea7414] text-white hover:bg-[#ea7414]/10"
+                                }`
                                 : `flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${usePathName === menuItem.path
                                   ? "text-primary"
                                   : "text-white/70 hover:text-white"
