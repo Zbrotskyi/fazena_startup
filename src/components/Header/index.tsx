@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import menuData from "./menuData";
 
 const Header = () => {
@@ -12,25 +12,30 @@ const Header = () => {
     setNavbarOpen(!navbarOpen);
   };
 
-  // Sticky Navbar
+  // Sticky Navbar with cleanup
   const [sticky, setSticky] = useState(false);
-  const handleStickyNavbar = () => {
+
+  const handleStickyNavbar = useCallback(() => {
     if (window.scrollY >= 80) {
       setSticky(true);
     } else {
       setSticky(false);
     }
-  };
+  }, []);
+
   useEffect(() => {
+    // Add scroll listener
     window.addEventListener("scroll", handleStickyNavbar);
+
+    // Cleanup on unmount
     return () => {
       window.removeEventListener("scroll", handleStickyNavbar);
     };
-  }, []);
+  }, [handleStickyNavbar]);
 
-  // submenu handler
+  // Submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
-  const handleSubmenu = (index) => {
+  const handleSubmenu = (index: number) => {
     if (openIndex === index) {
       setOpenIndex(-1);
     } else {
@@ -40,25 +45,40 @@ const Header = () => {
 
   const usePathName = usePathname();
 
+  // Memoized classes for performance
+  const headerClasses = useMemo(
+    () =>
+      `header top-0 left-0 z-40 flex w-full items-center ${sticky
+        ? "fixed z-[9999] bg-[#0b0b10]/80 backdrop-blur-sm shadow-sticky transition-all duration-300 border-b border-white/[0.05]"
+        : "absolute bg-transparent"
+      }`,
+    [sticky]
+  );
+
+  const logoClasses = useMemo(
+    () => `header-logo block w-full ${sticky ? "py-5 lg:py-2" : "py-8"}`,
+    [sticky]
+  );
+
+  const mobileMenuClasses = useMemo(
+    () =>
+      `navbar border-white/10 bg-[#0b0b10] absolute right-0 z-30 w-[250px] rounded border-[.5px] px-6 py-4 duration-300 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${navbarOpen
+        ? "visibility top-full opacity-100"
+        : "invisible top-[120%] opacity-0"
+      }`,
+    [navbarOpen]
+  );
+
   return (
     <>
-      <header
-        className={`header top-0 left-0 z-40 flex w-full items-center will-change-transform ${sticky
-            ? "fixed z-[9999] bg-[#0b0b10]/90 backdrop-blur-md shadow-sticky transition-all duration-500 ease-in-out border-b border-white/[0.08]"
-            : "absolute bg-transparent transition-all duration-500 ease-in-out"
-          }`}
-      >
+      <header className={headerClasses}>
         <div className="container">
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="w-72 max-w-full px-4 xl:mr-12">
-              <Link
-                href="/"
-                className={`header-logo block w-full ${sticky ? "py-5 lg:py-2" : "py-8"
-                  } `}
-              >
+              <Link href="/" className={logoClasses}>
                 <Image
                   src="/images/logo/logo.svg"
-                  alt="logo"
+                  alt="FAZENA Logo"
                   width={180}
                   height={40}
                   className="w-full h-auto"
@@ -70,28 +90,29 @@ const Header = () => {
                 <button
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
-                  aria-label="Mobile Menu"
+                  aria-label="Toggle mobile menu"
+                  aria-expanded={navbarOpen}
+                  aria-controls="navbarCollapse"
                   className="ring-primary absolute top-1/2 right-4 block translate-y-[-50%] rounded-lg px-3 py-[6px] focus:ring-2 lg:hidden"
                 >
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-white transition-all duration-300 ${navbarOpen ? "top-[7px] rotate-45" : " "
+                    className={`relative my-1.5 block h-0.5 w-[30px] bg-white transition-all duration-300 ${navbarOpen ? "top-[7px] rotate-45" : ""
                       }`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-white transition-all duration-300 ${navbarOpen ? "opacity-0" : " "
+                    className={`relative my-1.5 block h-0.5 w-[30px] bg-white transition-all duration-300 ${navbarOpen ? "opacity-0" : ""
                       }`}
                   />
                   <span
-                    className={`relative my-1.5 block h-0.5 w-[30px] bg-white transition-all duration-300 ${navbarOpen ? "top-[-8px] -rotate-45" : " "
+                    className={`relative my-1.5 block h-0.5 w-[30px] bg-white transition-all duration-300 ${navbarOpen ? "top-[-8px] -rotate-45" : ""
                       }`}
                   />
                 </button>
                 <nav
                   id="navbarCollapse"
-                  className={`navbar border-white/10 bg-[#0b0b10] absolute right-0 z-30 w-[250px] rounded border-[.5px] px-6 py-4 duration-300 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${navbarOpen
-                    ? "visibility top-full opacity-100"
-                    : "invisible top-[120%] opacity-0"
-                    }`}
+                  role="navigation"
+                  aria-label="Main navigation"
+                  className={mobileMenuClasses}
                 >
                   <ul className="block lg:flex">
                     {menuData.map((menuItem, index) => (
@@ -124,9 +145,11 @@ const Header = () => {
                           </Link>
                         ) : (
                           <>
-                            <p
+                            <button
                               onClick={() => handleSubmenu(index)}
-                              className="text-white/70 group-hover:text-white flex cursor-pointer items-center justify-between py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6"
+                              aria-expanded={openIndex === index}
+                              aria-haspopup="true"
+                              className="text-white/70 group-hover:text-white flex cursor-pointer items-center justify-between py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 w-full"
                             >
                               {menuItem.title}
                               <span className="pl-3">
@@ -139,15 +162,17 @@ const Header = () => {
                                   />
                                 </svg>
                               </span>
-                            </p>
+                            </button>
                             <div
+                              role="menu"
                               className={`submenu relative top-full left-0 rounded-sm bg-[#0b0b10] border border-white/10 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${openIndex === index ? "block" : "hidden"
                                 }`}
                             >
-                              {menuItem.submenu.map((submenuItem, index) => (
+                              {menuItem.submenu?.map((submenuItem, subIndex) => (
                                 <Link
-                                  href={submenuItem.path}
-                                  key={index}
+                                  href={submenuItem.path || "#"}
+                                  key={subIndex}
+                                  role="menuitem"
                                   className="text-white/70 hover:text-white block rounded-sm py-2.5 text-sm lg:px-3"
                                 >
                                   {submenuItem.title}
@@ -160,7 +185,6 @@ const Header = () => {
                     ))}
                   </ul>
                 </nav>
-
               </div>
             </div>
           </div>
@@ -171,4 +195,3 @@ const Header = () => {
 };
 
 export default Header;
-
