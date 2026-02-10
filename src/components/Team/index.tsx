@@ -39,7 +39,7 @@ const teamMembers = [
         title: "Join Our Team",
         subtitle: "Help us redefine drug discovery",
         isCTA: true,
-        ctaLink: "/contact"
+        ctaLink: "/join-us"
     }
 ];
 
