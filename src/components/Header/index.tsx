@@ -48,23 +48,23 @@ const Header = () => {
   // Memoized classes for performance
   const headerClasses = useMemo(
     () =>
-      `header top-0 left-0 z-40 flex w-full items-center ${sticky
-        ? "fixed z-[9999] bg-[#0b0b10]/80 backdrop-blur-sm shadow-sticky transition-all duration-300 border-b border-white/[0.05]"
+      `header top-0 left-0 z-40 flex w-full items-center transition-all duration-500 ease-out ${sticky
+        ? "fixed z-[9999] bg-[#0b0b10]/95 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.3)] border-b border-white/[0.08]"
         : "absolute bg-transparent"
       }`,
     [sticky]
   );
 
   const logoClasses = useMemo(
-    () => `header-logo block w-full ${sticky ? "py-5 lg:py-2" : "py-8"}`,
+    () => `header-logo block w-full transition-all duration-500 ease-out ${sticky ? "py-5 lg:py-2" : "py-8"}`,
     [sticky]
   );
 
   const mobileMenuClasses = useMemo(
     () =>
-      `navbar border-white/10 bg-[#0b0b10] absolute right-0 z-30 w-[250px] rounded border-[.5px] px-6 py-4 duration-300 lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${navbarOpen
-        ? "visibility top-full opacity-100"
-        : "invisible top-[120%] opacity-0"
+      `navbar border-white/10 bg-[#0b0b10] absolute right-0 z-30 w-[250px] rounded border-[.5px] px-6 py-4 transition-all duration-300 ease-out lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${navbarOpen
+        ? "visible top-full opacity-100 scale-100"
+        : "invisible top-[120%] opacity-0 scale-95"
       }`,
     [navbarOpen]
   );
