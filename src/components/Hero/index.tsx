@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import LaserFlow from "./LaserFlow";
 import { useEffect, useState } from "react";
