@@ -36,9 +36,9 @@ const Header = () => {
                         <Image
                             src="/images/logo/logo.svg"
                             alt="FAZENA"
-                            width={210}
-                            height={48}
-                            className="h-10 w-auto"
+                            width={260}
+                            height={60}
+                            className="h-14 w-auto"
                             priority
                         />
                     </Link>

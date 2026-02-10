@@ -2,7 +2,7 @@ import AboutContent from "@/components/About/AboutContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About FAZENA | Next-Gen Drug Discovery",
+  title: "FAZENA | About Us",
   description: "Learn about FAZENA's mission to revolutionize drug discovery through quantum chemistry and AI.",
 };
 

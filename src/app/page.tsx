@@ -13,7 +13,7 @@ import PartnershipCTA from "@/components/PartnershipCTA";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Computed. Synthesized. Validated.",
+  title: "FAZENA | Computed. Synthesized. Validated.",
   description: "We're building silicon-to-cell integration that collapses traditional discovery timelines",
 };
 

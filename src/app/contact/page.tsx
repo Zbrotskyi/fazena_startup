@@ -3,7 +3,7 @@ import Contact from "@/components/Contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | FAZENA",
+  title: "FAZENA | Contact Us",
   description: "Get in touch with FAZENA for inquiries about our drug discovery platform, research collaborations, or partnership opportunities.",
 };
 

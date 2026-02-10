@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Publications | FAZENA",
+  title: "FAZENA | Publications",
   description: "Explore our latest publications and research in AI-driven drug discovery.",
 };
 
