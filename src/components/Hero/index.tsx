@@ -20,14 +20,14 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className="relative z-10 bg-[#060607] pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px] lg:overflow-hidden overflow-x-hidden"
+        className="relative z-10 overflow-hidden bg-[#060607] pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
-        <div className={`absolute inset-0 ${isMobile ? "h-[140%]" : "h-full"} z-[-1]`}>
+        <div className={`absolute z-[-1] overflow-visible ${isMobile ? 'inset-x-0 top-0 h-[200vh]' : 'inset-0 overflow-hidden'}`}>
           <LaserFlow
             color="#f7931a"
             wispDensity={1.6}
             flowSpeed={0.35}
-            verticalSizing={isMobile ? 12 : 3.2}
+            verticalSizing={isMobile ? 8 : 3.2}
             horizontalSizing={isMobile ? 8 : 3}
             fogIntensity={1}
             fogScale={0.35}
