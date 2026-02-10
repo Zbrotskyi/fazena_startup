@@ -8,31 +8,31 @@ const teamMembers = [
         image: "/images/team/Franchuk.webp",
         title: "Yegor Franchuk",
         subtitle: "CEO & Co-Founder",
-        linkedin: "https://linkedin.com/in/member1"
+        linkedin: "https://www.linkedin.com/in/mregorin"
     },
     {
-        image: "/images/team/Zbrotskyi.jpg",
+        image: "/images/team/Zbrotskyi.webp",
         title: "Anatolii Zbrotskyi",
         subtitle: "CSO & Co-Founder",
-        linkedin: "https://linkedin.com/in/member2"
+        linkedin: "https://www.linkedin.com/in/anatolii-zbrotskyi-31b216365"
     },
     {
-        image: "/images/team/member3.jpg",
-        title: "Team Member 3",
+        image: "/images/team/Alexandrovych.jpg",
+        title: "Dmytro Alexandrovych",
         subtitle: "Lead Scientist",
-        linkedin: "https://linkedin.com/in/member3"
+        linkedin: "https://www.linkedin.com/in/dima-aleksandrovech-9714a720b"
     },
     {
-        image: "/images/team/member4.jpg",
-        title: "Team Member 4",
+        image: "/images/team/Zhuromskyi.png",
+        title: "Yevhenii Zhuromskyi",
         subtitle: "Research Lead",
-        linkedin: "https://linkedin.com/in/member4"
+        linkedin: "https://www.linkedin.com/in/yevhenii-zhuromskyi-025192344"
     },
     {
-        image: "/images/team/member5.jpg",
-        title: "Team Member 5",
+        image: "/images/team/Naum.jpg",
+        title: "Yuliia Naum",
         subtitle: "Head of Operations",
-        linkedin: "https://linkedin.com/in/member5"
+        linkedin: "https://www.linkedin.com/in/yuliia-naum"
     },
     {
         image: "",
