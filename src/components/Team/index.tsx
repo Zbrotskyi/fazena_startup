@@ -6,7 +6,7 @@ import ChromaGrid from "./ChromaGrid";
 const teamMembers = [
     {
         image: "/images/team/Franchuk.webp",
-        title: "Yegor Franchuk",
+        title: "Yehor Franchuk",
         subtitle: "CEO & Co-Founder",
         linkedin: "https://www.linkedin.com/in/mregorin"
     },
@@ -19,7 +19,7 @@ const teamMembers = [
     {
         image: "/images/team/Alexandrovych.jpg",
         title: "Dmytro Alexandrovych",
-        subtitle: "Lead Scientist",
+        subtitle: "CFO & Co-Founder",
         linkedin: "https://www.linkedin.com/in/dima-aleksandrovech-9714a720b"
     },
     {
@@ -31,17 +31,17 @@ const teamMembers = [
     {
         image: "/images/team/Naum.jpg",
         title: "Yuliia Naum",
-        subtitle: "Head of Operations",
+        subtitle: "Wet Lab Scientist",
         linkedin: "https://www.linkedin.com/in/yuliia-naum"
     },
     {
-        image: "/images/team/Naum.jpg",
+        image: "/images/team/Kolisnyk.jpg",
         title: "Oksana Kolisnyk",
         subtitle: "ML developer",
         linkedin: "https://www.linkedin.com/in/oksana-kolisnyk-0b9632247"
     },
     {
-        image: "/images/team/Naum.jpg",
+        image: "",
         title: "Bahdasarov Arsenii",
         subtitle: "Software Engineer",
         linkedin: "https://www.linkedin.com/in/yuliia-naum"
@@ -63,7 +63,7 @@ const Team = () => {
         >
             <div className="container">
                 <SectionTitle
-                    title="Fazena Team"
+                    title="FAZENA Team"
                     paragraph="Meet the minds reshaping drug discovery — specialists in bioinformatics, biochemistry, biotechnology, and synthetic biology working together to bring novel therapeutics from concept to reality."
                     center
                     dark

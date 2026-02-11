@@ -15,7 +15,7 @@ const AboutContent = () => {
                                 In December 2025, we won the Neuro Impact Challenge competition, gaining recognition from YURiA-PHARM, the Ministry of Science and Education of Ukraine, and the IP office. We presented part of our project, the design of a molecular modulator of Phospholipid-transporting ATPase ABCA7 for the treatment of Alzheimer&apos;s disease associated with certain mutations.
                             </p>
                             <p>
-                                FAZENA is a team of young, ambitious Ukrainian specialists who are continuously advancing their expertise in the field of drug development, biotechnology, pharmacology, and bioinformatics. We have brought together representatives from various Ukrainian universities (Kyiv, Lviv, Odesa) and institutes of the Academy of Sciences for a common goal.
+                                FAZENA is a team of young, ambitious Ukrainian specialists who are continuously advancing their expertise in the field of drug development, biotechnology, pharmacology, bioinformatics, artificial intelligence, and machine learning. We have brought together representatives from various Ukrainian universities (Kyiv, Lviv, Odesa, Kharkiv), Université Clermont-Auvergne (Clermont-Ferrand, France), and institutes of the Academy of Sciences for a common goal.
                             </p>
                             <p>
                                 Since then, we continue to develop both this project and the team&apos;s overall vision — to build an innovative, strong pharmaceutical industry in Ukraine, covering all stages of drug development: in silico, in vitro, in vivo, clinical trials, market entry, and monitoring of side effects after product release.

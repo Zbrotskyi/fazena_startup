@@ -97,7 +97,7 @@ const features = [
     {
         icon: <TargetIcon />,
         title: "Binding Site Detection",
-        description: "Identifies possible binding centers based on evolutionary factors and potential energy surface scanning."
+        description: "Identifies possible binding sites based on evolutionary factors and potential energy surface scanning."
     },
     {
         icon: <SearchIcon />,
@@ -121,8 +121,8 @@ const features = [
     },
     {
         icon: <CpuIcon />,
-        title: "Molecular Dynamics Refinement",
-        description: "100 ns molecular dynamics refinement with automated topology and index file preparation."
+        title: "Molecular Dynamics",
+        description: "100 ns molecular dynamics with automated topology and index file preparation."
     }
 ];
 
@@ -133,7 +133,7 @@ const workflowSteps = [
     },
     {
         title: "Binding Site Identification",
-        description: "Evolutionary analysis and energy surface scanning identify potential binding centers for therapeutic intervention."
+        description: "Evolutionary analysis and energy surface scanning identify potential binding sites for therapeutic intervention."
     },
     {
         title: "Structure Prediction",
@@ -141,7 +141,7 @@ const workflowSteps = [
     },
     {
         title: "Ligand Docking & Optimization",
-        description: "Flexible docking with physics-based scoring finds optimal ligand positions, followed by molecular dynamics refinement."
+        description: "Flexible docking with physics-based scoring finds optimal ligand positions, followed by molecular dynamics."
     },
     {
         title: "Results & Analysis",
@@ -210,7 +210,7 @@ const RNAHunterDetailsPage = () => {
                             other regulatory RNA molecules. Unlike automated services such as RNA Composer
                             or SimRNA that perform single functions, RNA Hunter implements the <strong style={{ color: '#ea7414' }}>entire
                                 computational drug development pipeline</strong> — from sequence analysis to
-                            molecular dynamics refinement — in one integrated, fully automated workflow.
+                            molecular dynamics — in one integrated, fully automated workflow.
                         </p>
                     </div>
                 </div>

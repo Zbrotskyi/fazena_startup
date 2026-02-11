@@ -36,7 +36,7 @@ const projectsData: PipelineTrack[] = [
         icon: <DnaIcon />,
         stages: ["Concept", "Prototype", "Validation", "Optimization", "Launch"],
         projects: [
-            { name: "RNA hunter", currentStage: 1 },
+            { name: "RNA Hunter", currentStage: 1 },
             { name: "CycloSpace", currentStage: 0 },
         ],
     },
