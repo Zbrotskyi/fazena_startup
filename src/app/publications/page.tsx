@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import PublicationCard from "@/components/Publications/PublicationCard";
 import publicationsData from "@/components/Publications/publicationsData";
 import Breadcrumb from "@/components/Common/Breadcrumb";
@@ -9,14 +9,8 @@ const PublicationsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  // Extract unique tags from data
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    publicationsData.forEach((pub) => {
-      pub.tags?.forEach((tag) => tags.add(tag));
-    });
-    return Array.from(tags).sort();
-  }, []);
+  // Restricted valid tags
+  const validTags = ["Research", "News", "Blogs", "Announcements"];
 
   const filteredPublications = publicationsData.filter((publication) => {
     const searchLower = searchQuery.toLowerCase();
@@ -42,23 +36,23 @@ const PublicationsPage = () => {
           <div className="mb-16">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-8 border-b border-white/5">
               {/* Tag Chips */}
-              <div className="flex flex-wrap gap-2 lg:max-w-[60%]">
+              <div className="flex flex-wrap gap-2 lg:max-w-[70%]">
                 <button
                   onClick={() => setSelectedTag(null)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedTag === null
-                      ? "bg-[#ea7414] text-white shadow-[0_0_15px_rgba(234,116,20,0.3)]"
-                      : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                    ? "bg-[#ea7414] text-white shadow-[0_0_15px_rgba(234,116,20,0.3)]"
+                    : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
                     }`}
                 >
                   All Topics
                 </button>
-                {allTags.map((tag) => (
+                {validTags.map((tag) => (
                   <button
                     key={tag}
                     onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedTag === tag
-                        ? "bg-[#ea7414] text-white shadow-[0_0_15px_rgba(234,116,20,0.3)]"
-                        : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                      ? "bg-[#ea7414] text-white shadow-[0_0_15px_rgba(234,116,20,0.3)]"
+                      : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
                       }`}
                   >
                     {tag}
