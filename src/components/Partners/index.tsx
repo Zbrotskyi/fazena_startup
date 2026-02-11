@@ -34,6 +34,11 @@ const partnersData = [
 const Partners = () => {
     return (
         <section className="relative z-20 -mt-20 md:-mt-40 bg-transparent py-8 md:py-12 overflow-hidden">
+            <div className="container px-4 mb-8 md:mb-12">
+                <h3 className="text-center font-mono text-xs font-bold uppercase tracking-[0.3em] text-white/30">
+                    Supported by:
+                </h3>
+            </div>
             {/* Desktop View */}
             <div className="container hidden md:block">
                 <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">

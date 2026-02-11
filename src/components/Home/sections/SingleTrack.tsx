@@ -101,22 +101,32 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                             )}
                                         </div>
 
-                                        <div className="flex-1 relative">
+                                        <div className="flex-1 relative px-2">
                                             <div className="grid relative" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
-                                                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-2 rounded-full bg-black/30 border border-white/[0.085]">
+                                                {/* Background track line */}
+                                                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1.5 rounded-full bg-black/40 border border-white/[0.085]">
+                                                    {/* Active progress track */}
                                                     <div
                                                         className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.4)] transition-all duration-700 ease-out"
                                                         style={{ width: isVisible ? `${progressPercent}%` : '0%' }}
                                                     />
                                                 </div>
 
-                                                {stages.map((_, stageIndex) => (
-                                                    <div key={stageIndex} className="flex items-center justify-center h-6 relative z-10 transition-opacity duration-500" style={{ opacity: isVisible ? 1 : 0, transitionDelay: `${stageIndex * 150}ms` }}>
-                                                        {stageIndex === project.currentStage && (
-                                                            <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/40" />
-                                                        )}
-                                                    </div>
-                                                ))}
+                                                {/* Stage Indicators */}
+                                                {stages.map((_, stageIndex) => {
+                                                    const isPast = stageIndex < project.currentStage;
+                                                    const isCurrent = stageIndex === project.currentStage;
+
+                                                    return (
+                                                        <div key={stageIndex} className="flex items-center justify-center h-6 relative z-10 transition-all duration-500" style={{ opacity: isVisible ? 1 : 0, transitionDelay: `${stageIndex * 150}ms` }}>
+                                                            {isCurrent ? (
+                                                                <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/60" />
+                                                            ) : (
+                                                                <div className={`w-2 h-2 rounded-full border border-white/10 ${isPast ? 'bg-[#ffb14a]' : 'bg-[#1a1a1e]'}`} />
+                                                            )}
+                                                        </div>
+                                                    );
+                                                })}
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +200,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                                                 />
                                                             ) : (
                                                                 <div
-                                                                    className={`w-2 h-2 rounded-full transition-all duration-500 ${isPast ? 'bg-[#ffb14a] opacity-80 scale-100' : 'bg-white/10 scale-100'}`}
+                                                                    className={`w-2 h-2 rounded-full transition-all duration-500 border border-white/10 ${isPast ? 'bg-[#ffb14a] scale-100' : 'bg-[#1a1a1e] scale-100'}`}
                                                                     style={{
                                                                         transform: isVisible ? 'scale(1)' : 'scale(0)',
                                                                         transitionDelay: `${stageIndex * 200}ms`
