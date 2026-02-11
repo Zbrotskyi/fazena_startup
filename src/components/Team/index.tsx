@@ -35,16 +35,16 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/yuliia-naum"
     },
     {
-        image: "/images/team/Kolisnyk.jpg",
-        title: "Oksana Kolisnyk",
-        subtitle: "ML developer",
-        linkedin: "https://www.linkedin.com/in/oksana-kolisnyk-0b9632247"
-    },
-    {
-        image: "",
+        image: "/images/team/Bahdasarov.jpg",
         title: "Bahdasarov Arsenii",
         subtitle: "Software Engineer",
-        linkedin: "https://www.linkedin.com/in/yuliia-naum"
+        linkedin: "https://www.linkedin.com/"
+    },
+    {
+        image: "/images/team/Kolisnyk.jpg",
+        title: "Oksana Kolisnyk",
+        subtitle: "ML Engineer",
+        linkedin: "https://www.linkedin.com/in/oksana-kolisnyk-0b9632247"
     },
     {
         image: "",
