@@ -298,6 +298,8 @@ export const GridScan = ({
     enableGyro = false,
     scanOnClick = false,
     snapBackDelay = 250,
+    baseSkewX = 0,
+    baseYaw = 0,
     className,
     style
 }: any) => {
@@ -372,6 +374,22 @@ export const GridScan = ({
             const ny = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
             lookTarget.current.set(nx, ny);
         };
+        const onClick = async () => {
+            const nowSec = performance.now() / 1000;
+            if (scanOnClick) pushScan(nowSec);
+            if (
+                enableGyro &&
+                typeof window !== 'undefined' &&
+                typeof (window as any).DeviceOrientationEvent !== 'undefined' &&
+                (window as any).DeviceOrientationEvent.requestPermission
+            ) {
+                try {
+                    await (window as any).DeviceOrientationEvent.requestPermission();
+                } catch {
+                    // noop
+                }
+            }
+        };
         const onEnter = () => {
             if (leaveTimer) {
                 window.clearTimeout(leaveTimer);
@@ -392,11 +410,13 @@ export const GridScan = ({
         };
         el.addEventListener('mousemove', onMove);
         el.addEventListener('mouseenter', onEnter);
+        if (scanOnClick) el.addEventListener('click', onClick);
         el.addEventListener('mouseleave', onLeave);
         return () => {
             el.removeEventListener('mousemove', onMove);
             el.removeEventListener('mouseenter', onEnter);
             el.removeEventListener('mouseleave', onLeave);
+            if (scanOnClick) el.removeEventListener('click', onClick);
             if (leaveTimer) window.clearTimeout(leaveTimer);
         };
     }, [uiFaceActive, snapBackDelay, scanOnClick, enableGyro]);
@@ -523,13 +543,10 @@ export const GridScan = ({
             yawCurrent.current = yawSm.value;
             yawVel.current = yawSm.v;
 
-            const skew = new THREE.Vector2(
-                (lookCurrent.current.x - 0.65) * skewScale,
-                (-lookCurrent.current.y + 0.1) * yBoost * skewScale
-            );
+            const skew = new THREE.Vector2(baseSkewX + lookCurrent.current.x * skewScale, -lookCurrent.current.y * yBoost * skewScale);
             material.uniforms.uSkew.value.set(skew.x, skew.y);
             material.uniforms.uTilt.value = tiltCurrent.current * tiltScale;
-            material.uniforms.uYaw.value = THREE.MathUtils.clamp((yawCurrent.current + 0.75) * yawScale, -0.8, 0.8);
+            material.uniforms.uYaw.value = THREE.MathUtils.clamp(baseYaw + yawCurrent.current * yawScale, -0.6, 0.6);
 
             material.uniforms.iTime.value = now / 1000;
             renderer.clear(true, true, true);
