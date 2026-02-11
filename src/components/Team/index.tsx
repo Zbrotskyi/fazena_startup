@@ -36,7 +36,7 @@ const teamMembers = [
     },
     {
         image: "/images/team/Bahdasarov.jpg",
-        title: "Bahdasarov Arsenii",
+        title: "Arsenii Bahdasarov",
         subtitle: "Software Engineer",
         linkedin: "https://www.linkedin.com/"
     },

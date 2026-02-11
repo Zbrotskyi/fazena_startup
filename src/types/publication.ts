@@ -5,4 +5,5 @@ export type Publication = {
     category: string;
     publishDate: string;
     url?: string;
+    tags?: string[];
 };

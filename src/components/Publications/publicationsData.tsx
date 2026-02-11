@@ -7,7 +7,8 @@ const publicationsData: Publication[] = [
         image: "/images/publications/pub-01.jpg",
         category: "Research",
         publishDate: "December 10, 2025",
-        url: "#"
+        url: "#",
+        tags: ["Crystallography", "Generative AI", "Structure Prediction"]
     },
     {
         id: 2,
@@ -15,7 +16,8 @@ const publicationsData: Publication[] = [
         image: "/images/publications/pub-02.jpg",
         category: "AI/ML",
         publishDate: "November 25, 2025",
-        url: "#"
+        url: "#",
+        tags: ["Drug Discovery", "Machine Learning", "Pharma"]
     },
     {
         id: 3,
@@ -23,7 +25,8 @@ const publicationsData: Publication[] = [
         image: "/images/publications/pub-03.jpg",
         category: "Quantum",
         publishDate: "October 15, 2025",
-        url: "#"
+        url: "#",
+        tags: ["Quantum Chemistry", "Therapeutics", "Molecular Design"]
     }
 ];
 

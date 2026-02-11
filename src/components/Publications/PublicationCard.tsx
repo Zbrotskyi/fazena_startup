@@ -17,7 +17,7 @@ const PublicationCard = ({ publication }: { publication: Publication }) => {
                 <div
                     className="relative aspect-[16/9] w-full overflow-hidden rounded-sm mb-4"
                     style={{
-                        border: "1px solid #F97316",
+                        border: "1px solid #ea7414",
                     }}
                 >
                     <Image
@@ -32,7 +32,7 @@ const PublicationCard = ({ publication }: { publication: Publication }) => {
                 <div className="flex items-center gap-3 mb-3">
                     <span
                         className="inline-flex items-center justify-center rounded-sm px-2 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider"
-                        style={{ backgroundColor: "#F97316" }}
+                        style={{ backgroundColor: "#ea7414" }}
                     >
                         {category}
                     </span>
