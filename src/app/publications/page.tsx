@@ -26,38 +26,68 @@ const PublicationsPage = () => {
 
       <section className="bg-[#060607] pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28">
         <div className="container">
-          {/* Search Bar */}
-          <div className="mb-12 max-w-[600px] mx-auto">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search by title or tags (e.g., 'Generative', 'Machine Learning')..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-md border border-white/10 bg-white/5 py-4 pl-6 pr-12 text-base text-white outline-none transition-all duration-300 focus:border-primary focus:bg-white/10 focus:shadow-[0_0_20px_rgba(234,116,20,0.15)]"
-              />
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M19 19L14.65 14.65M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
+          {/* Professional Search Bar */}
+          <div className="mb-14 max-w-[700px] mx-auto group">
+            <div className="relative group/input">
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-orange-500/20 rounded-xl blur opacity-25 group-focus-within/input:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div className="relative flex items-center">
+                <div className="absolute left-5 text-white/40 group-focus-within/input:text-primary transition-colors duration-300">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                  />
-                </svg>
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search research, papers, or tags..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-xl py-5 pl-14 pr-12 text-lg text-white placeholder:text-white/20 outline-none transition-all duration-500 focus:border-primary/50 focus:bg-white/[0.07] focus:shadow-[0_0_40px_rgba(234,116,20,0.1)]"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-4 p-2 text-white/30 hover:text-white transition-colors duration-200"
+                    aria-label="Clear search"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                )}
               </div>
             </div>
             {searchQuery && (
-              <p className="mt-3 text-sm text-white/40 italic">
-                Found {filteredPublications.length} result{filteredPublications.length !== 1 ? 's' : ''} for "{searchQuery}"
-              </p>
+              <div className="mt-4 flex items-center justify-between px-2">
+                <p className="text-sm text-white/40 font-medium tracking-wide translate-y-0 opacity-100 transition-all">
+                  Found <span className="text-primary">{filteredPublications.length}</span> matching result{filteredPublications.length !== 1 ? 's' : ''}
+                </p>
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="text-xs uppercase tracking-widest text-white/30 hover:text-primary transition-colors"
+                >
+                  Clear search
+                </button>
+              </div>
             )}
           </div>
 
