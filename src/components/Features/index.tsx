@@ -5,10 +5,10 @@ import featuresData from "./featuresData";
 const Features = () => {
   return (
     <>
-      <section id="features" className="py-16 md:py-24 bg-[#060607]">
+      <section id="services" className="py-16 md:py-24 bg-[#060607]">
         <div className="container px-4">
           <SectionTitle
-            title="Main Features"
+            title="Services"
             paragraph="Comprehensive toolkit for computational drug design and biomolecular engineering."
             center
             dark

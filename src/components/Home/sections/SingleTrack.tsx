@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 const SingleTrack = ({ track }: { track: PipelineTrack }) => {
     const { name, description, stages, projects, icon } = track;
     const [isVisible, setIsVisible] = useState(false);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const progressRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -17,18 +17,18 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                     observer.disconnect();
                 }
             },
-            { threshold: 0.15 }
+            { threshold: 0.3 } // Trigger when 30% of bars section is visible
         );
 
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
+        if (progressRef.current) {
+            observer.observe(progressRef.current);
         }
 
         return () => observer.disconnect();
     }, []);
 
     return (
-        <div ref={containerRef} className="pipeline-card group relative w-full overflow-hidden rounded-[1.55em] transition-all duration-300 hover:-translate-y-[0.12em]">
+        <div className="pipeline-card group relative w-full overflow-hidden rounded-[1.55em] transition-all duration-300 hover:-translate-y-[0.12em]">
             {/* Background with gradients */}
             <div className="pipeline-card__bg absolute inset-0 rounded-[inherit] pointer-events-none" />
 
@@ -53,7 +53,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                 </div>
 
                 {/* Projects Section */}
-                <div className="pt-5">
+                <div ref={progressRef} className="pt-5">
                     {/* Desktop Table View (Hidden on mobile) */}
                     <div className="hidden md:block overflow-x-auto no-scrollbar">
                         <div className="w-full min-w-full">
@@ -107,7 +107,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                                 <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1.5 rounded-full bg-black/40 border border-white/[0.085]">
                                                     {/* Active progress track */}
                                                     <div
-                                                        className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.4)] transition-all duration-700 ease-out"
+                                                        className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.4)] transition-all duration-[1200ms] cubic-bezier(0.65,0,0.35,1) progress-glow"
                                                         style={{ width: isVisible ? `${progressPercent}%` : '0%' }}
                                                     />
                                                 </div>
@@ -180,7 +180,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                                         {/* Active progress line segment */}
                                                         {!isLast && (isPast || isCurrent) && (
                                                             <div
-                                                                className="absolute top-3 bottom-0 w-1.5 bg-gradient-to-b from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] z-10 rounded-full transition-all duration-700 ease-out origin-top"
+                                                                className="absolute top-3 bottom-0 w-1.5 bg-gradient-to-b from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] z-10 rounded-full transition-all duration-[1200ms] cubic-bezier(0.65,0,0.35,1) origin-top progress-glow"
                                                                 style={{
                                                                     height: isVisible ? (isPast ? '100.5%' : '50%') : '0%',
                                                                     transitionDelay: `${stageIndex * 200}ms`
@@ -271,6 +271,18 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
           opacity: 0.55;
           pointer-events: none;
         }
+
+        .progress-glow {
+          animation: ${isVisible ? 'glow-pulse 3s infinite' : 'none'};
+        }
+
+        @keyframes glow-pulse {
+          0%, 100% { filter: drop-shadow(0 0 5px rgba(247, 147, 26, 0.4)); }
+          50% { filter: drop-shadow(0 0 15px rgba(247, 147, 26, 0.7)); }
+        }
+
+        /* Standard Tailwind cubic-bezier for convenience */
+        .cubic-bezier(0.65,0,0.35,1) { transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
       `}</style>
         </div>
     );
