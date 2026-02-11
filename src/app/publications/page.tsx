@@ -1,118 +1,126 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import PublicationCard from "@/components/Publications/PublicationCard";
 import publicationsData from "@/components/Publications/publicationsData";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 
 const PublicationsPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  // Extract unique tags from data
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    publicationsData.forEach((pub) => {
+      pub.tags?.forEach((tag) => tags.add(tag));
+    });
+    return Array.from(tags).sort();
+  }, []);
 
   const filteredPublications = publicationsData.filter((publication) => {
     const searchLower = searchQuery.toLowerCase();
-    const matchesTitle = publication.title.toLowerCase().includes(searchLower);
-    const matchesTags = publication.tags?.some(tag =>
-      tag.toLowerCase().includes(searchLower)
-    );
-    return matchesTitle || matchesTags;
+    const matchesSearch =
+      publication.title.toLowerCase().includes(searchLower) ||
+      publication.tags?.some(tag => tag.toLowerCase().includes(searchLower));
+
+    const matchesTag = !selectedTag || publication.tags?.includes(selectedTag);
+
+    return matchesSearch && matchesTag;
   });
 
   return (
-    <>
+    <div className="bg-[#060607]">
       <Breadcrumb
         pageName="Publications"
         description="Our latest research, articles, and insights on AI-driven drug discovery and development."
       />
 
-      <section className="bg-[#060607] pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28">
+      <section className="pt-16 pb-20 md:pt-20 md:pb-24 lg:pt-24 lg:pb-32">
         <div className="container">
-          {/* Professional Search Bar */}
-          <div className="mb-14 max-w-[700px] mx-auto group">
-            <div className="relative group/input">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-orange-500/20 rounded-xl blur opacity-25 group-focus-within/input:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-              <div className="relative flex items-center">
-                <div className="absolute left-5 text-white/40 group-focus-within/input:text-primary transition-colors duration-300">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+          {/* Professional Filter Bar */}
+          <div className="mb-16">
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pb-8 border-b border-white/5">
+              {/* Tag Chips */}
+              <div className="flex flex-wrap gap-2 lg:max-w-[60%]">
+                <button
+                  onClick={() => setSelectedTag(null)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedTag === null
+                      ? "bg-[#ea7414] text-white shadow-[0_0_15px_rgba(234,116,20,0.3)]"
+                      : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                    }`}
+                >
+                  All Topics
+                </button>
+                {allTags.map((tag) => (
+                  <button
+                    key={tag}
+                    onClick={() => setSelectedTag(tag === selectedTag ? null : tag)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedTag === tag
+                        ? "bg-[#ea7414] text-white shadow-[0_0_15px_rgba(234,116,20,0.3)]"
+                        : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                      }`}
                   >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </div>
+                    {tag}
+                  </button>
+                ))}
+              </div>
+
+              {/* Minimalist Search */}
+              <div className="relative w-full lg:w-[350px]">
                 <input
                   type="text"
-                  placeholder="Search research, papers, or tags..."
+                  placeholder="Search articles..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-xl py-5 pl-14 pr-12 text-lg text-white placeholder:text-white/20 outline-none transition-all duration-500 focus:border-primary/50 focus:bg-white/[0.07] focus:shadow-[0_0_40px_rgba(234,116,20,0.1)]"
+                  className="w-full bg-transparent border-b border-white/20 py-2 pl-2 pr-10 text-white placeholder:text-white/30 outline-none transition-all duration-300 focus:border-primary"
                 />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-4 p-2 text-white/30 hover:text-white transition-colors duration-200"
-                    aria-label="Clear search"
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 text-white/30">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M19 19L14.65 14.65M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
                       stroke="currentColor"
-                      strokeWidth="2.5"
+                      strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                    >
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                )}
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
-            {searchQuery && (
-              <div className="mt-4 flex items-center justify-between px-2">
-                <p className="text-sm text-white/40 font-medium tracking-wide translate-y-0 opacity-100 transition-all">
-                  Found <span className="text-primary">{filteredPublications.length}</span> matching result{filteredPublications.length !== 1 ? 's' : ''}
-                </p>
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="text-xs uppercase tracking-widest text-white/30 hover:text-primary transition-colors"
-                >
-                  Clear search
-                </button>
-              </div>
-            )}
           </div>
 
           {filteredPublications.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
               {filteredPublications.map((publication) => (
                 <PublicationCard key={publication.id} publication={publication} />
               ))}
             </div>
           ) : (
-            <div className="py-20 text-center">
-              <h3 className="text-xl font-medium text-white/60">
-                No publications match your search criteria.
-              </h3>
+            <div className="py-24 text-center">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 mb-6">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeOpacity="0.2">
+                  <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">No publications found</h3>
+              <p className="text-white/40 mb-8 max-w-sm mx-auto">
+                No articles match your current search and filters. Try adjusting your keywords or clearing the tags.
+              </p>
               <button
-                onClick={() => setSearchQuery("")}
-                className="mt-4 text-primary hover:underline"
+                onClick={() => {
+                  setSearchQuery("");
+                  setSelectedTag(null);
+                }}
+                className="text-primary font-bold hover:underline"
               >
-                Clear all filters
+                Reset all filters
               </button>
             </div>
           )}
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
