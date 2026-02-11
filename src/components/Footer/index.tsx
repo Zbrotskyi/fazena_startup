@@ -98,11 +98,6 @@ const Footer = () => {
                     CycloSpace
                   </Link>
                 </li>
-                <li>
-                  <Link href="/publications" className="inline-block text-base text-white/60 duration-300 hover:text-[#ea7414]">
-                    Publications
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
@@ -118,7 +113,7 @@ const Footer = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/team" className="inline-block text-base text-white/60 duration-300 hover:text-[#ea7414]">
+                  <Link href="/#team" className="inline-block text-base text-white/60 duration-300 hover:text-[#ea7414]">
                     Team
                   </Link>
                 </li>
@@ -137,8 +132,8 @@ const Footer = () => {
               <h2 className="mb-8 text-lg font-bold text-white">Resources</h2>
               <ul className="space-y-3">
                 <li>
-                  <Link href="/blog" className="inline-block text-base text-white/60 duration-300 hover:text-[#ea7414]">
-                    Blog
+                  <Link href="/publications" className="inline-block text-base text-white/60 duration-300 hover:text-[#ea7414]">
+                    Publications
                   </Link>
                 </li>
                 <li>
