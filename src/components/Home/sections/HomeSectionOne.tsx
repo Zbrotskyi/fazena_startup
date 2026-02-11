@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SectionTitle from "@/components/Common/SectionTitle";
 import LetterGlitch from "@/components/LetterGlitch";
+import { useEffect, useState } from "react";
 import styles from "./HomeSection.module.css";
 
 const checkIcon = (
@@ -11,6 +12,17 @@ const checkIcon = (
 );
 
 const HomeSectionOne = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const List = ({ text }: { text: string }) => (
     <p className="mb-5 flex items-center text-lg font-medium text-white/70">
       <span className="bg-primary/10 text-primary mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md">
@@ -21,8 +33,15 @@ const HomeSectionOne = () => {
   );
 
   return (
-    <section id="features" className="pt-16 md:pt-20 lg:pt-28 bg-[#060607]">
-      <div className="container">
+    <section id="features"
+      className="relative pt-16 md:pt-20 lg:pt-28"
+      style={{
+        background: isMobile
+          ? 'linear-gradient(to bottom, transparent 0%, transparent 400px, #060607 600px)'
+          : '#060607'
+      }}
+    >
+      <div className="container relative z-20">
         <div className="border-b border-white/[.1] pb-16 md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">

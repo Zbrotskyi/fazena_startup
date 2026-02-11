@@ -26,9 +26,13 @@ const Hero = () => {
       >
         <div
           className={`absolute z-[-1] ${isMobile
-            ? "inset-0 -bottom-[80vh]"
+            ? "inset-0 -bottom-[100vh]"
             : "inset-0 overflow-hidden"
             }`}
+          style={isMobile ? {
+            maskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 85%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 85%)'
+          } : {}}
         >
           {isMobile ? (
             <GridScan
@@ -37,9 +41,9 @@ const Hero = () => {
               linesColor="#392e4e"
               gridScale={0.1}
               scanColor="#f7931a"
-              scanOpacity={0.4}
+              scanOpacity={0.25}
               enablePost
-              bloomIntensity={0.6}
+              bloomIntensity={0.4}
               chromaticAberration={0.002}
               noiseIntensity={0.01}
             />
