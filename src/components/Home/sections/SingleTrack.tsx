@@ -1,12 +1,34 @@
 "use client";
 import { PipelineTrack } from "@/types/pipeline";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 const SingleTrack = ({ track }: { track: PipelineTrack }) => {
     const { name, description, stages, projects, icon } = track;
+    const [isVisible, setIsVisible] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.15 }
+        );
+
+        if (containerRef.current) {
+            observer.observe(containerRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <div className="pipeline-card group relative w-full overflow-hidden rounded-[1.55em] transition-all duration-300 hover:-translate-y-[0.12em]">
+        <div ref={containerRef} className="pipeline-card group relative w-full overflow-hidden rounded-[1.55em] transition-all duration-300 hover:-translate-y-[0.12em]">
             {/* Background with gradients */}
             <div className="pipeline-card__bg absolute inset-0 rounded-[inherit] pointer-events-none" />
 
@@ -84,12 +106,12 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                                 <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-2 rounded-full bg-black/30 border border-white/[0.085]">
                                                     <div
                                                         className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.4)] transition-all duration-700 ease-out"
-                                                        style={{ width: `${progressPercent}%` }}
+                                                        style={{ width: isVisible ? `${progressPercent}%` : '0%' }}
                                                     />
                                                 </div>
 
                                                 {stages.map((_, stageIndex) => (
-                                                    <div key={stageIndex} className="flex items-center justify-center h-6 relative z-10">
+                                                    <div key={stageIndex} className="flex items-center justify-center h-6 relative z-10 transition-opacity duration-500" style={{ opacity: isVisible ? 1 : 0, transitionDelay: `${stageIndex * 150}ms` }}>
                                                         {stageIndex === project.currentStage && (
                                                             <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/40" />
                                                         )}
@@ -104,12 +126,10 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                     </div>
 
                     {/* Mobile Vertical List View (Hidden on desktop) */}
-                    <div className="md:hidden flex flex-col gap-10">
+                    <div className="md:hidden flex flex-col gap-12">
                         {projects.map((project, projectIndex) => {
-                            const progressPercent = ((project.currentStage + 0.5) / stages.length) * 100;
-
                             return (
-                                <div key={projectIndex} className="flex flex-col gap-4">
+                                <div key={projectIndex} className="flex flex-col gap-5">
                                     {/* Project Header */}
                                     <div className="flex flex-col border-b border-white/[0.085] pb-2">
                                         <span className="font-mono font-bold text-base text-[rgba(255,177,74,0.92)] uppercase tracking-wider">
@@ -131,37 +151,70 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                         )}
                                     </div>
 
-                                    {/* Vertical Progress Container */}
-                                    <div className="relative flex gap-6 pl-2">
-                                        {/* Background Line */}
-                                        <div className="absolute left-[11px] top-2 bottom-2 w-1.5 rounded-full bg-black/40 border border-white/[0.085]" />
+                                    {/* Stages List */}
+                                    <div className="flex flex-col gap-0">
+                                        {stages.map((stage, stageIndex) => {
+                                            const isLast = stageIndex === stages.length - 1;
+                                            const isPast = stageIndex < project.currentStage;
+                                            const isCurrent = stageIndex === project.currentStage;
 
-                                        {/* Active Progress Line */}
-                                        <div
-                                            className="absolute left-[11px] top-2 w-1.5 rounded-full bg-gradient-to-b from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.3)] transition-all duration-1000 ease-out z-10"
-                                            style={{ height: `calc(${progressPercent}% - 8px)` }}
-                                        />
-
-                                        {/* Stages List */}
-                                        <div className="flex flex-col w-full gap-8">
-                                            {stages.map((stage, stageIndex) => (
-                                                <div key={stageIndex} className="flex items-center gap-6 relative">
-                                                    {/* Indicator Dot */}
-                                                    <div className="relative z-20 shrink-0 w-[22px] flex justify-center">
-                                                        {stageIndex === project.currentStage ? (
-                                                            <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/60" />
-                                                        ) : (
-                                                            <div className={`w-2 h-2 rounded-full ${stageIndex < project.currentStage ? 'bg-[#ffb14a] opacity-80' : 'bg-white/10'}`} />
+                                            return (
+                                                <div key={stageIndex} className="flex gap-6 min-h-[4rem] relative">
+                                                    {/* Vertical Tracking System */}
+                                                    <div className="relative w-6 shrink-0 flex flex-col items-center">
+                                                        {/* Base line segment (to next dot) */}
+                                                        {!isLast && (
+                                                            <div className="absolute top-3 bottom-0 w-1.5 bg-black/40 border border-white/[0.085] rounded-full" />
                                                         )}
+
+                                                        {/* Active progress line segment */}
+                                                        {!isLast && (isPast || isCurrent) && (
+                                                            <div
+                                                                className="absolute top-3 bottom-0 w-1.5 bg-gradient-to-b from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] z-10 rounded-full transition-all duration-700 ease-out origin-top"
+                                                                style={{
+                                                                    height: isVisible ? (isPast ? '100.5%' : '50%') : '0%',
+                                                                    transitionDelay: `${stageIndex * 200}ms`
+                                                                }}
+                                                            />
+                                                        )}
+
+                                                        {/* Indicator Dot */}
+                                                        <div className="relative z-20 mt-1.5 flex items-center justify-center w-6 h-3">
+                                                            {isCurrent ? (
+                                                                <div
+                                                                    className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/60 transition-transform duration-500"
+                                                                    style={{
+                                                                        transform: isVisible ? 'scale(1)' : 'scale(0)',
+                                                                        transitionDelay: `${stageIndex * 200}ms`
+                                                                    }}
+                                                                />
+                                                            ) : (
+                                                                <div
+                                                                    className={`w-2 h-2 rounded-full transition-all duration-500 ${isPast ? 'bg-[#ffb14a] opacity-80 scale-100' : 'bg-white/10 scale-100'}`}
+                                                                    style={{
+                                                                        transform: isVisible ? 'scale(1)' : 'scale(0)',
+                                                                        transitionDelay: `${stageIndex * 200}ms`
+                                                                    }}
+                                                                />
+                                                            )}
+                                                        </div>
                                                     </div>
 
                                                     {/* Stage Name */}
-                                                    <span className={`font-mono text-xs font-bold uppercase tracking-[0.1em] ${stageIndex === project.currentStage ? 'text-white/90' : 'text-white/40'}`}>
-                                                        {stage}
-                                                    </span>
+                                                    <div className="pb-8 pt-0.5">
+                                                        <span className={`font-mono text-xs font-bold uppercase tracking-[0.1em] transition-all duration-500 ${isCurrent ? 'text-[rgba(255,177,74,1)]' : (isPast ? 'text-white/70' : 'text-white/30')}`}
+                                                            style={{
+                                                                opacity: isVisible ? 1 : 0,
+                                                                transform: isVisible ? 'translateX(0)' : 'translateX(10px)',
+                                                                transitionDelay: `${stageIndex * 200}ms`
+                                                            }}
+                                                        >
+                                                            {stage}
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                            ))}
-                                        </div>
+                                            );
+                                        })}
                                     </div>
                                 </div>
                             );
