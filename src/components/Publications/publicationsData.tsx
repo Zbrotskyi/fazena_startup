@@ -3,8 +3,8 @@ import { Publication } from "@/types/publication";
 const publicationsData: Publication[] = [
     {
         id: 1,
-        title: "OXtal: Generative Molecular Crystal Structure Prediction",
-        image: "/images/publications/pub-01.jpg",
+        title: "Discovery of a Druggable Ligand-Binding Site in Phospholipid-Transporting ATPase ABCA7",
+        image: "/images/publications/ABCA7.png",
         category: "Research",
         publishDate: "December 10, 2025",
         url: "#",
@@ -12,18 +12,18 @@ const publicationsData: Publication[] = [
     },
     {
         id: 2,
-        title: "AI-Driven Drug Discovery: A New Paradigm",
+        title: "Rational in silico design of a peptide binder that inhibits CERT1",
         image: "/images/publications/pub-02.jpg",
-        category: "AI/ML",
+        category: "Research",
         publishDate: "November 25, 2025",
         url: "#",
         tags: ["Drug Discovery", "Machine Learning", "Pharma"]
     },
     {
         id: 3,
-        title: "Quantum Chemistry in Therapeutic Design",
-        image: "/images/publications/pub-03.jpg",
-        category: "Quantum",
+        title: "Rational in silico redesign of the CERT1 protein",
+        image: "/images/publications/CERT1_1.png",
+        category: "Research",
         publishDate: "October 15, 2025",
         url: "#",
         tags: ["Quantum Chemistry", "Therapeutics", "Molecular Design"]
