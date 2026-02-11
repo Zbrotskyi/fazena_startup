@@ -30,40 +30,89 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                     </div>
                 </div>
 
-                {/* Projects table with stages */}
-                <div className="pt-5 overflow-x-auto no-scrollbar">
-                    {/* Table container */}
-                    <div className="w-full min-w-[600px] md:min-w-full">
-                        {/* Header row - stage names */}
-                        <div className="flex border-b border-white/[0.085] pb-3 mb-4">
-                            {/* Project name column header */}
-                            <div className="w-48 shrink-0 pr-4">
-                                <span className="font-mono font-bold text-xs tracking-[0.12em] uppercase text-white/40">
-                                    Project
-                                </span>
+                {/* Projects Section */}
+                <div className="pt-5">
+                    {/* Desktop Table View (Hidden on mobile) */}
+                    <div className="hidden md:block overflow-x-auto no-scrollbar">
+                        <div className="w-full min-w-full">
+                            {/* Header row - stage names */}
+                            <div className="flex border-b border-white/[0.085] pb-3 mb-4">
+                                <div className="w-48 shrink-0 pr-4">
+                                    <span className="font-mono font-bold text-xs tracking-[0.12em] uppercase text-white/40">
+                                        Project
+                                    </span>
+                                </div>
+                                <div className="flex-1 grid" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
+                                    {stages.map((stage, index) => (
+                                        <div key={index} className="text-center">
+                                            <span className="font-mono font-bold text-xs tracking-[0.12em] uppercase text-white/60">
+                                                {stage}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                            {/* Stage column headers */}
-                            <div className="flex-1 grid" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
-                                {stages.map((stage, index) => (
-                                    <div key={index} className="text-center">
-                                        <span className="font-mono font-bold text-xs tracking-[0.12em] uppercase text-white/60">
-                                            {stage}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
 
-                        {/* Project rows */}
+                            {/* Project rows */}
+                            {projects.map((project, projectIndex) => {
+                                const progressPercent = ((project.currentStage + 0.5) / stages.length) * 100;
+
+                                return (
+                                    <div key={projectIndex} className="flex items-center py-3 border-b border-white/[0.04] last:border-b-0">
+                                        <div className="w-48 shrink-0 pr-4 flex flex-col">
+                                            <span className="font-mono font-semibold text-sm text-[rgba(255,177,74,0.92)]">
+                                                {project.name}
+                                            </span>
+                                            {name !== "Building Partnerships" && (
+                                                <Link
+                                                    href={
+                                                        project.name.toLowerCase() === "rna hunter"
+                                                            ? "/rna-hunter"
+                                                            : project.name.toLowerCase() === "cyclospace"
+                                                                ? "/#cyclospace"
+                                                                : `/projects/${project.name.toLowerCase().replace(/[\s']/g, '-')}`
+                                                    }
+                                                    className="mt-1 font-mono text-xs text-white/40 hover:text-[#f7931a] transition-colors duration-200"
+                                                >
+                                                    Learn more →
+                                                </Link>
+                                            )}
+                                        </div>
+
+                                        <div className="flex-1 relative">
+                                            <div className="grid relative" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
+                                                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-2 rounded-full bg-black/30 border border-white/[0.085]">
+                                                    <div
+                                                        className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.4)] transition-all duration-700 ease-out"
+                                                        style={{ width: `${progressPercent}%` }}
+                                                    />
+                                                </div>
+
+                                                {stages.map((_, stageIndex) => (
+                                                    <div key={stageIndex} className="flex items-center justify-center h-6 relative z-10">
+                                                        {stageIndex === project.currentStage && (
+                                                            <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/40" />
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    {/* Mobile Vertical List View (Hidden on desktop) */}
+                    <div className="md:hidden flex flex-col gap-10">
                         {projects.map((project, projectIndex) => {
-                            // Progress starts at the beginning of the first stage and ends at the center of the current stage
                             const progressPercent = ((project.currentStage + 0.5) / stages.length) * 100;
 
                             return (
-                                <div key={projectIndex} className="flex items-center py-3 border-b border-white/[0.04] last:border-b-0">
-                                    {/* Project name and Learn more */}
-                                    <div className="w-48 shrink-0 pr-4 flex flex-col">
-                                        <span className="font-mono font-semibold text-sm text-[rgba(255,177,74,0.92)]">
+                                <div key={projectIndex} className="flex flex-col gap-4">
+                                    {/* Project Header */}
+                                    <div className="flex flex-col border-b border-white/[0.085] pb-2">
+                                        <span className="font-mono font-bold text-base text-[rgba(255,177,74,0.92)] uppercase tracking-wider">
                                             {project.name}
                                         </span>
                                         {name !== "Building Partnerships" && (
@@ -75,32 +124,41 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
                                                             ? "/#cyclospace"
                                                             : `/projects/${project.name.toLowerCase().replace(/[\s']/g, '-')}`
                                                 }
-                                                className="mt-1 font-mono text-xs text-white/40 hover:text-[#f7931a] transition-colors duration-200"
+                                                className="mt-1 font-mono text-xs text-white/40"
                                             >
                                                 Learn more →
                                             </Link>
                                         )}
                                     </div>
 
-                                    {/* Progress bar area */}
-                                    <div className="flex-1 relative">
-                                        {/* Grid for stage alignment */}
-                                        <div className="grid relative" style={{ gridTemplateColumns: `repeat(${stages.length}, 1fr)` }}>
-                                            {/* Progress bar background */}
-                                            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-2 rounded-full bg-black/30 border border-white/[0.085]">
-                                                {/* Filled progress */}
-                                                <div
-                                                    className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.4)] transition-all duration-700 ease-out"
-                                                    style={{ width: `${progressPercent}%` }}
-                                                />
-                                            </div>
+                                    {/* Vertical Progress Container */}
+                                    <div className="relative flex gap-6 pl-2">
+                                        {/* Background Line */}
+                                        <div className="absolute left-[11px] top-2 bottom-2 w-1.5 rounded-full bg-black/40 border border-white/[0.085]" />
 
-                                            {/* Stage positions with indicator */}
-                                            {stages.map((_, stageIndex) => (
-                                                <div key={stageIndex} className="flex items-center justify-center h-6 relative z-10">
-                                                    {stageIndex === project.currentStage && (
-                                                        <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/40" />
-                                                    )}
+                                        {/* Active Progress Line */}
+                                        <div
+                                            className="absolute left-[11px] top-2 w-1.5 rounded-full bg-gradient-to-b from-[#f7931a] via-[#ffb14a] to-[#ffcf8b] shadow-[0_0_1.2em_rgba(247,147,26,0.3)] transition-all duration-1000 ease-out z-10"
+                                            style={{ height: `calc(${progressPercent}% - 8px)` }}
+                                        />
+
+                                        {/* Stages List */}
+                                        <div className="flex flex-col w-full gap-8">
+                                            {stages.map((stage, stageIndex) => (
+                                                <div key={stageIndex} className="flex items-center gap-6 relative">
+                                                    {/* Indicator Dot */}
+                                                    <div className="relative z-20 shrink-0 w-[22px] flex justify-center">
+                                                        {stageIndex === project.currentStage ? (
+                                                            <div className="w-4 h-4 rounded-full bg-[#f7931a] shadow-[0_0_12px_rgba(247,147,26,0.8)] animate-pulse border-2 border-white/60" />
+                                                        ) : (
+                                                            <div className={`w-2 h-2 rounded-full ${stageIndex < project.currentStage ? 'bg-[#ffb14a] opacity-80' : 'bg-white/10'}`} />
+                                                        )}
+                                                    </div>
+
+                                                    {/* Stage Name */}
+                                                    <span className={`font-mono text-xs font-bold uppercase tracking-[0.1em] ${stageIndex === project.currentStage ? 'text-white/90' : 'text-white/40'}`}>
+                                                        {stage}
+                                                    </span>
                                                 </div>
                                             ))}
                                         </div>
