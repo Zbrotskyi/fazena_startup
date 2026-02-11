@@ -2,6 +2,14 @@
 
 @import 'tailwindcss';
 
+html {
+  scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 100px;
+}
+
 /* Orange text selection */
 ::selection {
   background-color: #ea7414;

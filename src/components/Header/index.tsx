@@ -9,13 +9,38 @@ import menuData from "./menuData";
 const Header = () => {
     const [navOpen, setNavOpen] = useState(false);
     const [sticky, setSticky] = useState(false);
+    const [activeSection, setActiveSection] = useState("");
     const pathName = usePathname();
 
     useEffect(() => {
-        const handleScroll = () => setSticky(window.scrollY > 0);
+        const handleScroll = () => {
+            setSticky(window.scrollY > 0);
+
+            // Scroll Spy Logic
+            if (pathName === "/") {
+                const sections = ["services", "rna-hunter", "cyclospace", "home-section-one"];
+                let currentSection = "";
+
+                for (const sectionId of sections) {
+                    const element = document.getElementById(sectionId);
+                    if (element) {
+                        const rect = element.getBoundingClientRect();
+                        // If section top is above 150px (header height + buffer) and bottom is below that
+                        if (rect.top <= 150 && rect.bottom >= 150) {
+                            currentSection = sectionId;
+                            break;
+                        }
+                    }
+                }
+                setActiveSection(currentSection);
+            }
+        };
+
         window.addEventListener("scroll", handleScroll);
+        // Initial check
+        handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [pathName]);
 
     // Close nav on route change
     useEffect(() => {
@@ -47,7 +72,12 @@ const Header = () => {
                     <nav className="hidden lg:flex items-center gap-10">
                         {menuData.map((item) => {
                             if (item.special) return null; // render CTA buttons separately
-                            const isActive = pathName === item.path;
+
+                            // Enhanced isActive logic for hashes
+                            const isHashMatch = item.path?.includes("#") && activeSection === item.path.split("#")[1];
+                            const isPathMatch = pathName === item.path;
+                            const isActive = isHashMatch || (isPathMatch && !item.path?.includes("#"));
+
                             return (
                                 <Link
                                     key={item.id}
@@ -115,7 +145,10 @@ const Header = () => {
                     <ul className="flex flex-col gap-1">
                         {menuData.map((item) => {
                             if (item.special) return null;
-                            const isActive = pathName === item.path;
+                            const isHashMatch = item.path?.includes("#") && activeSection === item.path.split("#")[1];
+                            const isPathMatch = pathName === item.path;
+                            const isActive = isHashMatch || (isPathMatch && !item.path?.includes("#"));
+
                             return (
                                 <li key={item.id}>
                                     <Link
