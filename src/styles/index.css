@@ -68,6 +68,9 @@
 
   --animate-marquee: marquee 25s linear infinite;
 
+  --font-audiowide: var(--font-audiowide);
+  --font-inter: var(--font-inter);
+
   @keyframes marquee {
     from {
       transform: translateX(0);

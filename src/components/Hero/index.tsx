@@ -21,7 +21,7 @@ const Hero = () => {
     <>
       <section
         id="home"
-        className={`relative z-10 bg-[#060607] pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px] ${isMobile ? "" : "overflow-hidden"
+        className={`relative z-10 bg-[#060607] pb-16 pt-[160px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px] ${isMobile ? "" : "overflow-hidden"
           }`}
       >
         <div
@@ -70,7 +70,7 @@ const Hero = () => {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="max-w-[800px] text-left">
-                <h1 className="mb-5 text-3xl font-bold leading-tight text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
+                <h1 className="mb-5 text-5xl font-bold leading-tight text-white sm:text-5xl sm:leading-tight md:text-5xl md:leading-tight font-audiowide">
                   <div>Computed.</div>
                   <div>Synthesized.</div>
                   <div>Validated.</div>

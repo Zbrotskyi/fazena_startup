@@ -3,10 +3,15 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
-import { Inter } from "next/font/google";
+import { Inter, Audiowide } from "next/font/google";
 import "../styles/index.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const audiowide = Audiowide({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-audiowide"
+});
 
 export default function RootLayout({
   children,
@@ -21,7 +26,7 @@ export default function RootLayout({
       */}
       <head />
 
-      <body className={`bg-[#060607] dark:bg-[#060607] ${inter.className}`}>
+      <body className={`bg-[#060607] dark:bg-[#060607] ${inter.variable} ${audiowide.variable} font-sans`}>
         <Providers>
           <div className="isolate">
             <Header />
