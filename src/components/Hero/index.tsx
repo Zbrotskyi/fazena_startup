@@ -47,6 +47,7 @@ const Hero = () => {
               chromaticAberration={0.002}
               noiseIntensity={0.01}
               baseSkewX={-0.35}
+              baseSkewY={-0.15}
               baseYaw={0.45}
             />
           ) : (
