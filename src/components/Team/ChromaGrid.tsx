@@ -81,14 +81,18 @@ export const ChromaGrid = ({
 
         const options = {
             root: null,
-            rootMargin: '-40% 0% -40% 0%', // Trigger when card is near the center
-            threshold: 0.5
+            rootMargin: '-10% 0% -10% 0%', // Focus on the center area
+            threshold: 0.9 // Trigger only when fully visible as requested
         };
 
         const callback = (entries: IntersectionObserverEntry[]) => {
             entries.forEach(entry => {
+                const card = entry.target as HTMLElement;
                 if (entry.isIntersecting) {
-                    const card = entry.target as HTMLElement;
+                    // Remove active from any other card first
+                    rootRef.current?.querySelectorAll('.chroma-card').forEach(c => c.classList.remove('active'));
+
+                    card.classList.add('active');
                     const rootRect = rootRef.current?.getBoundingClientRect();
                     const cardRect = card.getBoundingClientRect();
 
@@ -98,6 +102,8 @@ export const ChromaGrid = ({
                         moveTo(centerX, centerY);
                         gsap.to(fadeRef.current, { opacity: 0, duration: 0.4, overwrite: true });
                     }
+                } else {
+                    card.classList.remove('active');
                 }
             });
         };

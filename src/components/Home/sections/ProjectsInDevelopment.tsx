@@ -14,12 +14,10 @@ const ProjectsInDevelopment = () => {
                     width="900px"
                 />
 
-                <div className="flex flex-col md:flex-col lg:flex-col gap-8 md:gap-8 overflow-x-auto no-scrollbar mobile-scroll-container">
-                    <div className="flex flex-row md:flex-col gap-8 w-max md:w-full">
-                        {projectsData.map((track) => (
-                            <SingleTrack key={track.id} track={track} />
-                        ))}
-                    </div>
+                <div className="flex flex-col gap-8">
+                    {projectsData.map((track) => (
+                        <SingleTrack key={track.id} track={track} />
+                    ))}
                 </div>
             </div>
         </section>
