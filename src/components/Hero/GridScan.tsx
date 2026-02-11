@@ -524,12 +524,12 @@ export const GridScan = ({
             yawVel.current = yawSm.v;
 
             const skew = new THREE.Vector2(
-                (lookCurrent.current.x - 0.5) * skewScale,
-                -lookCurrent.current.y * yBoost * skewScale
+                (lookCurrent.current.x - 0.8) * skewScale,
+                (-lookCurrent.current.y - 0.2) * yBoost * skewScale
             );
             material.uniforms.uSkew.value.set(skew.x, skew.y);
             material.uniforms.uTilt.value = tiltCurrent.current * tiltScale;
-            material.uniforms.uYaw.value = THREE.MathUtils.clamp((yawCurrent.current + 0.4) * yawScale, -0.6, 0.6);
+            material.uniforms.uYaw.value = THREE.MathUtils.clamp((yawCurrent.current + 0.9) * yawScale, -0.8, 0.8);
 
             material.uniforms.iTime.value = now / 1000;
             renderer.clear(true, true, true);
