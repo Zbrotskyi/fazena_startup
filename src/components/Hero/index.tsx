@@ -26,12 +26,12 @@ const Hero = () => {
       >
         <div
           className={`absolute z-[-1] ${isMobile
-            ? "inset-0 -bottom-[100vh]"
+            ? "inset-0 -bottom-[30vh]"
             : "inset-0 overflow-hidden"
             }`}
           style={isMobile ? {
-            maskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 85%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 65%, transparent 85%)'
+            maskImage: 'linear-gradient(to bottom, black 0%, black 40%, transparent 80%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 40%, transparent 80%)'
           } : {}}
         >
           {isMobile ? (
@@ -70,7 +70,7 @@ const Hero = () => {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4">
               <div className="max-w-[800px] text-left">
-                <h1 className="mb-5 text-5xl font-bold leading-tight text-white sm:text-5xl sm:leading-tight md:text-5xl md:leading-tight font-audiowide">
+                <h1 className="mb-5 text-5xl font-medium leading-tight text-white sm:text-5xl sm:leading-tight md:text-5xl md:leading-tight font-audiowide">
                   <div>Computed.</div>
                   <div>Synthesized.</div>
                   <div>Validated.</div>

@@ -36,12 +36,7 @@ const HomeSectionOne = () => {
 
   return (
     <section id="features"
-      className="relative pt-16 md:pt-20 lg:pt-28"
-      style={{
-        background: isMobile
-          ? 'linear-gradient(to bottom, transparent 0%, transparent 400px, #060607 600px)'
-          : '#060607'
-      }}
+      className="relative pt-16 md:pt-20 lg:pt-28 bg-[#060607]"
     >
       <div className="container relative z-20">
         <div className="border-b border-white/[.1] pb-16 md:pb-20 lg:pb-28">
