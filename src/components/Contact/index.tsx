@@ -13,100 +13,70 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="-mx-4 flex flex-wrap">
-          {/* Contact Form */}
-          <div className="w-full px-4 lg:w-7/12 xl:w-8/12">
-            <div
-              className="mb-12 rounded-lg bg-[#0b0b10] px-8 py-11 border border-white/[0.08] sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]"
-            >
-              <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl lg:text-2xl xl:text-3xl">
-                Send us a message
-              </h2>
-              <p className="mb-12 text-base text-white/60">
-                Our team will get back to you within 24-48 hours.
-              </p>
-              <form>
-                <div className="-mx-4 flex flex-wrap">
-                  <div className="w-full px-4 md:w-1/2">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="name"
-                        className="mb-3 block text-sm font-medium text-white/80"
-                      >
-                        Your Name
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Enter your name"
-                        className="w-full rounded-lg border border-white/[0.08] bg-[#1a1a1f] px-6 py-3 text-base text-white placeholder:text-white/30 outline-none focus:border-[#ea7414] transition-colors"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full px-4 md:w-1/2">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="email"
-                        className="mb-3 block text-sm font-medium text-white/80"
-                      >
-                        Your Email
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="Enter your email"
-                        className="w-full rounded-lg border border-white/[0.08] bg-[#1a1a1f] px-6 py-3 text-base text-white placeholder:text-white/30 outline-none focus:border-[#ea7414] transition-colors"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full px-4">
-                    <div className="mb-8">
-                      <label
-                        htmlFor="message"
-                        className="mb-3 block text-sm font-medium text-white/80"
-                      >
-                        Your Message
-                      </label>
-                      <textarea
-                        name="message"
-                        rows={5}
-                        placeholder="Tell us about your inquiry..."
-                        className="w-full resize-none rounded-lg border border-white/[0.08] bg-[#1a1a1f] px-6 py-3 text-base text-white placeholder:text-white/30 outline-none focus:border-[#ea7414] transition-colors"
-                      ></textarea>
-                    </div>
-                  </div>
-                  <div className="w-full px-4">
-                    <button className="rounded-lg bg-[#ea7414] px-9 py-4 text-base font-medium text-white transition-all duration-300 hover:bg-[#d66712] hover:shadow-lg hover:shadow-[#ea7414]/20">
-                      Send Message
-                    </button>
-                  </div>
+        <div className="flex justify-center">
+          {/* Contact Info Hub */}
+          <div className="w-full lg:w-10/12 xl:w-9/12">
+            <div className="rounded-2xl bg-[#0b0b10] px-8 py-12 border border-white/[0.08] sm:p-[60px] shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center md:text-left">
+                {/* General Inquiries */}
+                <div className="flex flex-col">
+                  <h3 className="mb-4 text-xl font-audiowide font-bold text-white tracking-wide">
+                    General Inquiries
+                  </h3>
+                  <p className="mb-4 text-sm text-white/50 font-mono">
+                    For general questions about FAZENA platform and our mission.
+                  </p>
+                  <a href="mailto:info@fazena.com" className="text-lg font-semibold text-[#ea7414] hover:text-[#d66712] transition-colors">
+                    info@fazena.com
+                  </a>
                 </div>
-              </form>
-            </div>
-          </div>
 
-          {/* Contact Info */}
-          <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
-            <div className="mb-12 rounded-lg bg-[#0b0b10] px-8 py-11 border border-white/[0.08] sm:p-[55px] lg:mb-5 lg:px-8 xl:p-[55px]">
-              <h3 className="mb-8 text-xl font-bold text-white">
-                Contact Information
-              </h3>
+                {/* Research & Science */}
+                <div className="flex flex-col">
+                  <h3 className="mb-4 text-xl font-audiowide font-bold text-white tracking-wide">
+                    Research & Science
+                  </h3>
+                  <p className="mb-4 text-sm text-white/50 font-mono">
+                    Direct your technical questions or research proposals here.
+                  </p>
+                  <a href="mailto:research@fazena.com" className="text-lg font-semibold text-[#ea7414] hover:text-[#d66712] transition-colors">
+                    research@fazena.com
+                  </a>
+                </div>
 
-              <div className="mb-8">
-                <h4 className="mb-2 text-sm font-medium text-white/50">Email</h4>
-                <a href="mailto:info@fazena.com" className="text-base text-white hover:text-[#ea7414] transition-colors">
-                  info@fazena.com
-                </a>
+                {/* Business & Partnerships */}
+                <div className="flex flex-col">
+                  <h3 className="mb-4 text-xl font-audiowide font-bold text-white tracking-wide">
+                    Business Development
+                  </h3>
+                  <p className="mb-4 text-sm text-white/50 font-mono">
+                    Explore collaboration opportunities and strategic partnerships.
+                  </p>
+                  <a href="mailto:partnerships@fazena.com" className="text-lg font-semibold text-[#ea7414] hover:text-[#d66712] transition-colors">
+                    partnerships@fazena.com
+                  </a>
+                </div>
+
+                {/* Media & Press */}
+                <div className="flex flex-col">
+                  <h3 className="mb-4 text-xl font-audiowide font-bold text-white tracking-wide">
+                    Media & Press
+                  </h3>
+                  <p className="mb-4 text-sm text-white/50 font-mono">
+                    Inquiries for press kits, interviews, and media related materials.
+                  </p>
+                  <a href="mailto:media@fazena.com" className="text-lg font-semibold text-[#ea7414] hover:text-[#d66712] transition-colors">
+                    media@fazena.com
+                  </a>
+                </div>
               </div>
 
-              <div className="mb-8">
-                <h4 className="mb-2 text-sm font-medium text-white/50">Business Inquiries</h4>
-                <a href="mailto:partnerships@fazena.com" className="text-base text-white hover:text-[#ea7414] transition-colors">
-                  partnerships@fazena.com
-                </a>
-              </div>
-
-              <div>
-                <h4 className="mb-2 text-sm font-medium text-white/50">Location</h4>
-                <p className="text-base text-white/70">
+              {/* Location Footer */}
+              <div className="mt-16 pt-8 border-t border-white/[0.05] text-center">
+                <h4 className="mb-2 text-xs font-mono font-bold uppercase tracking-[0.3em] text-white/30">
+                  Our Headquarters
+                </h4>
+                <p className="text-xl font-semibold text-white">
                   Kyiv, Ukraine
                 </p>
               </div>
