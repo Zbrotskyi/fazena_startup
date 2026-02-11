@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import SectionTitle from "@/components/Common/SectionTitle";
 import LetterGlitch from "@/components/LetterGlitch";
