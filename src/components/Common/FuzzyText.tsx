@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useEffect, useRef } from 'react';
 
 interface FuzzyTextProps {
     children: React.ReactNode;
     fontSize?: string | number;
-    fontWeight?: number;
+    fontWeight?: number | string;
     fontFamily?: string;
     color?: string;
     enableHover?: boolean;
@@ -67,7 +69,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
             try {
                 await document.fonts.load(fontString);
             } catch {
-                await document.fonts.ready;
+                await (document.fonts as any).ready;
             }
             if (isCancelled) return;
 
@@ -89,7 +91,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
             const offCtx = offscreen.getContext('2d');
             if (!offCtx) return;
 
-            offCtx.font = `${fontWeight} ${fontSizeStr} ${computedFontFamily}`;
+            offCtx.font = fontString;
             offCtx.textBaseline = 'alphabetic';
 
             let totalWidth = 0;
@@ -118,7 +120,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
             offscreen.height = tightHeight;
 
             const xOffset = extraWidthBuffer / 2;
-            offCtx.font = `${fontWeight} ${fontSizeStr} ${computedFontFamily}`;
+            offCtx.font = fontString;
             offCtx.textBaseline = 'alphabetic';
 
             if (gradient && Array.isArray(gradient) && gradient.length >= 2) {
@@ -302,7 +304,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
                 if (enableHover) {
                     canvas.removeEventListener('mousemove', handleMouseMove);
                     canvas.removeEventListener('mouseleave', handleMouseLeave);
-                    canvas.removeEventListener('touchmove', (handleTouchMove as any));
+                    canvas.removeEventListener('touchmove', handleTouchMove);
                     canvas.removeEventListener('touchend', handleTouchEnd);
                 }
                 if (clickEffect) {
