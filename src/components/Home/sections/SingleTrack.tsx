@@ -6,7 +6,7 @@ const SingleTrack = ({ track }: { track: PipelineTrack }) => {
     const { name, description, stages, projects, icon } = track;
 
     return (
-        <div className="pipeline-card group relative w-full overflow-hidden rounded-[1.55em] transition-all duration-300 hover:-translate-y-[0.12em]">
+        <div className="pipeline-card group relative w-full min-w-[85vw] md:min-w-0 overflow-hidden rounded-[1.55em] transition-all duration-300 hover:-translate-y-[0.12em]">
             {/* Background with gradients */}
             <div className="pipeline-card__bg absolute inset-0 rounded-[inherit] pointer-events-none" />
 

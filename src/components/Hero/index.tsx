@@ -49,6 +49,7 @@ const Hero = () => {
               baseSkewX={-0.35}
               baseSkewY={-0.15}
               baseYaw={0.45}
+              scanOnClick={false}
             />
           ) : (
             <LaserFlow
@@ -65,6 +66,7 @@ const Hero = () => {
               decay={1.8}
               horizontalBeamOffset={0.25}
               verticalBeamOffset={-0.2}
+              scanOnClick={false}
             />
           )}
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#060607] to-transparent z-10" />

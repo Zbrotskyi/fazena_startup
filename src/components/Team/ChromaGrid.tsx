@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
 import './ChromaGrid.css';
@@ -49,6 +49,15 @@ export const ChromaGrid = ({
     const setX = useRef<any>(null);
     const setY = useRef<any>(null);
     const pos = useRef({ x: 0, y: 0 });
+    const [isMobile, setIsMobile] = useState(false);
+    const observerRef = useRef<IntersectionObserver | null>(null);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     useEffect(() => {
         const el = rootRef.current;
@@ -60,6 +69,47 @@ export const ChromaGrid = ({
         setX.current(pos.current.x);
         setY.current(pos.current.y);
     }, []);
+
+    useEffect(() => {
+        if (!isMobile) {
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+                observerRef.current = null;
+            }
+            return;
+        }
+
+        const options = {
+            root: null,
+            rootMargin: '-40% 0% -40% 0%', // Trigger when card is near the center
+            threshold: 0.5
+        };
+
+        const callback = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target as HTMLElement;
+                    const rootRect = rootRef.current?.getBoundingClientRect();
+                    const cardRect = card.getBoundingClientRect();
+
+                    if (rootRect) {
+                        const centerX = cardRect.left - rootRect.left + cardRect.width / 2;
+                        const centerY = cardRect.top - rootRect.top + cardRect.height / 2;
+                        moveTo(centerX, centerY);
+                        gsap.to(fadeRef.current, { opacity: 0, duration: 0.4, overwrite: true });
+                    }
+                }
+            });
+        };
+
+        observerRef.current = new IntersectionObserver(callback, options);
+        const cards = rootRef.current?.querySelectorAll('.chroma-card');
+        cards?.forEach(card => observerRef.current?.observe(card));
+
+        return () => {
+            observerRef.current?.disconnect();
+        };
+    }, [isMobile, items]);
 
     const moveTo = (x: number, y: number) => {
         gsap.to(pos.current, {

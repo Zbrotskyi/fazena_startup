@@ -58,7 +58,7 @@ const HomeSectionOne = () => {
 
             <div className="w-full px-4 lg:w-1/2">
               <div
-                className="relative mx-auto aspect-[1.5/1] max-w-[500px] lg:mr-0"
+                className="relative mx-auto aspect-[1.5/1] max-w-[500px] lg:mr-0 mt-12 lg:mt-0"
                 style={{
                   clipPath: "polygon(12% 0%, 100% 0%, 88% 100%, 0% 100%)",
                   overflow: "hidden",
