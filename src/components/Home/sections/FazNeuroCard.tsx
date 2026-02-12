@@ -39,7 +39,7 @@ const FazNeuroCard = () => {
                     <span className={styles.metricLabel}>Druggability</span>
                 </div>
                 <div className={styles.metricSector}>
-                    <span className={styles.metricValue}>-20.4 kcal/mol</span>
+                    <span className={styles.metricValue}>-20 kcal/mol</span>
                     <span className={styles.metricLabel}>dG</span>
                 </div>
             </div>
