@@ -2,12 +2,12 @@ const AboutContent = () => {
     return (
         <section className="bg-[#060607] pt-24 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32">
             <div className="container">
-                <div className="mx-auto max-w-3xl">
+                <div className="mx-auto max-w-2xl">
                     <div className="text-center">
-                        <h2 className="mb-10 text-3xl font-bold leading-tight text-white sm:text-4xl font-audiowide uppercase tracking-wider">
+                        <h2 className="mb-8 text-3xl font-bold leading-tight text-white sm:text-4xl font-audiowide uppercase tracking-wider">
                             About us
                         </h2>
-                        <div className="mx-auto space-y-6 text-base leading-relaxed text-white/70 sm:text-lg sm:leading-relaxed">
+                        <div className="mx-auto space-y-4 text-base leading-relaxed text-white/70 sm:text-lg sm:leading-relaxed">
                             <p>
                                 FAZENA was founded by Yehor Franchuk, Anatolii Zbrotsky, and Dmytro Alexandrovych in August 2025 during their participation in a workshop on natural compounds organized by CENtR and Explogen LLC. Later, the core team expanded with the addition of Yevhenii Zhuromskyi.
                             </p>

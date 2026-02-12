@@ -5,7 +5,7 @@ const PartnershipCTA = () => {
         <section className="bg-[#060607] py-16 md:py-20 border-t border-white/[0.05]">
             <div className="container">
                 <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-audiowide uppercase tracking-wider">
                         Partner with us!
                     </h2>
                     <p className="text-lg md:text-xl text-white/60 mb-8">

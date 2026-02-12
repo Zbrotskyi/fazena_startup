@@ -33,8 +33,8 @@ const partnersData = [
 
 const Partners = () => {
     return (
-        <section className="relative z-20 -mt-20 md:-mt-40 bg-transparent py-8 md:py-12 overflow-hidden">
-            <div className="container px-4 mb-4 md:mb-8">
+        <section className="relative z-20 -mt-20 md:-mt-40 bg-transparent py-4 md:py-6 overflow-hidden">
+            <div className="container px-4 mb-2 md:mb-4">
                 <h3 className="text-center font-audiowide text-xs font-bold uppercase tracking-[0.3em] text-white/40">
                     Supported by:
                 </h3>

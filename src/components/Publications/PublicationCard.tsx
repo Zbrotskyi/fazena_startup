@@ -65,7 +65,7 @@ const PublicationCard = ({ publication }: { publication: Publication }) => {
                 </div>
 
                 {/* Title - Full size, no clamp */}
-                <h3 className="text-xl font-bold text-white leading-tight group-hover:text-primary transition-colors duration-300 font-audiowide">
+                <h3 className="text-xl font-bold text-white leading-tight group-hover:text-primary transition-colors duration-300">
                     {title}
                 </h3>
             </div>

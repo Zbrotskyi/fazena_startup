@@ -42,7 +42,7 @@ const HomeSectionFour = () => {
                         {/* Text column (Right on Desktop) */}
                         <div className="w-full px-4 lg:w-1/2 order-1 lg:order-2">
                             <div className="flex items-center gap-4 mb-6">
-                                <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-[45px]">
+                                <h1 className="text-3xl font-bold text-white sm:text-4xl md:text-[45px] font-audiowide uppercase tracking-wider">
                                     CycloSpace
                                 </h1>
                                 <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#ea7414] border border-[#ea7414]/30 rounded-full bg-[#ea7414]/10 whitespace-nowrap">
