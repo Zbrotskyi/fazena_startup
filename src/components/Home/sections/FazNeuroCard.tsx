@@ -12,25 +12,33 @@ const FazNeuroCard = () => {
         if (!video) return;
 
         let animationFrameId: number;
+        let lastReverseTime = 0;
 
-        const handlePlayback = () => {
+        const loop = () => {
+            if (!video) return;
+
             if (isReversing) {
-                // Manually decrement currentTime to simulate reverse playback
+                // Reverse playback logic
                 if (video.currentTime > 0.05) {
-                    video.currentTime -= 0.04; // Adjust speed as needed (~25fps)
-                    animationFrameId = requestAnimationFrame(handlePlayback);
+                    // Manual reverse step
+                    video.currentTime -= 0.04;
                 } else {
                     video.currentTime = 0;
                     setIsReversing(false);
-                    video.play();
+                    video.play().catch(() => { }); // Resume forward play
+                }
+            } else {
+                // Forward playback monitor
+                // Trigger reversal just before the absolute end to avoid "ended" hang
+                if (video.duration && video.currentTime >= video.duration - 0.06) {
+                    video.pause();
+                    setIsReversing(true);
                 }
             }
+            animationFrameId = requestAnimationFrame(loop);
         };
 
-        if (isReversing) {
-            video.pause();
-            animationFrameId = requestAnimationFrame(handlePlayback);
-        }
+        animationFrameId = requestAnimationFrame(loop);
 
         return () => {
             if (animationFrameId) {
@@ -38,15 +46,6 @@ const FazNeuroCard = () => {
             }
         };
     }, [isReversing]);
-
-    const handleEnded = () => {
-        const video = videoRef.current;
-        if (video) {
-            // Seek back slightly from the end to unblock the "ended" state
-            video.currentTime = video.duration - 0.05;
-        }
-        setIsReversing(true);
-    };
 
     return (
         <div className={styles.card}>
@@ -71,7 +70,6 @@ const FazNeuroCard = () => {
                         autoPlay
                         muted
                         playsInline
-                        onEnded={handleEnded}
                     />
                 </div>
             </div>
