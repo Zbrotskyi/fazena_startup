@@ -37,7 +37,7 @@ const HomePublications = () => {
                     dark
                 />
 
-                <div className="flex flex-col lg:flex-row items-center gap-8">
+                <div className="flex flex-col lg:flex-row lg:items-start items-center gap-8">
                     <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 flex-grow">
                         {latestPublications.map((publication) => (
                             <PublicationCard key={publication.id} publication={publication} />
@@ -47,7 +47,7 @@ const HomePublications = () => {
                     {/* Blinking Arrow CTA */}
                     <Link
                         href="/publications"
-                        className="group relative flex items-center justify-center w-16 h-16 lg:w-20 lg:h-[200px] bg-white/5 border border-white/10 rounded-lg transition-all duration-300 hover:bg-[#ea7414]/10 hover:border-[#ea7414]/50 hover:shadow-[0_0_30px_rgba(234,116,20,0.15)] overflow-hidden"
+                        className="group relative flex items-center justify-center w-16 h-16 lg:w-20 lg:h-[220px] lg:mt-0 bg-white/5 border border-white/10 rounded-lg transition-all duration-300 hover:bg-[#ea7414]/10 hover:border-[#ea7414]/50 hover:shadow-[0_0_30px_rgba(234,116,20,0.15)] overflow-hidden"
                     >
                         <style jsx>{`
                             @keyframes custom-blink {
