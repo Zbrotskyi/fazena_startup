@@ -40,6 +40,11 @@ const FazNeuroCard = () => {
     }, [isReversing]);
 
     const handleEnded = () => {
+        const video = videoRef.current;
+        if (video) {
+            // Seek back slightly from the end to unblock the "ended" state
+            video.currentTime = video.duration - 0.05;
+        }
         setIsReversing(true);
     };
 
