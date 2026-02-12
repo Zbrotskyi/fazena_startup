@@ -5,13 +5,13 @@ import ChromaGrid from "./ChromaGrid";
 
 const teamMembers = [
     {
-        image: "/images/team/Franchuk.webp",
+        image: "/images/team/Franchuk.jpg",
         title: "Yehor Franchuk",
         subtitle: "CEO & Co-Founder",
         linkedin: "https://www.linkedin.com/in/mregorin"
     },
     {
-        image: "/images/team/Zbrotskyi.webp",
+        image: "/images/team/Zbrotskyi.jpg",
         title: "Anatolii Zbrotskyi",
         subtitle: "CSO & Co-Founder",
         linkedin: "https://www.linkedin.com/in/anatolii-zbrotskyi-31b216365"
@@ -23,9 +23,9 @@ const teamMembers = [
         linkedin: "https://www.linkedin.com/in/dima-aleksandrovech-9714a720b"
     },
     {
-        image: "/images/team/Zhuromskyi.png",
+        image: "/images/team/Zhuromskyi.jpg",
         title: "Yevhenii Zhuromskyi",
-        subtitle: "Research Lead",
+        subtitle: "CRO & Co-Founder",
         linkedin: "https://www.linkedin.com/in/yevhenii-zhuromskyi-025192344"
     },
     {

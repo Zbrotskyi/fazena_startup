@@ -3,10 +3,10 @@ import Image from "next/image";
 const partnersData = [
     {
         id: 1,
-        name: "YRiA",
+        name: "YURiA-PHARM",
         logo: "/images/Partners/YRiA.png",
         scale: "h-[65px] md:h-[85px]", // Scaled up
-        url: "https://www.yria.com.ua"
+        url: "https://www.uf.ua/en/news-page/the-final-of-neuro-impact-challenge/"
     },
     {
         id: 2,
@@ -20,14 +20,14 @@ const partnersData = [
         name: "MES",
         logo: "/images/Partners/MES.png",
         scale: "h-[55px] md:h-[70px]",
-        url: "https://mon.gov.ua"
+        url: "https://mon.gov.ua/news/final-konkursu-neuro-impact-challenge-mon-posyliuie-derzhavno-pryvatne-partnerstvo-v-rd"
     },
     {
         id: 4,
-        name: "IP_off",
+        name: "IP_office",
         logo: "/images/Partners/IP_off.png",
         scale: "h-[50px] md:h-[65px]",
-        url: "https://ukrpatent.org"
+        url: "https://nipo.gov.ua/neuro-impact-challenge-peremozhtsi/"
     },
 ];
 
