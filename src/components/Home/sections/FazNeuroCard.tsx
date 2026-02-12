@@ -1,54 +1,7 @@
-"use client";
-
-import React from "react";
+import Image from "next/image";
 import styles from "./FazNeuroCard.module.css";
 
 const FazNeuroCard = () => {
-    const videoRef = React.useRef<HTMLVideoElement>(null);
-
-    React.useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
-
-        let animationFrameId: number;
-        let lastTime = performance.now();
-        let isReversing = false;
-
-        const animate = (time: number) => {
-            const deltaTime = (time - lastTime) / 1000;
-            lastTime = time;
-
-            if (isReversing) {
-                // Manual reverse playback
-                if (video.currentTime <= 0.05) {
-                    video.currentTime = 0;
-                    isReversing = false;
-                    video.play().catch(() => { });
-                } else {
-                    video.currentTime = Math.max(0, video.currentTime - deltaTime);
-                }
-            } else {
-                // Forward playback monitoring
-                // Trigger reversal slightly before the absolute end to avoid native "ended" delay
-                if (video.duration > 0 && video.currentTime >= video.duration - 0.05) {
-                    isReversing = true;
-                    video.pause();
-                }
-            }
-
-            animationFrameId = requestAnimationFrame(animate);
-        };
-
-        animationFrameId = requestAnimationFrame(animate);
-
-        // Initial play
-        video.play().catch(e => console.error("Auto-play blocked:", e));
-
-        return () => {
-            cancelAnimationFrame(animationFrameId);
-        };
-    }, []);
-
     return (
         <div className={styles.card}>
             {/* Top Workspace Section */}
@@ -63,15 +16,16 @@ const FazNeuroCard = () => {
                     </div>
                 </div>
 
-                {/* Video Workspace Area */}
+                {/* Media Workspace Area */}
                 <div className={styles.placeholderField}>
-                    <video
-                        ref={videoRef}
-                        className="w-full h-full object-contain mix-blend-screen"
-                        src="/images/home/Molecule_animation1.mp4"
-                        muted
-                        playsInline
-                    />
+                    <div className="relative w-full h-full">
+                        <Image
+                            src="/images/home/Molecule_01.png"
+                            alt="Molecule Animation"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
                 </div>
             </div>
 
