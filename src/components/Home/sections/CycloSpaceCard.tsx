@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import Image from "next/image";
 import styles from "./CycloSpaceCard.module.css";
 
 const CycloSpaceCard = () => {
@@ -18,9 +16,16 @@ const CycloSpaceCard = () => {
                     </div>
                 </div>
 
-                {/* Expanded Dashboard Area */}
+                {/* Media Workspace Area */}
                 <div className={styles.placeholderField}>
-                    <span className={styles.placeholderText}>Ready for implementation</span>
+                    <div className="relative w-full h-full p-6">
+                        <Image
+                            src="/images/home/Macrocycle.png"
+                            alt="Macrocycle Design"
+                            fill
+                            className="object-contain"
+                        />
+                    </div>
                 </div>
             </div>
 

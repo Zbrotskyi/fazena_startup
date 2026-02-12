@@ -18,9 +18,16 @@ const FazNeuroCard = () => {
                     </div>
                 </div>
 
-                {/* Expanded Dashboard Area */}
+                {/* Video Workspace Area */}
                 <div className={styles.placeholderField}>
-                    <span className={styles.placeholderText}>Ready for implementation</span>
+                    <video
+                        className="w-full h-full object-cover"
+                        src="/images/home/Molecule_animation1.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                    />
                 </div>
             </div>
 

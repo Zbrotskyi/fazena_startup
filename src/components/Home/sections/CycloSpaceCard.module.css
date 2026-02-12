@@ -143,10 +143,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0.15;
-    background-image:
-        radial-gradient(rgba(234, 116, 20, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+    overflow: hidden;
 }
 
 .placeholderText {
