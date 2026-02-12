@@ -4,13 +4,13 @@ import TargetCursor from "../Common/TargetCursor";
 const rolesData = [
     {
         title: "Organic chemist",
-        description: "Analyze genomic and transcriptomic data to identify novel drug targets",
-        applyLink: "mailto:careers@fazena.com?subject=Application: Organic chemist",
+        description: "Requirements for chemists: in-depth knowledge of synthetic and combinatorial chemistry, experience in fine organic synthesis or any alternative experience in drug discovery. High scores on entrance exams in chemistry, biology, and mathematics or a degree with honors in organic chemistry, high technology, medical chemistry, or chemoinformatics are desirable.",
+        applyLink: "mailto:careers@fazena.org?subject=Application: Organic chemist",
     },
     {
         title: "General Interest",
         description: "Don't see your role? We're always looking for exceptional talent",
-        applyLink: "mailto:careers@fazena.com?subject=Application: General Interest",
+        applyLink: "mailto:careers@fazena.org?subject=Application: General Interest",
     },
 ];
 

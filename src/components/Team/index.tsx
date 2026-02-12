@@ -38,7 +38,7 @@ const teamMembers = [
         image: "/images/team/Bahdasarov.jpg",
         title: "Arsenii Bahdasarov",
         subtitle: "Software Engineer",
-        linkedin: "https://www.linkedin.com/"
+        instagram: "https://www.instagram.com/arseniy.bgdsrv?igsh=ZXpsb2JqbHZwaGN2"
     },
     {
         image: "/images/team/Kolisnyk.jpg",
