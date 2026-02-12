@@ -1,6 +1,6 @@
 import SectionTitle from "@/components/Common/SectionTitle";
 import LetterGlitch from "@/components/LetterGlitch";
-import CycloSpaceCard from "./CycloSpaceCard";
+import FazNeuroCard from "./FazNeuroCard";
 
 const HomeSectionThree = () => {
     return (
@@ -30,7 +30,7 @@ const HomeSectionThree = () => {
                                 />
                             </div>
                             <div className="relative z-10 w-full flex justify-center items-center">
-                                <CycloSpaceCard />
+                                <FazNeuroCard />
                             </div>
                         </div>
                     </div>
