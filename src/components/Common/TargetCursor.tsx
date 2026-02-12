@@ -259,6 +259,10 @@ const TargetCursor = ({
                             0
                         );
                     });
+
+                    // Fix: Reset scale and rotation explicitly to avoid permanent scaling
+                    gsap.to(cursorRef.current, { scale: 1, rotation: 0, duration: 0.3, ease: 'power3.out' });
+                    if (dotRef.current) gsap.to(dotRef.current, { scale: 1, duration: 0.3, ease: 'power3.out' });
                 }
 
                 resumeTimeout = setTimeout(() => {
