@@ -1,51 +1,57 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 import styles from "./FazNeuroCard.module.css";
 
 const FazNeuroCard = () => {
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const [isReversing, setIsReversing] = useState(false);
+    const videoRef = React.useRef<HTMLVideoElement>(null);
 
-    useEffect(() => {
+    React.useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
 
         let animationFrameId: number;
-        let lastReverseTime = 0;
+        let lastTime = performance.now();
+        let isReversing = false;
 
-        const loop = () => {
-            if (!video) return;
+        const animate = (time: number) => {
+            if (!isReversing) return;
 
-            if (isReversing) {
-                // Reverse playback logic
-                if (video.currentTime > 0.05) {
-                    // Manual reverse step
-                    video.currentTime -= 0.04;
-                } else {
-                    video.currentTime = 0;
-                    setIsReversing(false);
-                    video.play().catch(() => { }); // Resume forward play
-                }
-            } else {
-                // Forward playback monitor
-                // Trigger reversal just before the absolute end to avoid "ended" hang
-                if (video.duration && video.currentTime >= video.duration - 0.06) {
-                    video.pause();
-                    setIsReversing(true);
-                }
+            const deltaTime = (time - lastTime) / 1000;
+            lastTime = time;
+
+            if (video.currentTime <= 0) {
+                video.currentTime = 0;
+                isReversing = false;
+                video.play();
+                return;
             }
-            animationFrameId = requestAnimationFrame(loop);
+
+            video.currentTime = Math.max(0, video.currentTime - deltaTime);
+            animationFrameId = requestAnimationFrame(animate);
         };
 
-        animationFrameId = requestAnimationFrame(loop);
+        const startReverse = () => {
+            isReversing = true;
+            video.pause();
+            lastTime = performance.now();
+            animationFrameId = requestAnimationFrame(animate);
+        };
+
+        const handleEnded = () => {
+            startReverse();
+        };
+
+        video.addEventListener('ended', handleEnded);
+
+        // Initial play
+        video.play().catch(e => console.error("Auto-play blocked:", e));
 
         return () => {
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
+            video.removeEventListener('ended', handleEnded);
+            cancelAnimationFrame(animationFrameId);
         };
-    }, [isReversing]);
+    }, []);
 
     return (
         <div className={styles.card}>
@@ -65,9 +71,8 @@ const FazNeuroCard = () => {
                 <div className={styles.placeholderField}>
                     <video
                         ref={videoRef}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain mix-blend-screen"
                         src="/images/home/Molecule_animation1.mp4"
-                        autoPlay
                         muted
                         playsInline
                     />
