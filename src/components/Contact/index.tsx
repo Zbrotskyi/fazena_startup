@@ -26,8 +26,8 @@ const Contact = () => {
                   <h4 className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#ea7414]">
                     General inquiry
                   </h4>
-                  <a href="mailto:info@fazena.tech" className="text-xl font-medium text-white hover:text-[#ea7414] transition-colors duration-200">
-                    info@fazena.tech
+                  <a href="mailto:info@fazena.org" className="text-xl font-medium text-white hover:text-[#ea7414] transition-colors duration-200">
+                    info@fazena.org
                   </a>
                   <p className="mt-2 text-sm text-white/40">
                     For general questions about FAZENA platform.
@@ -39,8 +39,8 @@ const Contact = () => {
                   <h4 className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#ea7414]">
                     Partnership & Business
                   </h4>
-                  <a href="mailto:partnership@fazena.tech" className="text-xl font-medium text-white hover:text-[#ea7414] transition-colors duration-200">
-                    partnership@fazena.tech
+                  <a href="mailto:partnership@fazena.org" className="text-xl font-medium text-white hover:text-[#ea7414] transition-colors duration-200">
+                    partnership@fazena.org
                   </a>
                   <p className="mt-2 text-sm text-white/40">
                     Collaborate with us on drug discovery.
@@ -52,8 +52,8 @@ const Contact = () => {
                   <h4 className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#ea7414]">
                     For Investors
                   </h4>
-                  <a href="mailto:investors@fazena.tech" className="text-xl font-medium text-white hover:text-[#ea7414] transition-colors duration-200">
-                    investors@fazena.tech
+                  <a href="mailto:investors@fazena.org" className="text-xl font-medium text-white hover:text-[#ea7414] transition-colors duration-200">
+                    investors@fazena.org
                   </a>
                   <p className="mt-2 text-sm text-white/40">
                     Investment opportunities and inquiries.
@@ -65,8 +65,8 @@ const Contact = () => {
                   <h4 className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#ea7414]">
                     For Candidates
                   </h4>
-                  <a href="mailto:careers@fazena.tech" className="text-xl font-medium text-white hover:text-[#ea7414] transition-colors duration-200">
-                    careers@fazena.tech
+                  <a href="mailto:careers@fazena.org" className="text-xl font-medium text-white hover:text-[#ea7414] transition-colors duration-200">
+                    careers@fazena.org
                   </a>
                   <p className="mt-2 text-sm text-white/40">
                     Join our team and help us redefine bio-engineering.
@@ -81,7 +81,7 @@ const Contact = () => {
                   <span className="text-sm font-medium text-white/60">Kyiv, Ukraine</span>
                 </div>
                 <div className="text-sm italic text-white/30">
-                  Global reach, local engineering.
+                  Computed. Synthesized. Validated.
                 </div>
               </div>
             </div>
