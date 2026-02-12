@@ -16,9 +16,8 @@ const CycloSpaceCard = () => {
                     </div>
                 </div>
 
-                {/* Media Workspace Area */}
                 <div className={styles.placeholderField}>
-                    <div className="relative w-full h-full p-6">
+                    <div className="relative w-full h-full p-10">
                         <Image
                             src="/images/home/Macrocycle.png"
                             alt="Macrocycle Design"

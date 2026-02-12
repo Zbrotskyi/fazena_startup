@@ -16,14 +16,13 @@ const FazNeuroCard = () => {
                     </div>
                 </div>
 
-                {/* Media Workspace Area */}
                 <div className={styles.placeholderField}>
-                    <div className="relative w-full h-full">
+                    <div className="relative w-full h-full p-8">
                         <Image
                             src="/images/home/Molecule_01.png"
                             alt="Molecule Animation"
                             fill
-                            className="object-cover"
+                            className="object-contain"
                         />
                     </div>
                 </div>
