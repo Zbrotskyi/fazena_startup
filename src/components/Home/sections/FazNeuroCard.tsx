@@ -1,9 +1,48 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "./FazNeuroCard.module.css";
 
 const FazNeuroCard = () => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [isReversing, setIsReversing] = useState(false);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        let animationFrameId: number;
+
+        const handlePlayback = () => {
+            if (isReversing) {
+                // Manually decrement currentTime to simulate reverse playback
+                if (video.currentTime > 0.05) {
+                    video.currentTime -= 0.04; // Adjust speed as needed (~25fps)
+                    animationFrameId = requestAnimationFrame(handlePlayback);
+                } else {
+                    video.currentTime = 0;
+                    setIsReversing(false);
+                    video.play();
+                }
+            }
+        };
+
+        if (isReversing) {
+            video.pause();
+            animationFrameId = requestAnimationFrame(handlePlayback);
+        }
+
+        return () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        };
+    }, [isReversing]);
+
+    const handleEnded = () => {
+        setIsReversing(true);
+    };
+
     return (
         <div className={styles.card}>
             {/* Top Workspace Section */}
@@ -21,12 +60,13 @@ const FazNeuroCard = () => {
                 {/* Video Workspace Area */}
                 <div className={styles.placeholderField}>
                     <video
+                        ref={videoRef}
                         className="w-full h-full object-contain"
                         src="/images/home/Molecule_animation1.mp4"
                         autoPlay
-                        loop
                         muted
                         playsInline
+                        onEnded={handleEnded}
                     />
                 </div>
             </div>
