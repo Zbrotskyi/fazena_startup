@@ -4,7 +4,7 @@ const AboutContent = () => {
             <div className="container">
                 <div className="mx-auto max-w-3xl">
                     <div className="text-center">
-                        <h2 className="mb-10 text-3xl font-bold leading-tight text-white sm:text-4xl">
+                        <h2 className="mb-10 text-3xl font-bold leading-tight text-white sm:text-4xl font-audiowide uppercase tracking-wider">
                             About us
                         </h2>
                         <div className="mx-auto space-y-6 text-base leading-relaxed text-white/70 sm:text-lg sm:leading-relaxed">
