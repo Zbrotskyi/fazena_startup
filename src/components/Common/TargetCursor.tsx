@@ -41,8 +41,8 @@ const TargetCursor = ({
 
     const constants = useMemo(
         () => ({
-            borderWidth: 3,
-            cornerSize: 12
+            borderWidth: 1.5,
+            cornerSize: 8
         }),
         []
     );
@@ -238,21 +238,16 @@ const TargetCursor = ({
 
                 if (cornersRef.current) {
                     const cornersArr = Array.from(cornersRef.current);
-                    gsap.killTweensOf(cornersArr);
-                    const { cornerSize } = constants;
-                    const positions = [
-                        { x: -cornerSize * 1.5, y: -cornerSize * 1.5 },
-                        { x: cornerSize * 0.5, y: -cornerSize * 1.5 },
-                        { x: cornerSize * 0.5, y: cornerSize * 0.5 },
-                        { x: -cornerSize * 1.5, y: cornerSize * 0.5 }
-                    ];
+                    // Force kill any current snapping/snaking animations
+                    cornersArr.forEach(corner => gsap.killTweensOf(corner));
+
                     const tl = gsap.timeline();
-                    cornersArr.forEach((corner, index) => {
+                    cornersArr.forEach((corner) => {
                         tl.to(
                             corner,
                             {
-                                x: positions[index].x,
-                                y: positions[index].y,
+                                x: 0,
+                                y: 0,
                                 duration: 0.3,
                                 ease: 'power3.out'
                             },
@@ -260,7 +255,7 @@ const TargetCursor = ({
                         );
                     });
 
-                    // Fix: Reset scale and rotation explicitly to avoid permanent scaling
+                    // Fix: Reset scale and rotation explicitly to avoid permanent scaling/deformation
                     gsap.to(cursorRef.current, { scale: 1, rotation: 0, duration: 0.3, ease: 'power3.out' });
                     if (dotRef.current) gsap.to(dotRef.current, { scale: 1, duration: 0.3, ease: 'power3.out' });
                 }
