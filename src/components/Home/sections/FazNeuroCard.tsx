@@ -21,7 +21,7 @@ const FazNeuroCard = () => {
                 {/* Video Workspace Area */}
                 <div className={styles.placeholderField}>
                     <video
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         src="/images/home/Molecule_animation1.mp4"
                         autoPlay
                         loop
