@@ -15,40 +15,36 @@ const FazNeuroCard = () => {
         let isReversing = false;
 
         const animate = (time: number) => {
-            if (!isReversing) return;
-
             const deltaTime = (time - lastTime) / 1000;
             lastTime = time;
 
-            if (video.currentTime <= 0) {
-                video.currentTime = 0;
-                isReversing = false;
-                video.play();
-                return;
+            if (isReversing) {
+                // Manual reverse playback
+                if (video.currentTime <= 0.05) {
+                    video.currentTime = 0;
+                    isReversing = false;
+                    video.play().catch(() => { });
+                } else {
+                    video.currentTime = Math.max(0, video.currentTime - deltaTime);
+                }
+            } else {
+                // Forward playback monitoring
+                // Trigger reversal slightly before the absolute end to avoid native "ended" delay
+                if (video.duration > 0 && video.currentTime >= video.duration - 0.05) {
+                    isReversing = true;
+                    video.pause();
+                }
             }
 
-            video.currentTime = Math.max(0, video.currentTime - deltaTime);
             animationFrameId = requestAnimationFrame(animate);
         };
 
-        const startReverse = () => {
-            isReversing = true;
-            video.pause();
-            lastTime = performance.now();
-            animationFrameId = requestAnimationFrame(animate);
-        };
-
-        const handleEnded = () => {
-            startReverse();
-        };
-
-        video.addEventListener('ended', handleEnded);
+        animationFrameId = requestAnimationFrame(animate);
 
         // Initial play
         video.play().catch(e => console.error("Auto-play blocked:", e));
 
         return () => {
-            video.removeEventListener('ended', handleEnded);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
