@@ -51,10 +51,10 @@ const JoinUs = () => {
                     {rolesData.map((role, index) => (
                         <div
                             key={index}
-                            className="cursor-target group flex items-center justify-between py-6 border-b border-white/[0.08] hover:border-white/[0.2] transition-colors duration-300"
+                            className="group flex items-center justify-between py-6 border-b border-white/[0.08] hover:border-white/[0.2] transition-colors duration-300"
                         >
                             <div className="flex-1 min-w-0">
-                                <h3 className="text-xl md:text-2xl font-medium text-white group-hover:text-white/90 transition-colors">
+                                <h3 className="cursor-target text-xl md:text-2xl font-medium text-white group-hover:text-white/90 transition-colors inline-block">
                                     {role.title}
                                 </h3>
                                 <p className="mt-1 text-sm text-white/40 hidden md:block">
