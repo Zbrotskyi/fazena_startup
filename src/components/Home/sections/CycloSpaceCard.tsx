@@ -31,16 +31,16 @@ const CycloSpaceCard = () => {
             {/* Metric Footer Section (3 Sectors) */}
             <div className={styles.metricFooter}>
                 <div className={styles.metricSector}>
-                    <span className={styles.metricValue}>v1.2.0</span>
-                    <span className={styles.metricLabel}>Platform</span>
+                    <span className={styles.metricValue}>v1.0.0</span>
+                    <span className={styles.metricLabel}>Version</span>
                 </div>
                 <div className={styles.metricSector}>
                     <span className={styles.metricValue}>QM+AI</span>
                     <span className={styles.metricLabel}>Engine</span>
                 </div>
                 <div className={styles.metricSector}>
-                    <span className={styles.metricValue}>100%</span>
-                    <span className={styles.metricLabel}>Validated</span>
+                    <span className={styles.metricValue}>-40 kcal/mol</span>
+                    <span className={styles.metricLabel}>Rosetta ddG</span>
                 </div>
             </div>
         </div>

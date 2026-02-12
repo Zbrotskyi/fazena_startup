@@ -32,15 +32,15 @@ const FazNeuroCard = () => {
             <div className={styles.metricFooter}>
                 <div className={styles.metricSector}>
                     <span className={styles.metricValue}>v1.0.0</span>
-                    <span className={styles.metricLabel}>Platform</span>
-                </div>
-                <div className={styles.metricSector}>
-                    <span className={styles.metricValue}>DNN+HMM</span>
-                    <span className={styles.metricLabel}>Engine</span>
+                    <span className={styles.metricLabel}>HTVS</span>
                 </div>
                 <div className={styles.metricSector}>
                     <span className={styles.metricValue}>100%</span>
-                    <span className={styles.metricLabel}>Validated</span>
+                    <span className={styles.metricLabel}>Druggability</span>
+                </div>
+                <div className={styles.metricSector}>
+                    <span className={styles.metricValue}>-20.4 kcal/mol</span>
+                    <span className={styles.metricLabel}>dG</span>
                 </div>
             </div>
         </div>
