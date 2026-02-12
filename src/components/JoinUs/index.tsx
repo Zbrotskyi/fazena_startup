@@ -1,25 +1,11 @@
 import Link from "next/link";
+import TargetCursor from "../Common/TargetCursor";
 
 const rolesData = [
     {
-        title: "Bioinformatician",
+        title: "Organic chemist",
         description: "Analyze genomic and transcriptomic data to identify novel drug targets",
-        applyLink: "mailto:careers@fazena.com?subject=Application: Bioinformatician",
-    },
-    {
-        title: "Computational Chemist",
-        description: "Design and optimize small molecule drug candidates using molecular modeling",
-        applyLink: "mailto:careers@fazena.com?subject=Application: Computational Chemist",
-    },
-    {
-        title: "Synthetic Biologist",
-        description: "Engineer biological systems for experimental validation of computational predictions",
-        applyLink: "mailto:careers@fazena.com?subject=Application: Synthetic Biologist",
-    },
-    {
-        title: "ML Engineer",
-        description: "Develop machine learning models for molecular property prediction and generative design",
-        applyLink: "mailto:careers@fazena.com?subject=Application: ML Engineer",
+        applyLink: "mailto:careers@fazena.com?subject=Application: Organic chemist",
     },
     {
         title: "General Interest",
@@ -37,6 +23,7 @@ const ArrowIcon = () => (
 const JoinUs = () => {
     return (
         <section className="bg-[#060607] pt-36 pb-20 md:pt-40 md:pb-28">
+            <TargetCursor targetSelector=".cursor-target" />
             <div className="container max-w-4xl mx-auto">
                 {/* Header */}
                 <div className="mb-16">
@@ -64,7 +51,7 @@ const JoinUs = () => {
                     {rolesData.map((role, index) => (
                         <div
                             key={index}
-                            className="group flex items-center justify-between py-6 border-b border-white/[0.08] hover:border-white/[0.2] transition-colors duration-300"
+                            className="cursor-target group flex items-center justify-between py-6 border-b border-white/[0.08] hover:border-white/[0.2] transition-colors duration-300"
                         >
                             <div className="flex-1 min-w-0">
                                 <h3 className="text-xl md:text-2xl font-medium text-white group-hover:text-white/90 transition-colors">
@@ -83,16 +70,6 @@ const JoinUs = () => {
                             </a>
                         </div>
                     ))}
-                </div>
-
-                {/* Bottom CTA */}
-                <div className="mt-16 text-center">
-                    <p className="text-white/40 text-sm">
-                        Send your CV and a brief cover letter to{" "}
-                        <a href="mailto:careers@fazena.com" className="text-[#ea7414] hover:underline">
-                            careers@fazena.com
-                        </a>
-                    </p>
                 </div>
             </div>
         </section>

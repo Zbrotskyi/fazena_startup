@@ -1,0 +1,64 @@
+.target-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: normal;
+}
+
+.target-cursor-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #ea7414;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(234, 116, 20, 0.8);
+}
+
+.target-cursor-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid #ea7414;
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.corner-tl {
+  top: -18px;
+  left: -18px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner-tr {
+  top: -18px;
+  right: -18px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner-br {
+  bottom: -18px;
+  right: -18px;
+  border-left: none;
+  border-top: none;
+}
+
+.corner-bl {
+  bottom: -18px;
+  left: -18px;
+  border-right: none;
+  border-top: none;
+}
+
+/* Hover state is handled by GSAP positions, but we can add some global style */
+.cursor-target {
+  cursor: none !important;
+}
