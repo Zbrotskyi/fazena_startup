@@ -1,3 +1,21 @@
+import Features from "@/components/Features";
+import Hero from "@/components/Hero";
+import HomeSectionOne from "@/components/Home/sections/HomeSectionOne";
+import HomeSectionThree from "@/components/Home/sections/HomeSectionThree";
+import HomeSectionFour from "@/components/Home/sections/HomeSectionFour";
+import ProjectsInDevelopment from "@/components/Home/sections/ProjectsInDevelopment";
+import Partners from "@/components/Partners";
+import RNAHunter from "@/components/RNA_hunter";
+import Team from "@/components/Team";
+import HomePublications from "@/components/Publications/HomePublications";
+import PartnershipCTA from "@/components/PartnershipCTA";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "FAZENA | Computed. Synthesized. Validated.",
+  description: "We're building silicon-to-cell integration that collapses traditional discovery timelines",
+};
+
 export default function Home() {
   return (
     <>
