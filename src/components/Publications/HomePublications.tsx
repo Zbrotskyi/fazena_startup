@@ -35,22 +35,42 @@ const HomePublications = () => {
                     dark
                 />
 
-                <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-16">
-                    {latestPublications.map((publication) => (
-                        <PublicationCard key={publication.id} publication={publication} />
-                    ))}
-                </div>
+                <div className="flex flex-col lg:flex-row items-center gap-8">
+                    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 flex-grow">
+                        {latestPublications.map((publication) => (
+                            <PublicationCard key={publication.id} publication={publication} />
+                        ))}
+                    </div>
 
-                {/* View All CTA */}
-                <div className="text-center">
-                    <p className="text-white/40 mb-6 max-w-[500px] mx-auto text-sm">
-                        Discover our full repository of scientific breakthroughs, news announcements, and exclusive industry insights.
-                    </p>
+                    {/* Blinking Arrow CTA */}
                     <Link
                         href="/publications"
-                        className="inline-flex items-center justify-center rounded-md bg-[#ea7414] px-8 py-3 text-base font-bold text-white transition-all duration-300 hover:bg-[#ff9130] hover:shadow-[0_0_20px_rgba(234,116,20,0.4)]"
+                        className="group relative flex items-center justify-center w-16 h-16 lg:w-20 lg:h-[200px] bg-white/5 border border-white/10 rounded-lg transition-all duration-300 hover:bg-[#ea7414]/10 hover:border-[#ea7414]/50 hover:shadow-[0_0_30px_rgba(234,116,20,0.15)] overflow-hidden"
                     >
-                        View All Publications
+                        <style jsx>{`
+                            @keyframes custom-blink {
+                                0%, 100% { opacity: 1; transform: scale(1); }
+                                50% { opacity: 0.4; transform: scale(0.95); }
+                            }
+                            .animate-blink {
+                                animation: custom-blink 1.5s ease-in-out infinite;
+                            }
+                        `}</style>
+                        <div className="relative z-10 animate-blink">
+                            <svg
+                                width="32"
+                                height="32"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#ea7414"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="transition-transform duration-300 group-hover:translate-x-1"
+                            >
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
                     </Link>
                 </div>
             </div>

@@ -4,7 +4,7 @@ const publicationsData: Publication[] = [
     {
         id: 1,
         title: "Discovery of a Druggable Ligand-Binding Site in Phospholipid-Transporting ATPase ABCA7",
-        image: "/images/publications/ABCA7.png",
+        image: "/images/publications/ABCA7.jpg",
         publishDate: "Coming Soon",
         url: "in-future",
         tags: ["Research"]
