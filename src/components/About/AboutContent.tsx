@@ -9,7 +9,7 @@ const AboutContent = () => {
                         </h2>
                         <div className="mx-auto space-y-6 text-base leading-relaxed text-white/70 sm:text-lg sm:leading-relaxed">
                             <p>
-                                FAZENA was founded by Yegor Franchuk, Anatolii Zbrotsky, and Dmytro Alexandrovych in August 2025 during their participation in a workshop on natural compounds organized by CENtR and Explogen LLC. Later, the core team expanded with the addition of Yevhenii Zhuromskyi.
+                                FAZENA was founded by Yehor Franchuk, Anatolii Zbrotsky, and Dmytro Alexandrovych in August 2025 during their participation in a workshop on natural compounds organized by CENtR and Explogen LLC. Later, the core team expanded with the addition of Yevhenii Zhuromskyi.
                             </p>
                             <p>
                                 In December 2025, we won the Neuro Impact Challenge competition, gaining recognition from YURiA-PHARM, the Ministry of Science and Education of Ukraine, and the IP office. We presented part of our project, the design of a molecular modulator of Phospholipid-transporting ATPase ABCA7 for the treatment of Alzheimer&apos;s disease associated with certain mutations.

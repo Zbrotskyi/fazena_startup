@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import PublicationCard from "@/components/Publications/PublicationCard";
 import publicationsData from "@/components/Publications/publicationsData";
 import Breadcrumb from "@/components/Common/Breadcrumb";
@@ -12,7 +12,24 @@ const PublicationsPage = () => {
   // Restricted valid tags
   const validTags = ["Research", "News", "Blogs", "Announcements"];
 
-  const filteredPublications = publicationsData.filter((publication) => {
+  const sortedPublications = useMemo(() => {
+    return [...publicationsData].sort((a, b) => {
+      // Prioritize "in-future"
+      if (a.url === "in-future" && b.url !== "in-future") return -1;
+      if (a.url !== "in-future" && b.url === "in-future") return 1;
+
+      // Then by date descending
+      const dateA = new Date(a.publishDate).getTime();
+      const dateB = new Date(b.publishDate).getTime();
+
+      const timeA = isNaN(dateA) ? Infinity : dateA;
+      const timeB = isNaN(dateB) ? Infinity : dateB;
+
+      return timeB - timeA;
+    });
+  }, []);
+
+  const filteredPublications = sortedPublications.filter((publication) => {
     const searchLower = searchQuery.toLowerCase();
     const matchesSearch =
       publication.title.toLowerCase().includes(searchLower) ||
